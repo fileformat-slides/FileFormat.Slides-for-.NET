@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>D:\Local_Repos\FileFormat.Slides\FileFormat.Slides\FileFormat.Slides.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FileFormat.Slides.Common\FileFormat.Slides.Common.csproj" />
+    <ProjectReference Include="..\Fileformat.Slides.Facade\FileFormat.Slides.Facade.csproj" />
+  </ItemGroup>
+
+</Project>

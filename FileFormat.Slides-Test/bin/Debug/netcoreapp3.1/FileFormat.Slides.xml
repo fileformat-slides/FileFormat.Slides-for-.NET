@@ -1,0 +1,341 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FileFormat.Slides</name>
+    </assembly>
+    <members>
+        <member name="T:FileFormat.Slides.Image">
+            <summary>
+            This class represents the image within a slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.ImagePath">
+            <summary>
+            Property to get or set the image path.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.Facade">
+            <summary>
+            Property to get or set the ImageFacade instance.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.ImageIndex">
+            <summary>
+            Property to get or set the image index within the slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.Name">
+            <summary>
+            Property to get or set the image index within the slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.X">
+            <summary>
+            Property to get or set the X coordinate of an image.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.Y">
+            <summary>
+            Property to get or set the Y coordinate of an image.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.Width">
+            <summary>
+            Property to get or set the width of an image.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Image.Height">
+            <summary>
+            Property to get or set the height of an image.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Image.#ctor(System.String)">
+            <summary>
+            Initialize the image object 
+            </summary>
+            <param name="imagePath">Image path as string</param>
+        </member>
+        <member name="M:FileFormat.Slides.Image.#ctor">
+            <summary>
+            Blank constructor to initialize the image object
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Image.GetImages(System.Collections.Generic.List{FileFormat.Slides.Facade.ImageFacade})">
+            <summary>
+            Method to get the list of the images within a slide
+            </summary>
+            <param name="imageFacades">An object of ImageFacade.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileFormat.Slides.Image.Remove">
+            <summary>
+            Method to remove the image.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Image.Populate_Facade">
+            <summary>
+            Method to populate Facade respective to image.
+            </summary>
+        </member>
+        <member name="T:FileFormat.Slides.Presentation">
+            <summary>
+            Represents the presentation document.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.#ctor(System.String)">
+            <summary>
+            Initializes the presentation object.
+            </summary>
+            <param name="FilePath">Presentation path as string</param>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.#ctor">
+            <summary>
+            Default constructor to initialize presentation object.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.Create(System.String)">
+            <summary>
+            Static method to instantiate a new object of Presentation class.
+            </summary>
+            <param name="FilePath">Presentation path as string</param>
+            <returns>An instance of Presentation object</returns>
+            Use this method to create a new, blank presentation that you can populate with content.
+            To work with an existing document, consider using the <see cref="M:FileFormat.Slides.Presentation.Open(System.String)"/> method.
+            <example>
+            <code>
+            Presentation presentation = Presentation.Create("D:\\AsposeSampleResults\\test2.pptx");
+            TextShape shape = new TextShape();
+            shape.Text = "Title: Here is my first title From FF";
+            TextShape shape2 = new TextShape();
+            shape2.Text = "Body : Here is my first title From FF";
+             // First slide
+            Slide slide = new Slide();
+            slide.AddTextShapes(shape);
+            slide.AddTextShapes(shape2);
+            // 2nd slide
+            Slide slide1 = new Slide();
+            slide1.AddTextShapes(shape);
+            slide1.AddTextShapes(shape2);
+            // Adding slides
+            presentation.AppendSlide(slide);
+            presentation.AppendSlide(slide1);
+            presentation.Save();
+            </code>
+            </example>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.Open(System.String)">
+            <summary>
+            Static method to load an existing presentation.
+            </summary>
+            <param name="FilePath">Presentation path as string</param>
+            <returns></returns>
+            <example>
+            <code>
+            Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\sample.pptx");
+            TextShape shape1 = new TextShape();
+            shape1.Text = "Title: Here is my first title From FF";
+            TextShape shape2 = new TextShape();
+            shape2.Text = "Body : Here is my first title From FF";
+             // New slide
+            Slide slide = new Slide();
+            slide.AddTextShapes(shape1);
+            slide.AddTextShapes(shape2);       
+            // Adding slide
+            presentation.AppendSlide(slide);
+            presentation.Save();
+            </code>
+            </example>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.AppendSlide(FileFormat.Slides.Slide)">
+            <summary>
+            This method is responsible to append a slide.
+            </summary>
+            <param name="slide">An object of a slide</param>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.GetSlides">
+            <summary>
+            Method to get the list of all slides of a presentation
+            </summary>
+            <returns></returns>
+            <example>
+            <code>
+            Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\sample.pptx");
+            var slides = presentation.GetSlides();
+            var slide = slides[0];
+            ...
+            </code>
+            </example>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.ExtractAndSaveImages(System.String)">
+            <summary>
+            Extract and save images of a presentation into a director
+            </summary>
+            <param name="outputFolder">Folder path as string</param>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.RemoveSlide(System.Int32)">
+            <summary>
+            Method to remove a slide at a specific index
+            </summary>
+            <param name="slideIndex">Index of a slide</param>  
+            <example>
+            <code>
+            Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\sample.pptx");
+            var confirmation = presentation.RemoveSlide(0);
+            Console.WriteLine(confirmation);
+            presentation.Save();
+            </code>
+            </example>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.InsertSlideAt(System.Int32,FileFormat.Slides.Slide)">
+            <summary>
+            Method to insert a slide at a specific index
+            </summary>
+            <param name="index">Index of a slide</param>
+            <param name="slide">A slide object</param>
+        </member>
+        <member name="M:FileFormat.Slides.Presentation.Save">
+            <summary>
+            Method to save the new or changed presentation.
+            </summary>
+        </member>
+        <member name="T:FileFormat.Slides.Slide">
+            <summary>
+            Represents the slide object within a presentatction
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Slide.SlideFacade">
+            <summary>
+            Property for respective Slide Facade.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Slide.TextShapes">
+            <summary>
+            Property contains the list of all text shapes.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Slide.RelationshipId">
+            <summary>
+            Property for the relationship Id.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Slide.SlideIndex">
+            <summary>
+            Property to hold the index of the slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.Slide.Images">
+            <summary>
+            Property contains the list of all images within a slide.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.Slide.#ctor">
+            <summary>
+            Constructor for the Slide class.
+            </summary>
+            <remarks>
+             it intializes the Slide Facade set the slide index and intializes the lists of text shapes and images.
+            </remarks>
+        </member>
+        <member name="M:FileFormat.Slides.Slide.AddTextShapes(FileFormat.Slides.TextShape)">
+            <summary>
+            Method to add a text shape in a slide.
+            </summary>
+            <param name="textShape">An object of TextShape class.</param>
+        </member>
+        <member name="M:FileFormat.Slides.Slide.AddImage(FileFormat.Slides.Image)">
+            <summary>
+            Method to add images to a slide. 
+            </summary>
+            <param name="image">An object of Image class</param>
+        </member>
+        <member name="M:FileFormat.Slides.Slide.GetTextShapesByText(System.String)">
+            <summary>
+            Get text shapes by searching a text term.
+            </summary>
+            <param name="text">Search term as string</param>
+            <returns></returns>
+        </member>
+        <member name="T:FileFormat.Slides.TextShape">
+            <summary>
+            This class represents the text shape within a slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Text">
+            <summary>
+            Property to set or get the text of the shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.FontSize">
+            <summary>
+            Property to set or get the font size of the Text Shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Alignment">
+            <summary>
+            Property to get or set alignment of the shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.X">
+            <summary>
+            Property to get or set X coordinate of the shape
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Y">
+            <summary>
+            Property to get or set Y coordinate of the shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Width">
+            <summary>
+            Property to get or set width of the shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Height">
+            <summary>
+            Property to get or set height of the shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.Facade">
+            <summary>
+            Property to get or set the TextShapeFacade.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.ShapeIndex">
+            <summary>
+            Property to get or set the shape index within a slide.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.FontFamily">
+            <summary>
+            Property to get or set the font family of the text shape.
+            </summary>
+        </member>
+        <member name="P:FileFormat.Slides.TextShape.TextColor">
+            <summary>
+            Property to get or set the text color of the text shape.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.TextShape.#ctor">
+            <summary>
+            Constructor of the TextShape class inititalizes the object of TextShapeFacade and populate its fields.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.TextShape.Populate_Facade">
+            <summary>
+            Method to populate the fields of respective facade.
+            </summary>
+        </member>
+        <member name="M:FileFormat.Slides.TextShape.GetTextShapes(System.Collections.Generic.List{FileFormat.Slides.Facade.TextShapeFacade})">
+            <summary>
+            Method for getting the list of text shapes.
+            </summary>
+            <param name="textShapeFacade">An object of TextShapeFacade.</param>
+            <returns></returns>
+        </member>
+        <member name="M:FileFormat.Slides.TextShape.Remove">
+            <summary>
+            Method to remove the textshape of a slide.
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,14 @@
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Facade.deps.json
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Facade.dll
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Facade.pdb
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.dll
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.pdb
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.csproj.AssemblyReference.cache
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.GeneratedMSBuildEditorConfig.editorconfig
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.AssemblyInfoInputs.cache
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.AssemblyInfo.cs
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.csproj.CoreCompileInputs.cache
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.csproj.CopyComplete
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.dll
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\obj\Debug\netcoreapp3.1\FileFormat.Slides.Facade.pdb
+D:\Local_Repos\FileFormat.Slides\Fileformat.Slides.Facade\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.xml

@@ -1,0 +1,11 @@
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.deps.json
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.dll
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.pdb
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.AssemblyInfoInputs.cache
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.AssemblyInfo.cs
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.csproj.CoreCompileInputs.cache
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.dll
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.pdb
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\bin\Debug\netcoreapp3.1\FileFormat.Slides.Common.xml
+D:\Local_Repos\FileFormat.Slides\FileFormat.Slides.Common\obj\Debug\netcoreapp3.1\FileFormat.Slides.Common.csproj.AssemblyReference.cache
