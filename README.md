@@ -40,11 +40,14 @@ For a more detailed understanding of our system architecture, design patterns, a
 - .NET Core 3.1 and above
 
 
+
+
+
 ## API Reference
 - [API Reference](#) - In-depth information about public interfaces and usage.
 
 ## Technical Docs
-- [Articles](https://fileformat-words.github.io/FileFormat.Slides-for-.NET/articles/intro.html) - Comprehensive insights into the system architecture, design patterns, and API usage in different scenarios.
+- [Articles](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/articles/intro.html) - Comprehensive insights into the system architecture, design patterns, and API usage in different scenarios.
 
 # Installation
 - Install-Package FileFormat.Slides
