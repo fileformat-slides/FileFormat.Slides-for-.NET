@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Presentation Management C# API System Outlines | FileFormat.Slides </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Presentation Management C# API System Outlines | FileFormat.Slides ">
+      
+      <link rel="icon" href="favicon.ico">
+      <link rel="stylesheet" href="public/docfx.min.css">
+      <link rel="stylesheet" href="public/main.css">
+      <meta name="docfx:navrel" content="toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/blob/main/README.md/#L1">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="index.html">
+            <img id="logo" class="svg" src="logo.svg" alt="FileFormat.Slides">
+            FileFormat.Slides
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="">
+<h1 id="presentation-management-c-api-system-outlines">Presentation Management C# API System Outlines</h1>
+
+<p>This Documentation explains the internal structure of our Presentation Management C# API system. Despite its complexity, we've ensured the public APIs are user-friendly, providing an easy experience for manipulating PowerPoint presentations.</p>
+<p>For a more detailed understanding of our system architecture, design patterns, and public interfaces, please visit the <a href="https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/">Articles Section</a>.</p>
+<h2 id="fileformatslides-namespace">FileFormat.Slides Namespace</h2>
+<h3 id="presentation-class">Presentation Class</h3>
+<ul>
+<li>The primary class responsible for creating, loading, and modifying presentations.</li>
+</ul>
+<h3 id="slide-class">Slide Class</h3>
+<ul>
+<li>This class represents the slides of a presentation. It deals with elements creation, updation, retrieval and deletion operations within a slide.</li>
+</ul>
+<h3 id="textshape-class">TextShape Class</h3>
+<ul>
+<li>This class is responsible to manage the text shapes within a slide.</li>
+<li>It allows add, update, retrieve and removing of a text shape.</li>
+<li>It allows to set text, x and y coordinates, width, height, font size, font color, font family, text alignment of a text shape.</li>
+</ul>
+<h3 id="image-class">Image Class</h3>
+<ul>
+<li>This class is providing the functions to deal with Image within a slide.</li>
+<li>It allows add, update, retrieve and removing of an image.</li>
+</ul>
+<h2 id="fileformatslidescommon-namespace">FileFormat.Slides.Common Namespace</h2>
+<ul>
+<li>This namespace contains all classes, enums or methods for common use.</li>
+</ul>
+<h3 id="utility-class">Utility Class</h3>
+<ul>
+<li>This class provides essential static methods for generating unique relationship IDs, obtaining random slide IDs, and converting measurements.</li>
+</ul>
+<h3 id="colors-class">Colors Class</h3>
+<ul>
+<li>This static class provides static properties with color codes, simplifying consistent color selection in C# applications.</li>
+</ul>
+<h2 id="fileformatslidesfacade">FileFormat.Slides.Facade</h2>
+<ul>
+<li>Contains facade classes</li>
+</ul>
+<h2 id="api-reference">API Reference</h2>
+<ul>
+<li><a href="#">API Reference</a> - In-depth information about public interfaces and usage.</li>
+</ul>
+<h2 id="technical-docs">Technical Docs</h2>
+<ul>
+<li><a href="https://fileformat-words.github.io/FileFormat.Words-for-.NET/articles/intro.html">Articles</a> - Comprehensive insights into the system architecture, design patterns, and API usage in different scenarios.</li>
+</ul>
+<h1 id="installation">Installation</h1>
+<ul>
+<li>Install-Package FileFormat.Words</li>
+</ul>
+<h1 id="system-requirements">System Requirements</h1>
+<ul>
+<li>.NET Core 3.1 and above</li>
+</ul>
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/README.md/#L1" class="edit-link">Edit this page</a>
+        </div>
+
+        <div class="next-article d-print-none border-top" id="nextArticle"></div>
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
