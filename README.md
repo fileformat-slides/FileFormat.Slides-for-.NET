@@ -2,7 +2,7 @@
 
 This Documentation explains the internal structure of our Presentation Management C# API system. Despite its complexity, we've ensured the public APIs are user-friendly, providing a seamless experience for manipulating PowerPoint presentations.
 
-For a more detailed understanding of our system architecture, design patterns, and public interfaces, please visit the [Articles Section](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/).
+For a more detailed understanding of our system architecture, design patterns, and public interfaces, please visit the [Articles Section](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/docs/index.html).
 
 ## FileFormat.Slides Namespace
 
@@ -39,15 +39,11 @@ For a more detailed understanding of our system architecture, design patterns, a
 # System Requirements
 - .NET Core 3.1 and above
 
-
-
-
-
 ## API Reference
-- [API Reference](#) - In-depth information about public interfaces and usage.
+- [API Reference](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/api/FileFormat.Slides.html) - In-depth information about public interfaces and usage.
 
 ## Technical Docs
-- [Articles](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/articles/intro.html) - Comprehensive insights into the system architecture, design patterns, and API usage in different scenarios.
+- [Articles](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/docs/index.html) - Comprehensive insights into the system architecture, design patterns, and API usage in different scenarios.
 
 # Installation
 - Install-Package FileFormat.Slides
