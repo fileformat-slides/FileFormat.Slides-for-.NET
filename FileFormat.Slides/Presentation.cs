@@ -101,6 +101,7 @@ namespace FileFormat.Slides
         /// <param name="slide">An object of a slide</param>
         public void AppendSlide (Slide slide)
         {
+            slide.SlideFacade.SetSlideBackground(slide.BackgroundColor);
             doc.AppendSlide(slide.SlideFacade);
             _Slides.Add(slide);
            

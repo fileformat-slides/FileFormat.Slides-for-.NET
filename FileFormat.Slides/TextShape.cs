@@ -14,7 +14,7 @@ namespace FileFormat.Slides
     {
         private String _Text;
         private Int32 _FontSize;
-        private TextAlignment _Alignment;
+        private TextAlignment _Alignment = TextAlignment.None;
         private double _x;
         private double _y;
         private double _Width;
@@ -23,6 +23,9 @@ namespace FileFormat.Slides
         private int _shapeIndex;
         private String _FontFamily;
         private String _TextColor;
+        private List<TextSegment> _TextSegments;
+        private String _BackgroundColor=null;
+        private StyledList _TextList=null;
         /// <summary>
         /// Property to set or get the text of the shape.
         /// </summary>
@@ -68,6 +71,21 @@ namespace FileFormat.Slides
         /// </summary>
         public string TextColor { get => _TextColor; set => _TextColor = value; }
         /// <summary>
+        /// Property to set or get text segments within a text shape.
+        /// </summary>
+        public List<TextSegment> TextSegments { get => _TextSegments; set => _TextSegments = value; }
+        /// <summary>
+        /// Property to set or get background color of a text shape.
+        /// </summary>
+        public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
+        /// <summary>
+        /// Property to set or get styled list of a text shape.
+        /// </summary>
+        public StyledList TextList { get => _TextList; set => _TextList = value; }
+
+
+
+        /// <summary>
         /// Constructor of the TextShape class inititalizes the object of TextShapeFacade and populate its fields.
         /// </summary>
         public TextShape ()
@@ -75,9 +93,10 @@ namespace FileFormat.Slides
             _Facade = new TextShapeFacade();
             _Facade.ShapeIndex = _shapeIndex;
             _Text = "Default Text";
-            _FontSize = 3200;
+            _FontSize = 32;
             _FontFamily = "Calibri";
             _TextColor = "000000";
+            _BackgroundColor = "Transparent";
             _Alignment = TextAlignment.Center;
             _x = Utility.EmuToPixels(1349828);
             _y = Utility.EmuToPixels(1999619);
@@ -99,6 +118,8 @@ namespace FileFormat.Slides
             _Facade.Text = _Text;
             _Facade.FontSize = _FontSize;
             _Facade.Alignment = _Alignment;
+            _Facade.TextColor = _TextColor;
+            _Facade.BackgroundColor = _BackgroundColor;
             _Facade.FontFamily = _FontFamily;
             _Facade.X = Utility.PixelsToEmu(_x);
             _Facade.Y = Utility.PixelsToEmu(_y);
@@ -108,14 +129,14 @@ namespace FileFormat.Slides
         /// <summary>
         /// Method for getting the list of text shapes.
         /// </summary>
-        /// <param name="textShapeFacade">An object of TextShapeFacade.</param>
+        /// <param name="textShapeFacades">An object of TextShapeFacade.</param>
         /// <returns></returns>
-        public static List<TextShape> GetTextShapes (List<TextShapeFacade> textShapeFacade)
+        public static List<TextShape> GetTextShapes (List<TextShapeFacade> textShapeFacades)
         {
             List<TextShape> textShapes = new List<TextShape>();
             try
             {
-                foreach (var facade in textShapeFacade)
+                foreach (var facade in textShapeFacades)
                 {
                     TextShape textShape = new TextShape
                     {
@@ -123,6 +144,8 @@ namespace FileFormat.Slides
                         FontSize = facade.FontSize,
                         Alignment = facade.Alignment,
                         FontFamily = facade.FontFamily,
+                        TextColor = facade.TextColor,
+                        BackgroundColor = facade.BackgroundColor,
                         X = Utility.EmuToPixels(facade.X),
                         Y = Utility.EmuToPixels(facade.Y),
                         Width = Utility.EmuToPixels(facade.Width),

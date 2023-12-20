@@ -23,6 +23,7 @@ namespace FileFormat.Slides.Facade
 
         private String _RelationshipId;
         private int _SlideIndex;
+        private String _BackgroundColor;
 
         private List<TextShapeFacade> _TextShapeFacades = null;
 
@@ -33,6 +34,7 @@ namespace FileFormat.Slides.Facade
         public List<TextShapeFacade> TextShapeFacades { get => _TextShapeFacades; set => _TextShapeFacades = value; }
         public int SlideIndex { get => _SlideIndex; set => _SlideIndex = value; }
         public List<ImageFacade> ImagesFacade { get => _ImagesFacade; set => _ImagesFacade = value; }
+        public String BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -43,10 +45,10 @@ namespace FileFormat.Slides.Facade
                 var _PresentationPart = PresentationDocumentFacade.getInstance().GetPresentationPart();
                 var _SlideIdList = _PresentationPart.Presentation.SlideIdList;
                 _SlideIdList.Append(new SlideId() { Id = (UInt32Value)Utility.GetRandomSlideId(), RelationshipId = _RelationshipId });
-
+               
                 _PresentationSlide = new Slide(
                     new CommonSlideData(
-                        new ShapeTree(
+                         new ShapeTree(
                             new P.NonVisualGroupShapeProperties(
                                 new P.NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" },
                                 new P.NonVisualGroupShapeDrawingProperties(),
@@ -59,8 +61,19 @@ namespace FileFormat.Slides.Facade
                     _SlidePart.AddPart(PresentationDocumentFacade.getInstance().PresentationSlideLayoutParts[0]);
             }
          }
+        public void SetSlideBackground(String color)
+        {
+            Background background2 = new Background();
+            BackgroundProperties backgroundProperties2 = new BackgroundProperties();
+            SolidFill solidFill39 = new SolidFill();
+            RgbColorModelHex rgbColorModelHex12 = new RgbColorModelHex() { Val = color };
+            solidFill39.Append(rgbColorModelHex12);
+            backgroundProperties2.Append(solidFill39);
+            background2.Append(backgroundProperties2);
+            _PresentationSlide.CommonSlideData.InsertBefore(background2, _PresentationSlide.CommonSlideData.ShapeTree);
+        }
         public TextShapeFacade AddTextShape (String text, Int32 fontSize, TextAlignment alignment, Int64 _x, Int64 _y, 
-            Int64 width, Int64 height, String fontFamily, String textColor)
+            Int64 width, Int64 height, String fontFamily, String textColor, String backgroundColor)
         {
             // Create an instance of TextShapeFacade
             TextShapeFacade textShapeFacade = new TextShapeFacade();
@@ -71,12 +84,68 @@ namespace FileFormat.Slides.Facade
                 .WithFontSize(fontSize)
                 .WithFontFamily(fontFamily)
                 .WithTextColor(textColor)
+                .WithBackgroundColor(backgroundColor)
                 .WithAlignment(alignment)
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
             // Create the P.Shape using the CreateShape method
             P.Shape textBoxShape = textShapeFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(textBoxShape);
+            //_TextShapeFacades.Add(textShapeFacade);
+            return textShapeFacade;
+        }
+        public TextShapeFacade AddTextListShape (List<String> textList, ListFacade facade, Int32 fontSize, TextAlignment alignment, Int64 _x, Int64 _y,
+            Int64 width, Int64 height, String fontFamily, String textColor, String backgroundColor)
+        {
+            // Create an instance of TextShapeFacade
+            TextShapeFacade textShapeFacade = new TextShapeFacade();
+
+            // Set properties using the provided parameters
+            textShapeFacade
+                .WithFontSize(fontSize)
+                .WithFontFamily(fontFamily)
+                .WithTextColor(textColor)
+                .WithBackgroundColor(backgroundColor)
+                .WithAlignment(alignment)
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape textBoxShape = textShapeFacade.CreateListShape(textList,facade);
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(textBoxShape);
+            //_TextShapeFacades.Add(textShapeFacade);
+            return textShapeFacade;
+        }
+        public TextShapeFacade AddTextShape ( List<TextSegmentFacade> textSegmentFacades,TextAlignment alignment, Int64 _x, Int64 _y,
+           Int64 width, Int64 height, String backgroundColor)
+        {
+            // Create an instance of TextShapeFacade
+            TextShapeFacade textShapeFacade = new TextShapeFacade();
+
+            // Set properties using the provided parameters
+            textShapeFacade
+                .WithAlignment(alignment)
+                .WithPosition(_x, _y)
+                .WithSize(width, height)
+                .WithBackgroundColor(backgroundColor);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape textBoxShape = textShapeFacade.CreateShape(textSegmentFacades);
 
             // Append the textBoxShape to the ShapeTree of the presentation slide
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)

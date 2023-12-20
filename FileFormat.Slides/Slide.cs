@@ -18,6 +18,7 @@ namespace FileFormat.Slides
         private int _SlideIndex;
         private List<TextShape> _TextShapes;       
         private List<Image> _Images;
+        private static String _BackgroundColor=null;
 
         /// <summary>
         /// Property for respective Slide Facade.
@@ -40,6 +41,10 @@ namespace FileFormat.Slides
         /// Property contains the list of all images within a slide.
         /// </summary>
         public List<Image> Images { get => _Images; set => _Images = value; }
+        /// <summary>
+        /// Property to set background color of a slide.
+        /// </summary>
+        public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
 
 
         /// <summary>
@@ -58,6 +63,7 @@ namespace FileFormat.Slides
                 _RelationshipId = _SlideFacade.RelationshipId;
                 _TextShapes = new List<TextShape>();
                 _Images = new List<Image>();
+                _SlideFacade.BackgroundColor = _BackgroundColor;
             }
             catch (Exception ex)
             {
@@ -73,6 +79,7 @@ namespace FileFormat.Slides
             else
                 _SlideFacade = new SlideFacade(false);
 
+            
             _RelationshipId = _SlideFacade.RelationshipId;
             _TextShapes = new List<TextShape>();
             _Images = new List<Image>();
@@ -85,12 +92,45 @@ namespace FileFormat.Slides
         {
             try
             {
-                textShape.Facade = _SlideFacade.AddTextShape(textShape.Text, textShape.FontSize, TextAlignment.Center,
-                    Utility.PixelsToEmu(textShape.X), Utility.PixelsToEmu(textShape.Y)
-                    , Utility.PixelsToEmu(textShape.Width), Utility.PixelsToEmu(textShape.Height), textShape.FontFamily, textShape.TextColor);
+                if (textShape.TextList == null)
+                {
+                    textShape.Facade = _SlideFacade.AddTextShape(textShape.Text, textShape.FontSize, TextAlignment.Center,
+                        Utility.PixelsToEmu(textShape.X), Utility.PixelsToEmu(textShape.Y)
+                        , Utility.PixelsToEmu(textShape.Width), Utility.PixelsToEmu(textShape.Height), textShape.FontFamily,
+                        textShape.TextColor, textShape.BackgroundColor);
+                }
+                else
+                {
+                    textShape.Facade = _SlideFacade.AddTextListShape(textShape.TextList.ListItems,textShape.TextList.Facade, textShape.FontSize, TextAlignment.Center,
+                        Utility.PixelsToEmu(textShape.X), Utility.PixelsToEmu(textShape.Y)
+                        , Utility.PixelsToEmu(textShape.Width), Utility.PixelsToEmu(textShape.Height), textShape.FontFamily,
+                        textShape.TextColor, textShape.BackgroundColor);
+                }
                 textShape.ShapeIndex = _TextShapes.Count + 1;
                 _TextShapes.Add(textShape);
             }catch(Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+       
+        public void AddTextShapes (TextShape textShape, List<TextSegment> textSegments)
+        {
+            try
+            {
+                List<TextSegmentFacade> textSegmentFacades = new List<TextSegmentFacade>();
+                foreach (var ts in textSegments)
+                {
+                    textSegmentFacades.Add(ts.Facade);
+                }
+                textShape.Facade = _SlideFacade.AddTextShape(textSegmentFacades, TextAlignment.Center,
+                    Utility.PixelsToEmu(textShape.X), Utility.PixelsToEmu(textShape.Y)
+                    , Utility.PixelsToEmu(textShape.Width), Utility.PixelsToEmu(textShape.Height), textShape.BackgroundColor);
+                textShape.ShapeIndex = _TextShapes.Count + 1;
+                _TextShapes.Add(textShape);
+            }
+            catch (Exception ex)
             {
                 string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
                 throw new Common.FileFormatException(errorMessage, ex);
