@@ -61,17 +61,34 @@ namespace FileFormat.Slides.Facade
                     _SlidePart.AddPart(PresentationDocumentFacade.getInstance().PresentationSlideLayoutParts[0]);
             }
          }
-        public void SetSlideBackground(String color)
+        public void SetSlideBackground (string color)
         {
-            Background background2 = new Background();
-            BackgroundProperties backgroundProperties2 = new BackgroundProperties();
-            SolidFill solidFill39 = new SolidFill();
-            RgbColorModelHex rgbColorModelHex12 = new RgbColorModelHex() { Val = color };
-            solidFill39.Append(rgbColorModelHex12);
-            backgroundProperties2.Append(solidFill39);
-            background2.Append(backgroundProperties2);
-            _PresentationSlide.CommonSlideData.InsertBefore(background2, _PresentationSlide.CommonSlideData.ShapeTree);
+            // Check if color is not null or empty
+            if (!string.IsNullOrEmpty(color))
+            {
+                // Check if there is already a Background element
+                Background existingBackground = _PresentationSlide.CommonSlideData.Elements<Background>().FirstOrDefault();
+
+                // If an existing background is found, remove it
+                if (existingBackground != null)
+                {
+                    _PresentationSlide.CommonSlideData.RemoveChild(existingBackground);
+                }
+
+                // Create a new Background element with the specified color
+                Background newBackground = new Background();
+                BackgroundProperties backgroundProperties = new BackgroundProperties();
+                SolidFill solidFill = new SolidFill();
+                RgbColorModelHex rgbColorModelHex = new RgbColorModelHex() { Val = color };
+                solidFill.Append(rgbColorModelHex);
+                backgroundProperties.Append(solidFill);
+                newBackground.Append(backgroundProperties);
+
+                // Insert the new Background element before the ShapeTree
+                _PresentationSlide.CommonSlideData.InsertBefore(newBackground, _PresentationSlide.CommonSlideData.ShapeTree);
+            }
         }
+
         public TextShapeFacade AddTextShape (String text, Int32 fontSize, TextAlignment alignment, Int64 _x, Int64 _y, 
             Int64 width, Int64 height, String fontFamily, String textColor, String backgroundColor)
         {
@@ -161,6 +178,11 @@ namespace FileFormat.Slides.Facade
         public void  AddImage (ImageFacade picture )
         {
             _PresentationSlide.CommonSlideData.ShapeTree.Append(picture.Image);
+        }
+
+        public void Update ()
+        {
+            this.SetSlideBackground(_BackgroundColor);
         }
 
     }

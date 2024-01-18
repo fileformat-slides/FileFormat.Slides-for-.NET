@@ -31,6 +31,7 @@ namespace FileFormat.Slides.Facade
         private String _TextColor = "#000000";
         private List<TextSegmentFacade> _TextSegmentFacades;
         private String _BackgroundColor;
+        private ListFacade _TextList = null;
         public string Text { get => _Text; set => _Text = value; }
         // Public property to set and get font size in points
         public int FontSize
@@ -52,18 +53,19 @@ namespace FileFormat.Slides.Facade
         public long Width { get => _width; set => _width = value; }
         public long Height { get => _height; set => _height = value; }
         public P.Shape TextBoxShape { get => _textBoxShape; set => _textBoxShape = value; }
-        protected  SlidePart AssociatedSlidePart { get => _AssociatedSlidePart; set => _AssociatedSlidePart = value; }
-        public  int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
+        protected SlidePart AssociatedSlidePart { get => _AssociatedSlidePart; set => _AssociatedSlidePart = value; }
+        public int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
         public string FontFamily { get => _FontFamily; set => _FontFamily = value; }
         public string TextColor { get => _TextColor; set => _TextColor = value; }
         public List<TextSegmentFacade> TextSegmentFacades { get => _TextSegmentFacades; set => _TextSegmentFacades = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
+        public ListFacade TextList { get => _TextList; set => _TextList = value; }
 
         public TextShapeFacade ()
         {
             // Set default values or initialization logic if needed
             FontSize = 12; // Example default font size
-           
+
         }
 
         public TextShapeFacade WithText (string text)
@@ -114,18 +116,18 @@ namespace FileFormat.Slides.Facade
 
         public P.Shape CreateShape ()
         {
-            TextAlignmentTypeValues alignmentType = ConvertAlignmentToTypeValues(Alignment);            
+            TextAlignmentTypeValues alignmentType = ConvertAlignmentToTypeValues(Alignment);
             P.Shape shape1 = new P.Shape();
             shape1.Append(CreateNonVisualShapeProperties());
             if (_BackgroundColor is null)
-                shape1.Append(CreateShapeProperties(X,Y,Width, Height));
+                shape1.Append(CreateShapeProperties(X, Y, Width, Height));
             else
-                shape1.Append(CreateShapeProperties(X, Y, Width, Height,BackgroundColor));
+                shape1.Append(CreateShapeProperties(X, Y, Width, Height, BackgroundColor));
             shape1.Append(CreateShapeStyle());
-            shape1.Append(CreateTextBody(_TextColor, _FontFamily, _fontSize, _Text, alignmentType ));         
-                
+            shape1.Append(CreateTextBody(_TextColor, _FontFamily, _fontSize, _Text, alignmentType));
 
-            return shape1;           
+
+            return shape1;
         }
         public P.Shape CreateListShape (List<String> listItems, ListFacade list)
         {
@@ -137,7 +139,7 @@ namespace FileFormat.Slides.Facade
             else
                 shape1.Append(CreateShapeProperties(X, Y, Width, Height, BackgroundColor));
             shape1.Append(CreateShapeStyle());
-            shape1.Append(list.CreateList(listItems, _TextColor,_FontFamily,_fontSize, new P.TextBody()));
+            shape1.Append(list.CreateList(listItems, _TextColor, _FontFamily, _fontSize, new P.TextBody()));
             return shape1;
         }
         public P.Shape CreateShape (List<TextSegmentFacade> textSegmentFacades)
@@ -156,7 +158,7 @@ namespace FileFormat.Slides.Facade
             return shape1;
 
 
-          
+
         }
 
         private P.ShapeStyle CreateShapeStyle ()
@@ -194,12 +196,12 @@ namespace FileFormat.Slides.Facade
 
             return shapeStyle1;
         }
-        private P.ShapeProperties CreateShapeProperties (long x, long y, long width, long height, string rgbColorHex= "Transparent" )
+        private P.ShapeProperties CreateShapeProperties (long x, long y, long width, long height, string rgbColorHex = "Transparent")
         {
             P.ShapeProperties shapeProperties1 = new P.ShapeProperties();
 
             D.Transform2D transform2D1 = new D.Transform2D();
-            D.Offset offset1 = new D.Offset() { X =x, Y = y };
+            D.Offset offset1 = new D.Offset() { X = x, Y = y };
             D.Extents extents1 = new D.Extents() { Cx = width, Cy = height };
 
             transform2D1.Append(offset1);
@@ -210,7 +212,7 @@ namespace FileFormat.Slides.Facade
 
             presetGeometry1.Append(adjustValueList1);
 
-            
+
             D.SolidFill solidFill1 = new D.SolidFill();
             if (rgbColorHex != "Transparent")
             {
@@ -220,9 +222,9 @@ namespace FileFormat.Slides.Facade
             D.Outline outline1 = new D.Outline() { Width = 12700 };
 
             D.SolidFill solidFill2 = new D.SolidFill();
-           /* D.SchemeColor schemeColor1 = new D.SchemeColor() { Val = D.SchemeColorValues.Text1 };
+            /* D.SchemeColor schemeColor1 = new D.SchemeColor() { Val = D.SchemeColorValues.Text1 };
 
-            solidFill2.Append(schemeColor1);*/
+             solidFill2.Append(schemeColor1);*/
 
             outline1.Append(new NoFill());
 
@@ -328,13 +330,13 @@ namespace FileFormat.Slides.Facade
                     Extents = new D.Extents() { Cx = Width, Cy = Height }
                 };
             }
-            if(!String.IsNullOrEmpty(_BackgroundColor))
+            if (!String.IsNullOrEmpty(_BackgroundColor))
             {
                 if (_BackgroundColor == "Transparent")
                 {
                     if (TextBoxShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() == null)
                     {
-                        if(TextBoxShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() !=null)
+                        if (TextBoxShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() != null)
                             TextBoxShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault().Remove();
                     }
                     else
@@ -349,24 +351,24 @@ namespace FileFormat.Slides.Facade
                     {
                         TextBoxShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault().Remove();
                     }
-                        var fill = TextBoxShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
+                    var fill = TextBoxShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
 
-                        if (fill != null)
-                        {
-                            fill.RemoveAllChildren();
-                            fill.Append(new RgbColorModelHex() { Val = _BackgroundColor });
+                    if (fill != null)
+                    {
+                        fill.RemoveAllChildren();
+                        fill.Append(new RgbColorModelHex() { Val = _BackgroundColor });
                     }
                     else
                     {
                         TextBoxShape.ShapeProperties.Append(new SolidFill(new RgbColorModelHex() { Val = _BackgroundColor }));
                     }
-                    
+
                 }
             }
-            
+
             var existingParagraphText = TextBoxShape.TextBody.Descendants<Run>().FirstOrDefault();
-            TextBoxShape.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();  
-            if(alignmentType != TextAlignmentTypeValues.Justified)
+            TextBoxShape.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();
+            if (alignmentType != TextAlignmentTypeValues.Justified)
                 TextBoxShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(new ParagraphProperties() { Alignment = alignmentType });
             TextBoxShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(existingParagraphText);
 
@@ -376,7 +378,7 @@ namespace FileFormat.Slides.Facade
             {
                 runProperties.FontSize = _fontSize;
             }
-            else if(runProperties.FontSize != null)
+            else if (runProperties.FontSize != null)
             {
 
             }
@@ -399,21 +401,21 @@ namespace FileFormat.Slides.Facade
             }
             else if (latinFont != null)
             {
-                
+
             }
             else
             {
                 // Extract font family from associated slide layout
                 var slideLayout = _AssociatedSlidePart.SlideLayoutPart.SlideLayout;
                 var defaultRunProperties = slideLayout.Descendants<DefaultRunProperties>().ToList()[_ShapeIndex];
-                var defaultLatinFont= defaultRunProperties.Elements<LatinFont>().FirstOrDefault();
+                var defaultLatinFont = defaultRunProperties.Elements<LatinFont>().FirstOrDefault();
 
                 if (defaultRunProperties != null && defaultLatinFont != null)
                 {
                     latinFont = new LatinFont() { Typeface = defaultLatinFont.Typeface };
                 }
             }
-          
+
             var solidFill = runProperties.Elements<SolidFill>().FirstOrDefault();
 
             if (!string.IsNullOrEmpty(_TextColor))
@@ -427,7 +429,7 @@ namespace FileFormat.Slides.Facade
             }
             else if (solidFill != null)
             {
-               
+
             }
             else
             {
@@ -449,7 +451,7 @@ namespace FileFormat.Slides.Facade
 
             TextBoxShape.TextBody.Elements<Paragraph>().FirstOrDefault().Elements<Run>().FirstOrDefault().Text.Text = Text;
         }
-       
+
 
         public void RemoveShape (SlidePart slidePart)
         {
@@ -498,8 +500,9 @@ namespace FileFormat.Slides.Facade
                     Y = GetYFromShape(shape),
                     Width = GetWidthFromShape(shape),
                     Height = GetHeightFromShape(shape),
+                    TextList = GetStyledList(shape),
                     AssociatedSlidePart = slidePart,
-                    ShapeIndex=shapeIndex
+                    ShapeIndex = shapeIndex
                 };
 
                 textShapes.Add(textShapeFacade);
@@ -533,6 +536,32 @@ namespace FileFormat.Slides.Facade
             }
 
             return 0;
+        }
+        private static ListFacade GetStyledList (P.Shape textShape)
+        {
+            if (textShape.TextBody.Descendants<BulletFont>().Count() > 0)
+            {
+                var bulletFont = textShape.TextBody.Descendants<BulletFont>().FirstOrDefault();
+                var paragraphs = textShape.TextBody.Descendants<Paragraph>();
+                var runProperties = paragraphs.FirstOrDefault().Descendants<RunProperties>().FirstOrDefault();
+                var listFacade = new ListFacade();
+                var listItems = new List<String>();
+                listFacade.TextShape = textShape;
+                listFacade.ListType = paragraphs.FirstOrDefault().Descendants<CharacterBullet>().Any() ? ListType.Bulleted : ListType.Numbered;
+                listFacade.FontSize = runProperties.FontSize;
+                listFacade.FontFamily = runProperties.Descendants<LatinFont>().FirstOrDefault().Typeface;
+                listFacade.TextColor = runProperties.Descendants<RgbColorModelHex>().FirstOrDefault().Val;
+                foreach (var paragraph in paragraphs)
+                {
+
+                    listItems.Add(paragraph.InnerText);
+                }
+
+                listFacade.ListItems = listItems;
+                return listFacade;
+
+            }
+            return null;
         }
         private static string GetFontFamilyFromTextShape (P.Shape textShape)
         {
@@ -585,7 +614,7 @@ namespace FileFormat.Slides.Facade
         private static TextAlignment GetAlignmentFromTextShape (P.Shape textShape)
         {
             var alignment = textShape.TextBody?.Descendants<Paragraph>().FirstOrDefault();
-            if (alignment !=null)
+            if (alignment != null)
             {
                 alignment = null;
             }

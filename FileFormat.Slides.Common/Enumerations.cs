@@ -11,7 +11,16 @@ namespace FileFormat.Slides.Common.Enumerations
     {
         Left,
         Right,
-        Center
+        Center,
+        None
     }
-    
+    /// <summary>
+    /// Specifies the type of styled list
+    /// </summary>
+    public enum ListType
+    {
+        Bulleted,
+        Numbered
+    }
+
 }

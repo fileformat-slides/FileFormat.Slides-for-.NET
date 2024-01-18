@@ -94,26 +94,21 @@ class Program
 
 
         /*
-         // Add slide to an existing presentation
-         Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\sample.pptx");
+         // change background of a slide of an existing presentation
+         Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
          TextShape shape1 = new TextShape();
          shape1.Text = "Body : Here is my first title From FF";
          shape1.FontFamily = "Baguet Script";
          shape1.TextColor = Colors.Olive;
          shape1.FontSize = 45;
          shape1.Y = 10.0;
-         // First slide
-         Slide slide = new Slide();
-         Image image1 = new Image("D:\\AsposeSampleData\\target.png");
-         image1.X = Utility.EmuToPixels(1838700);
-         image1.Y = Utility.EmuToPixels(1285962);
-         image1.Width = Utility.EmuToPixels(2514600);
-         image1.Height = Utility.EmuToPixels(2886075);
-         slide.AddImage(image1);
-         slide.AddTextShapes(shape1);        
-         presentation.AppendSlide(slide);
-         presentation.Save();
+        Slide slide = presentation.GetSlides()[1];
+        slide.BackgroundColor = Colors.Silver;
+        slide.Update();
+        presentation.Save();
         */
+
+
 
         /*
          * Update an image in a slide
@@ -166,7 +161,7 @@ class Program
         shape1.TextColor = Colors.Yellow;
         shape1.BackgroundColor = Colors.LimeGreen;
 
-        StyledList list = new StyledList();
+        StyledList list = new StyledList(FileFormat.Slides.Common.Enumerations.ListType.Bulleted);
         list.AddListItem("Pakistan");
         list.AddListItem("India");
         list.AddListItem("Australia");
@@ -176,6 +171,42 @@ class Program
         slide1.AddTextShapes(shape1);
 
         presentation.AppendSlide(slide1);
+        presentation.Save();
+        */
+        /*
+        // Add numbered list to an existing presentation
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = new Slide();
+        slide.BackgroundColor = Colors.Teal;
+        TextShape shape1 = new TextShape();
+        shape1.FontFamily = "Baguet Script";
+        shape1.FontSize = 60;
+        shape1.Y = 200.0;
+        shape1.TextColor = Colors.Yellow;
+        shape1.BackgroundColor = Colors.LimeGreen;
+
+        StyledList list = new StyledList(FileFormat.Slides.Common.Enumerations.ListType.Numbered);
+        list.AddListItem("Umar");
+        list.AddListItem("Farooq");
+        list.AddListItem("Adnan");
+        list.AddListItem("Usman");
+        list.AddListItem("Numan");
+        shape1.TextList = list;
+
+        slide.AddTextShapes(shape1);
+        presentation.AppendSlide(slide);
+        presentation.Save();
+        */
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = presentation.GetSlides()[3];
+        TextShape shape = slide.TextShapes[0];
+        StyledList list = shape.TextList;
+        list.ListItems.RemoveAt(4);
+        list.ListItems.RemoveAt(2);
+        list.ListType = FileFormat.Slides.Common.Enumerations.ListType.Bulleted;
+        list.Update();
+
         presentation.Save();
         */
 

@@ -177,8 +177,14 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);               
             }
         }
-      
-
+        /// <summary>
+        /// Method to update a slide properties e.g. background color.
+        /// </summary>
+        public void Update ()
+        {
+            _SlideFacade.BackgroundColor = _BackgroundColor;
+            _SlideFacade.Update();
+        }
 
     }
 }

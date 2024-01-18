@@ -102,8 +102,12 @@ namespace FileFormat.Slides
             _y = Utility.EmuToPixels(1999619);
             _Width = Utility.EmuToPixels(6000000);
             _Height = Utility.EmuToPixels(2000000);
+            _TextList = null;
             Populate_Facade();
         }
+        /// <summary>
+        /// Method to update text shape.
+        /// </summary>
         public void Update ()
         {
             Populate_Facade();
@@ -125,6 +129,7 @@ namespace FileFormat.Slides
             _Facade.Y = Utility.PixelsToEmu(_y);
             _Facade.Width = Utility.PixelsToEmu(_Width);
             _Facade.Height = Utility.PixelsToEmu(_Height);
+            _Facade.TextList = _TextList?.Facade;
         }
         /// <summary>
         /// Method for getting the list of text shapes.
@@ -151,6 +156,7 @@ namespace FileFormat.Slides
                         Width = Utility.EmuToPixels(facade.Width),
                         Height = Utility.EmuToPixels(facade.Height),
                         Facade = facade,
+                        TextList = GetTextList(facade?.TextList),
                         ShapeIndex = facade.ShapeIndex
                     };
 
@@ -164,6 +170,25 @@ namespace FileFormat.Slides
             }
 
             return textShapes;
+        }
+        /// <summary>
+        /// This method is used to get the StyledList from a text shape
+        /// </summary>
+        /// <param name="facade"></param>
+        /// <returns></returns>
+        private static StyledList GetTextList (ListFacade facade)
+        {
+            if (facade != null)
+            {
+                StyledList list = new StyledList(facade.ListType);
+                list.ListItems = facade.ListItems;
+                list.TextColor = facade.TextColor;
+                list.FontFamily = facade.FontFamily;
+                list.FontSize = facade.FontSize;
+                list.Facade = facade;
+                return list;
+            }
+            return null;
         }
         /// <summary>
         /// Method to remove the textshape of a slide.
