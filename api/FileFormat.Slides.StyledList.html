@@ -91,7 +91,7 @@
 
   <h1 id="FileFormat_Slides_StyledList" data-uid="FileFormat.Slides.StyledList" class="text-break">
     Class StyledList
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L13"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -99,7 +99,8 @@
   <dl><dt>Assembly</dt><dd>FileFormat.Slides.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"></div>
+  <div class="markdown summary"><p>This class represents the text list with bullet style.</p>
+</div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
@@ -156,9 +157,9 @@
 
   <a id="FileFormat_Slides_StyledList__ctor_" data-uid="FileFormat.Slides.StyledList.#ctor*"></a>
 
-  <h3 id="FileFormat_Slides_StyledList__ctor" data-uid="FileFormat.Slides.StyledList.#ctor">
-  StyledList()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L22"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_StyledList__ctor_FileFormat_Slides_Common_Enumerations_ListType_" data-uid="FileFormat.Slides.StyledList.#ctor(FileFormat.Slides.Common.Enumerations.ListType)">
+  StyledList(ListType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L37"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Constructor of StyledList class.</p>
@@ -166,9 +167,14 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StyledList()</code></pre>
+    <pre><code class="lang-csharp hljs">public StyledList(ListType type)</code></pre>
   </div>
 
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>type</code> <a class="xref" href="FileFormat.Slides.Common.Enumerations.ListType.html">ListType</a></dt>
+    <dd></dd>
+  </dl>
 
 
 
@@ -189,7 +195,7 @@
 
   <h3 id="FileFormat_Slides_StyledList_Facade" data-uid="FileFormat.Slides.StyledList.Facade">
   Facade
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L18"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L28"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Property to get the facade of a styled list</p>
@@ -197,7 +203,7 @@
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ListFacade Facade { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ListFacade Facade { get; set; }</code></pre>
   </div>
 
 
@@ -217,11 +223,73 @@
 
 
 
+  <a id="FileFormat_Slides_StyledList_FontFamily_" data-uid="FileFormat.Slides.StyledList.FontFamily*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_FontFamily" data-uid="FileFormat.Slides.StyledList.FontFamily">
+  FontFamily
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L30"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string FontFamily { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_StyledList_FontSize_" data-uid="FileFormat.Slides.StyledList.FontSize*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_FontSize" data-uid="FileFormat.Slides.StyledList.FontSize">
+  FontSize
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int FontSize { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="FileFormat_Slides_StyledList_ListItems_" data-uid="FileFormat.Slides.StyledList.ListItems*"></a>
 
   <h3 id="FileFormat_Slides_StyledList_ListItems" data-uid="FileFormat.Slides.StyledList.ListItems">
   ListItems
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L14"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"></div>
@@ -248,6 +316,99 @@
 
 
 
+  <a id="FileFormat_Slides_StyledList_ListType_" data-uid="FileFormat.Slides.StyledList.ListType*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_ListType" data-uid="FileFormat.Slides.StyledList.ListType">
+  ListType
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L21"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ListType ListType { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FileFormat.Slides.Common.Enumerations.ListType.html">ListType</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_StyledList_TextColor_" data-uid="FileFormat.Slides.StyledList.TextColor*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_TextColor" data-uid="FileFormat.Slides.StyledList.TextColor">
+  TextColor
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string TextColor { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_StyledList_TextShape_" data-uid="FileFormat.Slides.StyledList.TextShape*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_TextShape" data-uid="FileFormat.Slides.StyledList.TextShape">
+  TextShape
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TextShape TextShape { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FileFormat.Slides.TextShape.html">TextShape</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -256,7 +417,7 @@
 
   <h3 id="FileFormat_Slides_StyledList_AddListItem_System_String_" data-uid="FileFormat.Slides.StyledList.AddListItem(System.String)">
   AddListItem(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L31"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L47"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to add list items in styled list.</p>
@@ -285,11 +446,38 @@
 
 
 
+  <a id="FileFormat_Slides_StyledList_Update_" data-uid="FileFormat.Slides.StyledList.Update*"></a>
+
+  <h3 id="FileFormat_Slides_StyledList_Update" data-uid="FileFormat.Slides.StyledList.Update">
+  Update()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to update the styled list</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Update()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/StyledList.cs/#L13" class="edit-link">Edit this page</a>
         </div>
 
 
