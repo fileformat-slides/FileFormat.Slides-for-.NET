@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <title>Class Table | FileFormat.Slides </title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="title" content="Class Table | FileFormat.Slides ">
+      
+      <meta name="description" content="This class is responsible to create table in a PPT/PPTX presentataion.">
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/new/main/apiSpec/new?filename=FileFormat_Slides_Table.md&amp;value=---%0Auid%3A%20FileFormat.Slides.Table%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
+
+
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../logo.svg" alt="FileFormat.Slides">
+            FileFormat.Slides
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <nav id="breadcrumb"></nav>
+        </div>
+
+        <article data-uid="FileFormat.Slides.Table">
+
+
+
+  <h1 id="FileFormat_Slides_Table" data-uid="FileFormat.Slides.Table" class="text-break">
+Class Table  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L13"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FileFormat.html">FileFormat</a>.<a class="xref" href="FileFormat.Slides.html">Slides</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FileFormat.Slides.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>This class is responsible to create table in a PPT/PPTX presentataion.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Table</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">Table</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FileFormat_Slides_Table__ctor_" data-uid="FileFormat.Slides.Table.#ctor*"></a>
+
+  <h3 id="FileFormat_Slides_Table__ctor" data-uid="FileFormat.Slides.Table.#ctor">
+  Table()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor for the Table class. Initializes a new instance of the Table class with empty lists for rows and columns.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Table()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FileFormat_Slides_Table_Columns_" data-uid="FileFormat.Slides.Table.Columns*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Columns" data-uid="FileFormat.Slides.Table.Columns">
+  Columns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L66"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the list of columns in the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;TableColumn&gt; Columns { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FileFormat.Slides.TableColumn.html">TableColumn</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Facade_" data-uid="FileFormat.Slides.Table.Facade*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Facade" data-uid="FileFormat.Slides.Table.Facade">
+  Facade
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L32"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the TableFacade instance.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableFacade Facade { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">TableFacade</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Height_" data-uid="FileFormat.Slides.Table.Height*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Height" data-uid="FileFormat.Slides.Table.Height">
+  Height
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L56"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the height of a table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Height { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Name_" data-uid="FileFormat.Slides.Table.Name*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Name" data-uid="FileFormat.Slides.Table.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L40"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the table name within the slide.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Rows_" data-uid="FileFormat.Slides.Table.Rows*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Rows" data-uid="FileFormat.Slides.Table.Rows">
+  Rows
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L61"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the list of rows in the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;TableRow&gt; Rows { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FileFormat.Slides.TableRow.html">TableRow</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_TableIndex_" data-uid="FileFormat.Slides.Table.TableIndex*"></a>
+
+  <h3 id="FileFormat_Slides_Table_TableIndex" data-uid="FileFormat.Slides.Table.TableIndex">
+  TableIndex
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L36"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the index of a table within slide.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public int TableIndex { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_TableStylings_" data-uid="FileFormat.Slides.Table.TableStylings*"></a>
+
+  <h3 id="FileFormat_Slides_Table_TableStylings" data-uid="FileFormat.Slides.Table.TableStylings">
+  TableStylings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the stylings for the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stylings TableStylings { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="FileFormat.Slides.Common.Stylings.html">Stylings</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Width_" data-uid="FileFormat.Slides.Table.Width*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Width" data-uid="FileFormat.Slides.Table.Width">
+  Width
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L52"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the width of a table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Width { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_X_" data-uid="FileFormat.Slides.Table.X*"></a>
+
+  <h3 id="FileFormat_Slides_Table_X" data-uid="FileFormat.Slides.Table.X">
+  X
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the X coordinate of a table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double X { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_Table_Y_" data-uid="FileFormat.Slides.Table.Y*"></a>
+
+  <h3 id="FileFormat_Slides_Table_Y" data-uid="FileFormat.Slides.Table.Y">
+  Y
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L48"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Property to get or set the Y coordinate of a table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public double Y { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">double</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
+  <a id="FileFormat_Slides_Table_AddRow_" data-uid="FileFormat.Slides.Table.AddRow*"></a>
+
+  <h3 id="FileFormat_Slides_Table_AddRow_FileFormat_Slides_TableRow_" data-uid="FileFormat.Slides.Table.AddRow(FileFormat.Slides.TableRow)">
+  AddRow(TableRow)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L86"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Adds a row to the table.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AddRow(TableRow row)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>row</code> <a class="xref" href="FileFormat.Slides.TableRow.html">TableRow</a></dt>
+    <dd><p>The TableRow object to be added to the table.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+        <div class="contribution d-print-none">
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Table.cs/#L13" class="edit-link">Edit this page</a>
+        </div>
+
+
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <span>Made with <a href="https://dotnet.github.io/docfx">docfx</a></span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

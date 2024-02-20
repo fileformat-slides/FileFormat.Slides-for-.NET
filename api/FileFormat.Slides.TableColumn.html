@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Understanding C# Slides API - FileFormat.Slides for .NET | FileFormat.Slides </title>
+      <title>Class TableColumn | FileFormat.Slides </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Understanding C# Slides API - FileFormat.Slides for .NET | FileFormat.Slides ">
+      <meta name="title" content="Class TableColumn | FileFormat.Slides ">
       
-      
+      <meta name="description" content="Represents a column within a table.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/blob/main/docs/index.md/#L1">
+      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/new/main/apiSpec/new?filename=FileFormat_Slides_TableColumn.md&amp;value=---%0Auid%3A%20FileFormat.Slides.TableColumn%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -39,7 +39,7 @@
   </script>
 
 
-  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="">
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
     <header class="bg-body border-bottom">
       <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
         <div class="container-xxl flex-nowrap">
@@ -84,54 +84,114 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="">
-<h1 id="understanding-c-slides-api---fileformatslides-for-net">Understanding C# Slides API - FileFormat.Slides for .NET</h1>
+        <article data-uid="FileFormat.Slides.TableColumn">
 
-<h2 id="overview">Overview</h2>
-<p>FileFormat.Slides for .NET is an open-source API empowering developers to seamlessly handle PowerPoint slides in their .NET applications. Featuring a user-friendly API, it simplifies slide creation, loading, and manipulation, serving as a valuable tool for presentation automation and customization.</p>
-<p>Whether your goal is to generate presentations, automate slide creation, extract data from slides, or perform advanced formatting tasks, FileFormat.Slides equips you with the necessary tools and capabilities. It abstracts the complexities of working with slides, enabling developers to focus on their application logic rather than the intricacies of slide processing.</p>
-<h2 id="system-requirements">System Requirements</h2>
-<p>To utilize this software, ensure your system meets the following requirements:</p>
-<ul>
-<li><p><strong>.NET Core 3.1 and above:</strong> The application is built on the .NET Core framework, specifically targeting version 3.1 and newer. Make sure you have .NET Core installed on your machine before proceeding.</p>
-<ul>
-<li><p><strong>Installation Instructions for .NET Core 3.1:</strong> For detailed instructions on installing .NET Core 3.1, visit Microsoft's <a href="https://dotnet.microsoft.com/download">.NET Download page</a>.</p>
-</li>
-<li><p><strong>Compatibility Note:</strong> The API is compatible with later .NET Framework versions starting from .NET Core 3.1.</p>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="installation">Installation</h2>
-<p>FileFormat.Slides is available as a NuGet Package and can be installed in one of the following ways. Choose the installation method that best fits your workflow and project requirements.</p>
-<h3 id="install-via-nuget-console">Install via Nuget Console</h3>
-<p>To install FileFormat.Slides to the current directory using the Nuget Console, ensure you have the Nuget CLI installed. Execute the following command:</p>
-<pre><code>nuget install FileFormat.Slides ./OutputDir
-</code></pre>
-<h3 id="visual-studio-package-manager">Visual Studio Package Manager</h3>
-<ol>
-<li>Open Visual Studio.</li>
-<li>Go to (<strong>Tools &gt; NuGet Package Manager &gt; Package Manager Console</strong>).</li>
-<li>In the Browse tab, search for FileFormat.Slides.</li>
-<li>Select the version and click &quot;Install&quot; to add it to your project.</li>
-</ol>
-<pre><code>Install-Package FileFormat.slides
-</code></pre>
-<h3 id="install-from-within-visual-studio">Install from within Visual Studio</h3>
-<ul>
-<li>Open Visual Studio.</li>
-<li>Go to <strong>Tools &gt; NuGet Package Manager &gt; Manage NuGet Packages</strong> for Solution.</li>
-<li>In the Browse tab, search for FileFormat.Slides.</li>
-<li>Select the desired version and click &quot;Install&quot; to add it to your project.</li>
-</ul>
+
+
+  <h1 id="FileFormat_Slides_TableColumn" data-uid="FileFormat.Slides.TableColumn" class="text-break">
+Class TableColumn  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableColumn.cs/#L10"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="FileFormat.html">FileFormat</a>.<a class="xref" href="FileFormat.Slides.html">Slides</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>FileFormat.Slides.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Represents a column within a table.</p>
+</div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class TableColumn</code></pre>
+  </div>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TableColumn</span></div>
+    </dd>
+  </dl>
+
+
+
+  <dl class="typelist inheritedMembers">
+    <dt>Inherited Members</dt>
+    <dd>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FileFormat_Slides_TableColumn_Name_" data-uid="FileFormat.Slides.TableColumn.Name*"></a>
+
+  <h3 id="FileFormat_Slides_TableColumn_Name" data-uid="FileFormat.Slides.TableColumn.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableColumn.cs/#L17"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Gets or sets the name of the column.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
 
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/docs/index.md/#L1" class="edit-link">Edit this page</a>
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableColumn.cs/#L10" class="edit-link">Edit this page</a>
         </div>
 
-        <div class="next-article d-print-none border-top" id="nextArticle"></div>
 
       </div>
 

@@ -2,11 +2,11 @@
 <html>
   <head>
     <meta charset="utf-8">
-      <title>Class TextSegment | FileFormat.Slides </title>
+      <title>Class TableRow | FileFormat.Slides </title>
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta name="title" content="Class TextSegment | FileFormat.Slides ">
+      <meta name="title" content="Class TableRow | FileFormat.Slides ">
       
-      <meta name="description" content="This class represents the text segment within a paragraph.">
+      <meta name="description" content="Represents a row within a table.">
       <link rel="icon" href="../favicon.ico">
       <link rel="stylesheet" href="../public/docfx.min.css">
       <link rel="stylesheet" href="../public/main.css">
@@ -16,7 +16,7 @@
       <meta name="docfx:rel" content="../">
       
       
-      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/new/main/apiSpec/new?filename=FileFormat_Slides_TextSegment.md&amp;value=---%0Auid%3A%20FileFormat.Slides.TextSegment%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="docfx:docurl" content="https://github.com/umar320/FileFormat.Slides/new/main/apiSpec/new?filename=FileFormat_Slides_TableRow.md&amp;value=---%0Auid%3A%20FileFormat.Slides.TableRow%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
       <meta name="loc:inThisArticle" content="In this article">
       <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
       <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
@@ -84,12 +84,12 @@
           <nav id="breadcrumb"></nav>
         </div>
 
-        <article data-uid="FileFormat.Slides.TextSegment">
+        <article data-uid="FileFormat.Slides.TableRow">
 
 
 
-  <h1 id="FileFormat_Slides_TextSegment" data-uid="FileFormat.Slides.TextSegment" class="text-break">
-Class TextSegment  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L9"><i class="bi bi-code-slash"></i></a>
+  <h1 id="FileFormat_Slides_TableRow" data-uid="FileFormat.Slides.TableRow" class="text-break">
+Class TableRow  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L14"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -97,12 +97,12 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
   <dl><dt>Assembly</dt><dd>FileFormat.Slides.dll</dd></dl>
   </div>
 
-  <div class="markdown summary"><p>This class represents the text segment within a paragraph.</p>
+  <div class="markdown summary"><p>Represents a row within a table.</p>
 </div>
   <div class="markdown conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TextSegment</code></pre>
+    <pre><code class="lang-csharp hljs">public class TableRow</code></pre>
   </div>
 
 
@@ -112,7 +112,7 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
     <dt>Inheritance</dt>
     <dd>
       <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-      <div><span class="xref">TextSegment</span></div>
+      <div><span class="xref">TableRow</span></div>
     </dd>
   </dl>
 
@@ -149,23 +149,87 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
 
 
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
+  <a id="FileFormat_Slides_TableRow__ctor_" data-uid="FileFormat.Slides.TableRow.#ctor*"></a>
+
+  <h3 id="FileFormat_Slides_TableRow__ctor" data-uid="FileFormat.Slides.TableRow.#ctor">
+  TableRow()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L44"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Default constructor for the TableRow class. Initializes a new instance of the TableRow class with an empty list of cells.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableRow()</code></pre>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a id="FileFormat_Slides_TableRow__ctor_" data-uid="FileFormat.Slides.TableRow.#ctor*"></a>
+
+  <h3 id="FileFormat_Slides_TableRow__ctor_FileFormat_Slides_Table_" data-uid="FileFormat.Slides.TableRow.#ctor(FileFormat.Slides.Table)">
+  TableRow(Table)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L53"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Constructor for the TableRow class that initializes a new instance of the TableRow class with a reference to the table's stylings.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public TableRow(Table table)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>table</code> <a class="xref" href="FileFormat.Slides.Table.html">Table</a></dt>
+    <dd><p>The table containing the row.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <h2 class="section" id="properties">Properties
 </h2>
 
 
-  <a id="FileFormat_Slides_TextSegment_Bold_" data-uid="FileFormat.Slides.TextSegment.Bold*"></a>
+  <a id="FileFormat_Slides_TableRow_Cells_" data-uid="FileFormat.Slides.TableRow.Cells*"></a>
 
-  <h3 id="FileFormat_Slides_TextSegment_Bold" data-uid="FileFormat.Slides.TextSegment.Bold">
-  Bold
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L25"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_TableRow_Cells" data-uid="FileFormat.Slides.TableRow.Cells">
+  Cells
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L34"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Property to make bold the text segment.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the list of cells in the row.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Bold { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public List&lt;TableCell&gt; Cells { get; set; }</code></pre>
   </div>
 
 
@@ -174,7 +238,7 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FileFormat.Slides.TableCell.html">TableCell</a>&gt;</dt>
     <dd></dd>
   </dl>
 
@@ -185,115 +249,19 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
 
 
-  <a id="FileFormat_Slides_TextSegment_Color_" data-uid="FileFormat.Slides.TextSegment.Color*"></a>
+  <a id="FileFormat_Slides_TableRow_ID_" data-uid="FileFormat.Slides.TableRow.ID*"></a>
 
-  <h3 id="FileFormat_Slides_TextSegment_Color" data-uid="FileFormat.Slides.TextSegment.Color">
-  Color
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L37"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_TableRow_ID" data-uid="FileFormat.Slides.TableRow.ID">
+  ID
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L24"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Property to set color the text segment.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the unique identifier of the row.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Color { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="FileFormat_Slides_TextSegment_Facade_" data-uid="FileFormat.Slides.TextSegment.Facade*"></a>
-
-  <h3 id="FileFormat_Slides_TextSegment_Facade" data-uid="FileFormat.Slides.TextSegment.Facade">
-  Facade
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L45"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Property to get facade of text segment.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TextSegmentFacade Facade { get; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><span class="xref">TextSegmentFacade</span></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="FileFormat_Slides_TextSegment_FontFamily_" data-uid="FileFormat.Slides.TextSegment.FontFamily*"></a>
-
-  <h3 id="FileFormat_Slides_TextSegment_FontFamily" data-uid="FileFormat.Slides.TextSegment.FontFamily">
-  FontFamily
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L33"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Property to set font family.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string FontFamily { get; set; }</code></pre>
-  </div>
-
-
-
-
-
-  <h4 class="section">Property Value</h4>
-  <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
-    <dd></dd>
-  </dl>
-
-
-
-
-
-
-
-
-  <a id="FileFormat_Slides_TextSegment_FontSize_" data-uid="FileFormat.Slides.TextSegment.FontSize*"></a>
-
-  <h3 id="FileFormat_Slides_TextSegment_FontSize" data-uid="FileFormat.Slides.TextSegment.FontSize">
-  FontSize
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L21"><i class="bi bi-code-slash"></i></a>
-  </h3>
-
-  <div class="markdown level1 summary"><p>Property to set or get the font size of the text segment</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int FontSize { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int ID { get; set; }</code></pre>
   </div>
 
 
@@ -313,19 +281,19 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
 
 
-  <a id="FileFormat_Slides_TextSegment_Italic_" data-uid="FileFormat.Slides.TextSegment.Italic*"></a>
+  <a id="FileFormat_Slides_TableRow_RowHeight_" data-uid="FileFormat.Slides.TableRow.RowHeight*"></a>
 
-  <h3 id="FileFormat_Slides_TextSegment_Italic" data-uid="FileFormat.Slides.TextSegment.Italic">
-  Italic
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L29"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_TableRow_RowHeight" data-uid="FileFormat.Slides.TableRow.RowHeight">
+  RowHeight
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L29"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Property to make Italic the text segment.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the height of the row.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool Italic { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int RowHeight { get; set; }</code></pre>
   </div>
 
 
@@ -334,7 +302,7 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
     <dd></dd>
   </dl>
 
@@ -345,19 +313,19 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
 
 
-  <a id="FileFormat_Slides_TextSegment_Text_" data-uid="FileFormat.Slides.TextSegment.Text*"></a>
+  <a id="FileFormat_Slides_TableRow_RowStylings_" data-uid="FileFormat.Slides.TableRow.RowStylings*"></a>
 
-  <h3 id="FileFormat_Slides_TextSegment_Text" data-uid="FileFormat.Slides.TextSegment.Text">
-  Text
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L41"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_TableRow_RowStylings" data-uid="FileFormat.Slides.TableRow.RowStylings">
+  RowStylings
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L39"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Property to set the text of the text segment.</p>
+  <div class="markdown level1 summary"><p>Gets or sets the stylings applied to the row.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Text { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Stylings RowStylings { get; set; }</code></pre>
   </div>
 
 
@@ -366,7 +334,7 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 
   <h4 class="section">Property Value</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dt><a class="xref" href="FileFormat.Slides.Common.Stylings.html">Stylings</a></dt>
     <dd></dd>
   </dl>
 
@@ -381,27 +349,28 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 </h2>
 
 
-  <a id="FileFormat_Slides_TextSegment_create_" data-uid="FileFormat.Slides.TextSegment.create*"></a>
+  <a id="FileFormat_Slides_TableRow_AddCell_" data-uid="FileFormat.Slides.TableRow.AddCell*"></a>
 
-  <h3 id="FileFormat_Slides_TextSegment_create" data-uid="FileFormat.Slides.TextSegment.create">
-  create()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L50"><i class="bi bi-code-slash"></i></a>
+  <h3 id="FileFormat_Slides_TableRow_AddCell_FileFormat_Slides_TableCell_" data-uid="FileFormat.Slides.TableRow.AddCell(FileFormat.Slides.TableCell)">
+  AddCell(TableCell)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L63"><i class="bi bi-code-slash"></i></a>
   </h3>
 
-  <div class="markdown level1 summary"><p>Method to create text segment.</p>
+  <div class="markdown level1 summary"><p>Adds a cell to the row.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
 
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public TextSegment create()</code></pre>
+    <pre><code class="lang-csharp hljs">public void AddCell(TableCell cell)</code></pre>
   </div>
 
-
-  <h4 class="section">Returns</h4>
+  <h4 class="section">Parameters</h4>
   <dl class="parameters">
-    <dt><a class="xref" href="FileFormat.Slides.TextSegment.html">TextSegment</a></dt>
-    <dd></dd>
+    <dt><code>cell</code> <a class="xref" href="FileFormat.Slides.TableCell.html">TableCell</a></dt>
+    <dd><p>The TableCell object to be added to the row.</p>
+</dd>
   </dl>
+
 
 
 
@@ -417,7 +386,7 @@ Class TextSegment  <a class="header-action link-secondary" title="View source" h
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TextSegment.cs/#L9" class="edit-link">Edit this page</a>
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/TableRow.cs/#L14" class="edit-link">Edit this page</a>
         </div>
 
 
