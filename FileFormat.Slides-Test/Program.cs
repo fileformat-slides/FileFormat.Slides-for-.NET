@@ -209,7 +209,75 @@ class Program
 
         presentation.Save();
         */
+       
+       /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = presentation.GetSlides()[2];
 
+        // Assign values to the properties of Stylings
+        Stylings stylings = new Stylings();
+        stylings.FontSize = 14;
+        stylings.Alignment = FileFormat.Slides.Common.Enumerations.TextAlignment.Left;
+        stylings.FontFamily = "Baguet Script";
+        stylings.TextColor = Colors.Red;
+
+        Table table = new Table();
+
+        table.TableStylings = stylings;
+        TableColumn col1 = new TableColumn();
+        col1.Name = "ID";
+        table.Columns.Add(col1);
+        TableColumn col2 = new TableColumn();
+        col2.Name = "Name";
+        table.Columns.Add(col2);
+        TableColumn col3 = new TableColumn();
+        col3.Name = "City";
+        table.Columns.Add(col3);
+        //1st row
+        // Assign values to the properties of Stylings
+        Stylings rowstylings = new Stylings();
+        rowstylings.FontSize = 14;
+        rowstylings.Alignment = FileFormat.Slides.Common.Enumerations.TextAlignment.Left;
+        rowstylings.FontFamily = "Baguet Script";
+        rowstylings.TextColor = Colors.Green;
+        TableRow row1 = new TableRow(table);
+        row1.RowStylings = rowstylings;
+        TableCell cell11 = new TableCell(row1);
+        cell11.Text = "907";
+        cell11.ID = col1.Name;
+        row1.AddCell(cell11);
+        TableCell cell12 = new TableCell(row1);
+        cell12.Text = "John";
+        cell12.ID = col2.Name;
+        row1.AddCell(cell12);
+        TableCell cell13 = new TableCell(row1);
+        cell13.Text = "Chicago";
+        cell13.ID = col3.Name;
+        row1.AddCell(cell13);
+        table.AddRow(row1);           
+        
+        //2nd Row
+        TableRow row2 = new TableRow(table);
+        TableCell cell21 = new TableCell(row2); 
+        cell21.Text = "908";
+        cell21.ID = col1.Name;
+        row2.AddCell(cell21);
+        TableCell cell22 = new TableCell(row2);
+        cell22.Text = "Chris";
+        cell22.ID = col2.Name;
+        row2.AddCell(cell22);
+        TableCell cell23 = new TableCell(row2);
+        cell23.Text = "New York";
+        cell23.ID = col3.Name;
+        row2.AddCell(cell23);
+        table.AddRow(row2);
+
+        table.Width = 500.0;
+        table.Height = 200.0;
+        table.X = 300.0;
+        table.Y = 500.0;
+        slide.AddTable(table);
+
+        presentation.Save();*/
 
     }
 

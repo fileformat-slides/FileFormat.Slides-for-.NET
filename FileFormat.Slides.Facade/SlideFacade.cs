@@ -179,7 +179,7 @@ namespace FileFormat.Slides.Facade
         {
             _PresentationSlide.CommonSlideData.ShapeTree.Append(picture.Image);
         }
-
+       
         public void Update ()
         {
             this.SetSlideBackground(_BackgroundColor);

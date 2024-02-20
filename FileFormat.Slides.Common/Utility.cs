@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FileFormat.Slides.Common.Enumerations;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -63,8 +64,18 @@ namespace FileFormat.Slides.Common
 
             return (long)(pixelsValue * emuPerInch / pixelsPerInch);
         }
-
-
+        public static Stylings DeserializeStyling(string stylingInfo)
+        {
+            // Here you would deserialize the styling information from the string format
+            // For example, JSON deserialization
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Stylings>(stylingInfo);
+        }
+        public static string SerializeStyling(Stylings styling)
+        {
+            // Here you would serialize the styling object into a string format
+            // For simplicity, let's assume it's JSON serialization
+            return Newtonsoft.Json.JsonConvert.SerializeObject(styling);
+        }
 
     }
     /// <summary>
@@ -193,4 +204,67 @@ namespace FileFormat.Slides.Common
             return $"Error in Operation {Operation} at FileFormat.Words: {Ex.Message} \n Inner Exception: {Ex.InnerException?.Message ?? "N/A"}";
         }
     }
+
+    /// <summary>
+    /// Represents the stylings applied to text elements.
+    /// </summary>
+    public struct Stylings
+    {
+        private int _fontSize;
+        private TextAlignment _alignment;
+        private string _fontFamily;
+        private string _textColor;
+
+        /// <summary>
+        /// Initializes a new instance of the Stylings struct with default values.
+        /// </summary>
+        /// <param name="fontSize">The font size (default is 12).</param>
+        /// <param name="alignment">The text alignment (default is TextAlignment.Left).</param>
+        /// <param name="fontFamily">The font family (default is "Calibri").</param>
+        /// <param name="textColor">The text color in hexadecimal format (default is "#000000").</param>
+        public Stylings(int fontSize = 12, TextAlignment alignment = TextAlignment.Left, string fontFamily = "Calibri", string textColor = "#000000")
+        {
+            _fontSize = fontSize;
+            _alignment = alignment;
+            _fontFamily = fontFamily;
+            _textColor = textColor;
+        }
+
+        /// <summary>
+        /// Gets or sets the font size.
+        /// </summary>
+        public int FontSize
+        {
+            get => _fontSize;
+            set => _fontSize = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the text alignment.
+        /// </summary>
+        public TextAlignment Alignment
+        {
+            get => _alignment;
+            set => _alignment = value;
+        }
+
+        /// <summary>
+        /// Gets or sets the font family.
+        /// </summary>
+        public string FontFamily
+        {
+            get => _fontFamily;
+            set => _fontFamily = value ?? "Calibri"; // Set default value if null 
+        }
+
+        /// <summary>
+        /// Gets or sets the text color in hexadecimal format.
+        /// </summary>
+        public string TextColor
+        {
+            get => _textColor;
+            set => _textColor = value ?? "#000000"; // Set default value if null 
+        }
+    }
+
 }
