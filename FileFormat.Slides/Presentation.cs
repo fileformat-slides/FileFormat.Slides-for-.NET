@@ -1,9 +1,6 @@
-﻿using System;
+﻿using FileFormat.Slides.Facade;
+using System;
 using System.Collections.Generic;
-using System.Text;
-using FileFormat.Slides.Facade;
-using FileFormat.Slides.Common;
-using DocumentFormat.OpenXml.Drawing;
 
 namespace FileFormat.Slides
 {
@@ -12,13 +9,13 @@ namespace FileFormat.Slides
     /// </summary>
     public class Presentation
     {
-        private static String _FileName="MyPresentation.pptx";
+        private static String _FileName = "MyPresentation.pptx";
         private static String _DirectoryPath = "D:\\AsposeSampleResults\\";
         private static PresentationDocumentFacade doc = null;
         private List<Slide> _Slides;
-       
-       
-        
+
+
+
         /// <summary>
         /// Initializes the presentation object.
         /// </summary>
@@ -27,7 +24,7 @@ namespace FileFormat.Slides
         {
             _Slides = new List<Slide>();
             doc = PresentationDocumentFacade.Create(FilePath);
-           
+
         }
         /// <summary>
         /// Default constructor to initialize presentation object.
@@ -35,7 +32,7 @@ namespace FileFormat.Slides
         private Presentation ()
         {
             _Slides = new List<Slide>();
-          
+
         }
         /// <summary>
         /// Static method to instantiate a new object of Presentation class.
@@ -67,7 +64,7 @@ namespace FileFormat.Slides
         /// </example>
         public static Presentation Create (String FilePath)
         {
-           return new Presentation( FilePath);
+            return new Presentation(FilePath);
         }
         /// <summary>
         /// Static method to load an existing presentation.
@@ -104,7 +101,7 @@ namespace FileFormat.Slides
             slide.SlideFacade.SetSlideBackground(slide.BackgroundColor);
             doc.AppendSlide(slide.SlideFacade);
             _Slides.Add(slide);
-           
+
         }
         /// <summary>
         /// Method to get the list of all slides of a presentation
@@ -130,9 +127,11 @@ namespace FileFormat.Slides
                     slideFacade.TextShapeFacades = TextShapeFacade.PopulateTextShapes(slidepart);
                     slideFacade.ImagesFacade = ImageFacade.PopulateImages(slidepart);
                     slideFacade.PresentationSlide = slidepart.Slide;
+                    slideFacade.TableFacades= TableFacade.PopulateTables(slidepart);
                     slideFacade.SlidePart = slidepart;
                     slide.TextShapes = TextShape.GetTextShapes(slideFacade.TextShapeFacades);
                     slide.Images = Image.GetImages(slideFacade.ImagesFacade);
+                    slide.Tables = Table.GetTables(slideFacade.TableFacades);
                     slide.SlideFacade = slideFacade;
                     _Slides.Add(slide);
                 }
@@ -160,9 +159,9 @@ namespace FileFormat.Slides
         /// presentation.Save();
         /// </code>
         /// </example>
-        public String RemoveSlide(int slideIndex)
+        public String RemoveSlide (int slideIndex)
         {
-            return doc.RemoveSlide(slideIndex);            
+            return doc.RemoveSlide(slideIndex);
         }
         /// <summary>
         /// Method to insert a slide at a specific index
@@ -181,7 +180,7 @@ namespace FileFormat.Slides
         public void Save ()
         {
             doc.Save();
-          
+
         }
     }
 }

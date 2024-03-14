@@ -7,6 +7,7 @@ using FileFormat.Slides;
 using System.Collections.Generic;
 using FileFormat.Slides.Common;
 
+
 class Program
 {
     static void Main ()
@@ -209,8 +210,8 @@ class Program
 
         presentation.Save();
         */
-       
-       /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
         Slide slide = presentation.GetSlides()[2];
 
         // Assign values to the properties of Stylings
@@ -276,6 +277,62 @@ class Program
         table.X = 300.0;
         table.Y = 500.0;
         slide.AddTable(table);
+
+        presentation.Save();*/
+
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = presentation.GetSlides()[0];
+
+        Table table = slide.Tables[0];
+        table.Theme = Table.TableStyle.LightStyle3;
+        TableRow row2 = new TableRow(table);
+        TableCell cell21 = new TableCell(row2);
+        cell21.Text = "915";
+        cell21.ID = table.Columns[0].Name;
+        row2.AddCell(cell21);
+        TableCell cell22 = new TableCell(row2);
+        cell22.Text = "Allen";
+        cell22.ID = table.Columns[1].Name;
+        row2.AddCell(cell22);
+        TableCell cell23 = new TableCell(row2);
+        cell23.Text = "New York";
+        cell23.ID = table.Columns[2].Name;
+        row2.AddCell(cell23);
+        
+        table.AddRow(row2);
+        table.Update();
+
+        presentation.Save();
+
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = presentation.GetSlides()[0];
+
+        Table table = slide.Tables[0];
+        TableColumn col3 = new TableColumn();
+        col3.Name = "City";
+        table.Columns.Add(col3);
+        // Create a new cell for the new column
+        TableCell newCell1 = new TableCell();
+        newCell1.Text = "Chicago";
+        newCell1.ID = col3.Name;
+        table.Rows[0].AddCell(newCell1);
+
+        TableCell newCell2 = new TableCell();
+        newCell2.ID = col3.Name;
+        newCell2.Text = "New York";
+        table.Rows[1].AddCell(newCell2);
+
+        TableCell newCell3 = new TableCell();
+        newCell3.ID = col3.Name;
+        newCell3.Text = "Chicago";
+        table.Rows[2].AddCell(newCell3);
+
+        TableCell newCell4 = new TableCell();
+        newCell4.ID = col3.Name;
+        newCell4.Text = "California";
+        table.Rows[3].AddCell(newCell4);
+
+        table.Update();
 
         presentation.Save();*/
 

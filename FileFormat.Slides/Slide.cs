@@ -168,9 +168,9 @@ namespace FileFormat.Slides
 
         }
         /// <summary>
-        /// Method to add images to a slide. 
+        /// Method to add table to a slide. 
         /// </summary>
-        /// <param name="image">An object of Image class</param>
+        /// <param name="table">An object of Table class</param>
         public void AddTable (Table table)
         {
             try
@@ -180,8 +180,12 @@ namespace FileFormat.Slides
                 table.Facade.Y = Utility.PixelsToEmu(table.Y);
                 table.Facade.Width = Utility.PixelsToEmu(table.Width);
                 table.Facade.Height = Utility.PixelsToEmu(table.Height);
+                if (table.Theme == null)
+                {
+                    table.Theme = Table.TableStyle.LightStyle1;
+                }
                 
-                table.Facade.GenerateTable(_SlideFacade.SlidePart, GetDataTable(table));
+                table.Facade.GenerateTable(_SlideFacade.SlidePart, table.GetDataTable());
                 table.TableIndex = _Tables.Count + 1;
                 _Tables.Add(table);
             }
@@ -192,49 +196,8 @@ namespace FileFormat.Slides
             }
 
         }
-        private DataTable GetDataTable (Table table)
-        {
-            DataTable dtable = new DataTable();
 
-            // Adding columns based on TableColumn information
-            foreach (TableColumn column in table.Columns)
-            {
-                dtable.Columns.Add(column.Name, typeof(string));
-            }
-
-            // Adding rows based on TableRow and TableCell information
-            foreach (TableRow row in table.Rows)
-            {
-                DataRow dataRow = dtable.NewRow();
-
-                // Assuming each TableCell in the TableRow corresponds to a column in the DataTable
-                foreach (TableCell cell in row.Cells)
-                {
-                    // Find the corresponding column by matching the cell's position
-                    // Assuming the order of columns in _Columns corresponds to the order of cells in _Cells
-                    int columnIndex = table.Columns.FindIndex(col => col.Name == cell.ID);
-
-                    if (columnIndex >= 0)
-                    {
-                        // Add cell value to the corresponding column in the DataRow
-                        dataRow[columnIndex] = cell.Text;
-                        string stylingInfo = Utility.SerializeStyling(cell.CellStylings);
-                        dataRow[columnIndex] += ";" + stylingInfo;
-                    }
-                    else
-                    {
-                        // Handle the case where the column for the cell is not found
-                        // You may want to log a warning or handle it based on your requirements
-                        Console.WriteLine($"Column for cell FontFamily {cell.FontFamily} not found in the table.");
-                    }
-                }
-
-                // Add the populated DataRow to the DataTable
-                dtable.Rows.Add(dataRow);
-            }
-
-            return dtable;
-        }
+        
 
         /// <summary>
         /// Get text shapes by searching a text term.

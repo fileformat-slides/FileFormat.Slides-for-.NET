@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Spreadsheet;
+﻿using DocumentFormat.OpenXml.Drawing;
 using FileFormat.Slides.Common;
 using FileFormat.Slides.Facade;
 using System;
@@ -23,6 +23,7 @@ namespace FileFormat.Slides
         private List<TableRow> _Rows;
         private List<TableColumn> _Columns;
         private Stylings _TableStylings;
+        private String _Theme = null;
 
 
 
@@ -69,10 +70,12 @@ namespace FileFormat.Slides
         /// Property to get or set the stylings for the table.
         /// </summary>
         public Stylings TableStylings { get => _TableStylings; set => _TableStylings = value; }
+        public string Theme { get => _Theme; set => _Theme = value; }
 
         /// <summary>
         /// Constructor for the Table class. Initializes a new instance of the Table class with empty lists for rows and columns.
         /// </summary>
+
         public Table()
         {
             _Rows = new List<TableRow>();
@@ -95,6 +98,142 @@ namespace FileFormat.Slides
             _Rows.Add(row);
         }
 
+        public void AddColumn(TableColumn column) { }
+
+        public void Update()
+        {
+            _Facade.TableStyle = _Theme;
+            _Facade.UpdateTable(GetDataTable());
+
+        }
+        /// <summary>
+        /// Method to get datatable from fileformat table to send to facade.
+        /// </summary>        
+        /// <returns></returns>
+        public DataTable GetDataTable()
+        {
+            DataTable dtable = new DataTable();
+
+            // Adding columns based on TableColumn information
+            foreach (TableColumn column in _Columns)
+            {
+                dtable.Columns.Add(column.Name, typeof(string));
+            }
+
+            // Adding rows based on TableRow and TableCell information
+            foreach (TableRow row in _Rows)
+            {
+                DataRow dataRow = dtable.NewRow();
+
+                // Assuming each TableCell in the TableRow corresponds to a column in the DataTable
+                foreach (TableCell cell in row.Cells)
+                {
+                    // Find the corresponding column by matching the cell's position
+                    // Assuming the order of columns in _Columns corresponds to the order of cells in _Cells
+                    int columnIndex = _Columns.FindIndex(col => col.Name == cell.ID);
+
+                    if (columnIndex >= 0)
+                    {
+                        // Add cell value to the corresponding column in the DataRow
+                        dataRow[columnIndex] = cell.Text;
+                        string stylingInfo = Utility.SerializeStyling(cell.CellStylings);
+                        dataRow[columnIndex] += ";" + stylingInfo;
+                    }
+                    else
+                    {
+                        // Handle the case where the column for the cell is not found
+                        // You may want to log a warning or handle it based on your requirements
+                        Console.WriteLine($"Column for cell FontFamily {cell.FontFamily} not found in the table.");
+                    }
+                }
+
+                // Add the populated DataRow to the DataTable
+                dtable.Rows.Add(dataRow);
+            }
+
+            return dtable;
+        }
+        public static List<Table> GetTables(List<TableFacade> tableFacades)
+        {
+            List<Table> tables = new List<Table>();
+            foreach (var facade in tableFacades)
+            {
+                Table table = new Table();
+                table.Facade = facade;
+
+                // Iterate through columns and add them to the table
+                foreach (System.Data.DataColumn column in facade.SD_DTable.Columns)
+                {
+                    TableColumn tableColumn = new TableColumn();
+                    tableColumn.Name = column.ColumnName;
+                    table.Columns.Add(tableColumn);
+                }
+
+                // Iterate through rows and add them to the table
+                foreach (System.Data.DataRow row in facade.SD_DTable.Rows)
+                {
+                    TableRow tableRow = new TableRow();
+                    int columnIndex = 0; // Keep track of column index
+                    foreach (var item in row.ItemArray)
+                    {
+                        TableCell cell = new TableCell();
+                        cell.ID = table.Columns[columnIndex].Name; // Set cell ID with column name
+                        cell.Text = item.ToString();
+                        tableRow.Cells.Add(cell);
+                        columnIndex++; // Move to the next column
+                    }
+                    table.Rows.Add(tableRow);
+                }
+
+                tables.Add(table);
+            }
+
+            return tables;
+        }
+        /// <summary>
+        /// Inner class representing different table styles.
+        /// </summary>
+        public static class TableStyle
+        {
+            public static string LightStyle1 { get; } = "LightStyle1";
+            public static string LightStyle2 { get; } = "LightStyle2";
+            public static string LightStyle3 { get; } = "LightStyle3";
+            public static string LightStyle4 { get; } = "LightStyle4";
+            public static string LightStyle5 { get; } = "LightStyle5";
+            public static string LightStyle6 { get; } = "LightStyle6";
+            public static string LightStyle7 { get; } = "LightStyle7";
+            public static string LightStyle8 { get; } = "LightStyle8";
+            public static string LightStyle9 { get; } = "LightStyle9";
+            public static string LightStyle10 { get; } = "LightStyle10";
+            public static string LightStyle11 { get; } = "LightStyle11";
+            public static string LightStyle12 { get; } = "LightStyle12";
+            public static string LightStyle13 { get; } = "LightStyle13";
+            public static string LightStyle14 { get; } = "LightStyle14";
+            public static string MediumStyle1 { get; } = "MediumStyle1";
+            public static string MediumStyle2 { get; } = "MediumStyle2";
+            public static string MediumStyle3 { get; } = "MediumStyle3";
+            public static string MediumStyle4 { get; } = "MediumStyle4";
+            public static string MediumStyle5 { get; } = "MediumStyle5";
+            public static string MediumStyle6 { get; } = "MediumStyle6";
+            public static string MediumStyle7 { get; } = "MediumStyle7";
+            public static string MediumStyle8 { get; } = "MediumStyle8";
+            public static string MediumStyle9 { get; } = "MediumStyle9";
+            public static string MediumStyle10 { get; } = "MediumStyle10";
+            public static string MediumStyle11 { get; } = "MediumStyle11";
+            public static string MediumStyle12 { get; } = "MediumStyle12";
+            public static string DarkStyle1 { get; } = "DarkStyle1";
+            public static string DarkStyle2 { get; } = "DarkStyle2";
+            public static string DarkStyle3 { get; } = "DarkStyle3";
+            public static string DarkStyle4 { get; } = "DarkStyle4";
+            public static string DarkStyle5 { get; } = "DarkStyle5";
+            public static string DarkStyle6 { get; } = "DarkStyle6";
+            public static string DarkStyle7 { get; } = "DarkStyle7";
+            public static string DarkStyle8 { get; } = "DarkStyle8";
+            public static string DarkStyle9 { get; } = "DarkStyle9";
+            public static string DarkStyle10 { get; } = "DarkStyle10";
+            public static string DarkStyle11 { get; } = "DarkStyle11";
+            public static string DarkStyle12 { get; } = "DarkStyle12";
+        }
 
 
     }

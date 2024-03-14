@@ -28,6 +28,9 @@ namespace FileFormat.Slides.Facade
         private List<TextShapeFacade> _TextShapeFacades = null;
 
         private List<ImageFacade> _ImagesFacade = null;
+
+        private List<TableFacade> _TableFacades = null;
+
         public Slide PresentationSlide { get => _PresentationSlide; set => _PresentationSlide = value; }
         public string RelationshipId { get => _RelationshipId; set => _RelationshipId = value; }
         public SlidePart SlidePart { get => _SlidePart; set => _SlidePart = value; }
@@ -35,6 +38,7 @@ namespace FileFormat.Slides.Facade
         public int SlideIndex { get => _SlideIndex; set => _SlideIndex = value; }
         public List<ImageFacade> ImagesFacade { get => _ImagesFacade; set => _ImagesFacade = value; }
         public String BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
+        public List<TableFacade> TableFacades { get => _TableFacades; set => _TableFacades = value; }
 
         public SlideFacade (bool isNewSlide)
         {
