@@ -31,6 +31,10 @@ namespace FileFormat.Slides.Facade
 
         private List<TableFacade> _TableFacades = null;
 
+        private CommentAuthorsPart _CommentAuthorPart;
+
+        private SlideCommentsPart _CommentPart;
+
         public Slide PresentationSlide { get => _PresentationSlide; set => _PresentationSlide = value; }
         public string RelationshipId { get => _RelationshipId; set => _RelationshipId = value; }
         public SlidePart SlidePart { get => _SlidePart; set => _SlidePart = value; }
@@ -39,6 +43,8 @@ namespace FileFormat.Slides.Facade
         public List<ImageFacade> ImagesFacade { get => _ImagesFacade; set => _ImagesFacade = value; }
         public String BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public List<TableFacade> TableFacades { get => _TableFacades; set => _TableFacades = value; }
+        public CommentAuthorsPart CommentAuthorPart { get => _CommentAuthorPart; set => _CommentAuthorPart = value; }
+        public SlideCommentsPart CommentPart { get => _CommentPart; set => _CommentPart = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -92,7 +98,32 @@ namespace FileFormat.Slides.Facade
                 _PresentationSlide.CommonSlideData.InsertBefore(newBackground, _PresentationSlide.CommonSlideData.ShapeTree);
             }
         }
+        
+        public IEnumerable<Dictionary<string, string>> GetComments()
+        {
+            List<Dictionary<string, string>> comments = new List<Dictionary<string, string>>();
 
+            if (_CommentPart != null)
+            {
+                var commentList = _CommentPart.CommentList;
+                // Extract comment authors
+                foreach (var comment in commentList.Elements<Comment>())
+                {
+                    Dictionary<string, string> CommentProperties = new Dictionary<string, string>
+                    {
+                        { "Index", comment.Index},
+                        { "Text", comment.InnerText },
+                        { "AuthorId", comment.AuthorId },
+                        { "DateTime", comment.DateTime },
+                        { "XPos", comment.Descendants<P.Position>().FirstOrDefault()?.X ?? 0},
+                        { "YPos", comment.Descendants<P.Position>().FirstOrDefault()?.X ?? 0 }
+                    };
+
+                    comments.Add(CommentProperties);
+                }
+            }
+            return comments;
+        }
         public TextShapeFacade AddTextShape (String text, Int32 fontSize, TextAlignment alignment, Int64 _x, Int64 _y, 
             Int64 width, Int64 height, String fontFamily, String textColor, String backgroundColor)
         {

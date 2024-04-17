@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FileFormat.Slides.Common.Enumerations;
-using FileFormat.Slides.Facade;
-using FileFormat.Slides.Common;
+﻿using FileFormat.Slides.Facade;
 
 namespace FileFormat.Slides
 {
@@ -47,7 +42,7 @@ namespace FileFormat.Slides
         /// <summary>
         /// Property to get facade of text segment.
         /// </summary>
-        public TextSegmentFacade Facade { get => _Facade;  }
+        public TextSegmentFacade Facade { get => _Facade; }
         /// <summary>
         /// Method to create text segment.
         /// </summary>
@@ -70,8 +65,8 @@ namespace FileFormat.Slides
             _Facade.FontFamily = _FontFamily;
             _Facade.Color = _Color;
             _Facade.Text = _Text;
-            
+
         }
     }
-   
+
 }

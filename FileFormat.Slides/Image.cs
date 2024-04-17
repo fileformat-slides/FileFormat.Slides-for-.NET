@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FileFormat.Slides.Common;
 using FileFormat.Slides.Facade;
-using FileFormat.Slides.Common.Enumerations;
-using System.Linq;
-using FileFormat.Slides.Common;
+using System;
+using System.Collections.Generic;
 
 namespace FileFormat.Slides
 {
@@ -15,7 +12,7 @@ namespace FileFormat.Slides
     {
         private string _ImagePath;
         private ImageFacade _Facade;
-        private int _ImageIndex=0;
+        private int _ImageIndex = 0;
         private String _Name;
         private double _x;
         private double _y;
@@ -33,7 +30,7 @@ namespace FileFormat.Slides
         /// <summary>
         /// Property to get or set the image index within the slide.
         /// </summary>
-        public int ImageIndex { get => _ImageIndex; set => _Facade.ImageIndex = _ImageIndex = value;   }
+        public int ImageIndex { get => _ImageIndex; set => _Facade.ImageIndex = _ImageIndex = value; }
         /// <summary>
         /// Property to get or set the image index within the slide.
         /// </summary>
@@ -61,7 +58,7 @@ namespace FileFormat.Slides
         public Image (String imagePath)
         {
             _ImagePath = imagePath;
-            
+
 
         }
         /// <summary>
@@ -69,7 +66,7 @@ namespace FileFormat.Slides
         /// </summary>
         public Image ()
         {
-          
+
         }
         /// <summary>
         /// Method to get the list of the images within a slide

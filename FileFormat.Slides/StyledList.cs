@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using FileFormat.Slides.Common.Enumerations;
+﻿using FileFormat.Slides.Common.Enumerations;
 using FileFormat.Slides.Facade;
-using FileFormat.Slides.Common;
+using System;
+using System.Collections.Generic;
 
 namespace FileFormat.Slides
 {
@@ -13,7 +11,7 @@ namespace FileFormat.Slides
     public class StyledList
     {
         private ListFacade _Facade;
-        private ListType _ListType ;
+        private ListType _ListType;
         private String _TextColor;
         private String _FontFamily;
         private int _FontSize;

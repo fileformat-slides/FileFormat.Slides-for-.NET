@@ -70,6 +70,10 @@ namespace FileFormat.Slides
         /// Property to get or set the stylings for the table.
         /// </summary>
         public Stylings TableStylings { get => _TableStylings; set => _TableStylings = value; }
+        
+        /// <summary>
+        /// Property to define theme of a table. It can be check in PowerPoint table designs.  
+        /// </summary>
         public string Theme { get => _Theme; set => _Theme = value; }
 
         /// <summary>
@@ -97,9 +101,14 @@ namespace FileFormat.Slides
             // Add the row to the table.
             _Rows.Add(row);
         }
-
+        /// <summary>
+        /// Adds a row to the table.
+        /// </summary>
+        /// <param name="row">The TableRow object to be added to the table.</param>
         public void AddColumn(TableColumn column) { }
-
+        /// <summary>
+        /// Method to update an existing table.
+        /// </summary>
         public void Update()
         {
             _Facade.TableStyle = _Theme;
@@ -153,6 +162,11 @@ namespace FileFormat.Slides
 
             return dtable;
         }
+        /// <summary>
+        /// This method is responsible to get the list of Tables
+        /// </summary>
+        /// <param name="tableFacades"></param>
+        /// <returns></returns>
         public static List<Table> GetTables(List<TableFacade> tableFacades)
         {
             List<Table> tables = new List<Table>();

@@ -1,4 +1,6 @@
-﻿using FileFormat.Slides.Common;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Bibliography;
+using FileFormat.Slides.Common;
 using FileFormat.Slides.Common.Enumerations;
 using FileFormat.Slides.Facade;
 using System;
@@ -20,6 +22,9 @@ namespace FileFormat.Slides
         private List<Image> _Images;
         private List<Table> _Tables;
         private static String _BackgroundColor = null;
+        private CommentFacade _CommentFacade=null;
+        private Presentation _SlidePresentation;
+        private int _CommentIndex = 0;
 
         /// <summary>
         /// Property for respective Slide Facade.
@@ -47,6 +52,7 @@ namespace FileFormat.Slides
         /// </summary>
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public List<Table> Tables { get => _Tables; set => _Tables = value; }
+        public Presentation SlidePresentation { get => _SlidePresentation; set => _SlidePresentation = value; }
 
 
         /// <summary>
@@ -68,6 +74,7 @@ namespace FileFormat.Slides
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
                 _SlideFacade.BackgroundColor = _BackgroundColor;
+                _CommentFacade = new CommentFacade();
             }
             catch (Exception ex)
             {
@@ -76,6 +83,10 @@ namespace FileFormat.Slides
             }
 
         }
+        /// <summary>
+        /// Contructor which accepts bool value 
+        /// </summary>
+        /// <param name="isNewSlide"></param>
         public Slide (bool isNewSlide)
         {
             if (isNewSlide)
@@ -88,6 +99,7 @@ namespace FileFormat.Slides
             _TextShapes = new List<TextShape>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
+            _CommentFacade = new CommentFacade();
         }
         /// <summary>
         /// Method to add a text shape in a slide.
@@ -168,6 +180,54 @@ namespace FileFormat.Slides
 
         }
         /// <summary>
+        /// Method to add comments to a slide. 
+        /// </summary>
+        /// <param name="comment">An object of Comment class</param>
+        public void AddComment(Comment comment)
+        {
+            try
+            {
+                comment.Facade = _CommentFacade;
+                if (_CommentIndex == 0)
+                {                    
+                    comment.Facade.SetAssociatedSlidePart(_SlideFacade.SlidePart, _SlidePresentation.Facade.CommentAuthorPart);
+                }
+                UInt32Value id = new UInt32Value { Value = (uint)comment.AuthorId };
+                comment.Facade.GenerateComment(id,comment.Text, comment.InsertedAt, comment.X, comment.Y);
+                _CommentIndex += 1;
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding Comment");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+
+        }
+        /// <summary>
+        /// Method to get the list of comments.
+        /// </summary>
+        /// <returns></returns>
+        public List<Comment> GetComments()
+        {
+            var comments= new List<Comment>();
+            var facadeComments= _SlideFacade.GetComments();
+            foreach (var facadeComment in facadeComments)
+            {
+                Comment comment = new Comment();
+                comment.Text = facadeComment["Text"];
+                comment.AuthorId = Convert.ToInt32(facadeComment["AuthorId"]);
+                comment.CommentIndex= Convert.ToInt32(facadeComment["Index"]);
+                comment.InsertedAt = Convert.ToDateTime(facadeComment["DateTime"]);
+                comment.X = Convert.ToInt64(facadeComment["XPos"]);
+                comment.Y = Convert.ToInt64(facadeComment["YPos"]);
+                comment.Facade = new CommentFacade();
+                comment.Facade.CommentPart = _SlideFacade.CommentPart;
+
+                comments.Add(comment);
+            }
+            return comments;
+        }
+        /// <summary>
         /// Method to add table to a slide. 
         /// </summary>
         /// <param name="table">An object of Table class</param>
@@ -195,9 +255,7 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
 
-        }
-
-        
+        }        
 
         /// <summary>
         /// Get text shapes by searching a text term.
@@ -217,6 +275,7 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
         }
+        
         /// <summary>
         /// Method to update a slide properties e.g. background color.
         /// </summary>

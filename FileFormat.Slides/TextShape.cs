@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using FileFormat.Slides.Common;
 using FileFormat.Slides.Common.Enumerations;
 using FileFormat.Slides.Facade;
-using FileFormat.Slides.Common;
+using System;
+using System.Collections.Generic;
 
 namespace FileFormat.Slides
 {
@@ -24,8 +23,8 @@ namespace FileFormat.Slides
         private String _FontFamily;
         private String _TextColor;
         private List<TextSegment> _TextSegments;
-        private String _BackgroundColor=null;
-        private StyledList _TextList=null;
+        private String _BackgroundColor = null;
+        private StyledList _TextList = null;
         /// <summary>
         /// Property to set or get the text of the shape.
         /// </summary>
@@ -163,7 +162,8 @@ namespace FileFormat.Slides
                     textShapes.Add(textShape);
 
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Getting Text Shapes");
                 throw new Common.FileFormatException(errorMessage, ex);

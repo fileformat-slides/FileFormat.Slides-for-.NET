@@ -8,9 +8,10 @@ using System.Collections.Generic;
 using FileFormat.Slides.Common;
 
 
+
 class Program
 {
-    static void Main ()
+    static void Main()
     {
         /* Create new Presentation
          Presentation presentation = Presentation.Create("D:\\AsposeSampleResults\\test2.pptx");
@@ -280,7 +281,7 @@ class Program
 
         presentation.Save();*/
 
-        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
         Slide slide = presentation.GetSlides()[0];
 
         Table table = slide.Tables[0];
@@ -302,7 +303,7 @@ class Program
         table.AddRow(row2);
         table.Update();
 
-        presentation.Save();
+        presentation.Save();*/
 
         /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
         Slide slide = presentation.GetSlides()[0];
@@ -335,7 +336,54 @@ class Program
         table.Update();
 
         presentation.Save();*/
+        /*  
+        Presentation presentation = Presentation.Create("D:\\AsposeSampleResults\\comment.pptx");
+        CommentAuthor author = new CommentAuthor();
+        author.Name= "umar";
+        author.InitialLetter = "u";
+        author.ColorIndex = 2;
+        author.Id = 1;
+        presentation.CreateAuthor(author);
+        CommentAuthor author2 = new CommentAuthor();
+        author2.Name = "hp";
+        author2.InitialLetter = "h";
+        author2.ColorIndex = 3;
+        author2.Id = 2;
+        presentation.CreateAuthor(author2);
 
+        Slide slide1 = new Slide();
+        slide1.SlidePresentation = presentation;
+        Comment comment1 = new Comment();
+        comment1.AuthorId = presentation.GetCommentAuthors()[0].Id;
+        comment1.Text = "First programmatic comment";
+        comment1.InsertedAt=DateTime.Now;
+        Comment comment2 = new Comment();
+        comment2.AuthorId = presentation.GetCommentAuthors()[1].Id;
+        comment2.Text = "2nd programmatic comment";
+        comment2.InsertedAt = DateTime.Now;
+        slide1.AddComment(comment1);
+        slide1.AddComment(comment2);
+        presentation.AppendSlide(slide1);
+       // presentation.RemoveCommentAuthor(presentation.GetCommentAuthors()[0]);
+
+        presentation.Save();
+        */
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\comment.pptx");
+         Slide slide = presentation.GetSlides()[0];
+         var comments=slide.GetComments();
+         comments[0].Remove();
+         presentation.Save();*/
+
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\comment.pptx");
+        Slide slide = presentation.GetSlides()[0];
+        Comment comment1 = new Comment();
+        comment1.AuthorId = presentation.GetCommentAuthors()[1].Id;
+        comment1.Text = "2nd Programmatic comment in an existing presentation";
+        comment1.InsertedAt = DateTime.Now;
+       
+        slide.AddComment(comment1);
+        presentation.Save();
+        */
     }
 
 }

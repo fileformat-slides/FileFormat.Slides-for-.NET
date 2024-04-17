@@ -1,4 +1,5 @@
-﻿using FileFormat.Slides.Facade;
+﻿using DocumentFormat.OpenXml.Presentation;
+using FileFormat.Slides.Facade;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,9 @@ namespace FileFormat.Slides
         private static String _DirectoryPath = "D:\\AsposeSampleResults\\";
         private static PresentationDocumentFacade doc = null;
         private List<Slide> _Slides;
+        private List<CommentAuthor> _CommentAuthors;
+
+        public PresentationDocumentFacade Facade { get => doc; }
 
 
 
@@ -23,6 +27,7 @@ namespace FileFormat.Slides
         private Presentation (String FilePath)
         {
             _Slides = new List<Slide>();
+            _CommentAuthors = new List<CommentAuthor>();
             doc = PresentationDocumentFacade.Create(FilePath);
 
         }
@@ -32,6 +37,7 @@ namespace FileFormat.Slides
         private Presentation ()
         {
             _Slides = new List<Slide>();
+            _CommentAuthors = new List<CommentAuthor>();
 
         }
         /// <summary>
@@ -93,6 +99,34 @@ namespace FileFormat.Slides
             return new Presentation();
         }
         /// <summary>
+        /// Create comment author using this method
+        /// </summary>
+        /// <param name="author"> Pass comment author object</param>
+        public void CreateAuthor(CommentAuthor author)
+        {
+            doc.CreateAuthor(author.Id, author.ColorIndex, author.Name, author.InitialLetter);
+            _CommentAuthors.Add(author);
+        }
+        /// <summary>
+        /// Get the list of comment author
+        /// </summary>
+        /// <returns></returns>
+        public List<CommentAuthor> GetCommentAuthors()
+        {
+            List<CommentAuthor > authorList = new List<CommentAuthor>();
+            var FacadeAuthors = doc.GetCommentAuthors();
+            foreach(var author in FacadeAuthors)
+            {
+                CommentAuthor commentAuthor = new CommentAuthor();
+                commentAuthor.InitialLetter = author["Initials"];
+                commentAuthor.ColorIndex = Convert.ToInt32(author["ColorIndex"]);
+                commentAuthor.Name = author["Name"];
+                commentAuthor.Id = Convert.ToInt32(author["Id"]);  
+                authorList.Add(commentAuthor);
+            }
+            return authorList;
+        }
+        /// <summary>
         /// This method is responsible to append a slide.
         /// </summary>
         /// <param name="slide">An object of a slide</param>
@@ -129,10 +163,12 @@ namespace FileFormat.Slides
                     slideFacade.PresentationSlide = slidepart.Slide;
                     slideFacade.TableFacades= TableFacade.PopulateTables(slidepart);
                     slideFacade.SlidePart = slidepart;
+                    slideFacade.CommentPart = slidepart.SlideCommentsPart;
                     slide.TextShapes = TextShape.GetTextShapes(slideFacade.TextShapeFacades);
                     slide.Images = Image.GetImages(slideFacade.ImagesFacade);
                     slide.Tables = Table.GetTables(slideFacade.TableFacades);
                     slide.SlideFacade = slideFacade;
+                    slide.SlidePresentation = this;
                     _Slides.Add(slide);
                 }
             }
@@ -162,6 +198,15 @@ namespace FileFormat.Slides
         public String RemoveSlide (int slideIndex)
         {
             return doc.RemoveSlide(slideIndex);
+        }
+        /// <summary>
+        /// Method to remove comment author.
+        /// </summary>
+        /// <param name="author"></param>
+        public void RemoveCommentAuthor(CommentAuthor author)
+        {
+            doc.RemoveCommentAuthor(author.Id);
+            _CommentAuthors.Remove(author);
         }
         /// <summary>
         /// Method to insert a slide at a specific index

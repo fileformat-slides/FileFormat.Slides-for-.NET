@@ -11,6 +11,8 @@ using DocumentFormat.OpenXml.Packaging;
 using P = DocumentFormat.OpenXml.Presentation;
 using System.Linq;
 using FileFormat.Slides.Common;
+using System.Dynamic;
+using P15 = DocumentFormat.OpenXml.Office2013.PowerPoint;
 
 namespace FileFormat.Slides.Facade
 {
@@ -28,6 +30,7 @@ namespace FileFormat.Slides.Facade
         private SlideIdList _SlideIdList = null;
         private bool isNewPresentation = false;
         private List<SlideFacade> _SlideFacades = null;
+        private CommentAuthorsPart _CommentAuthorPart;
 
 
 
@@ -39,6 +42,7 @@ namespace FileFormat.Slides.Facade
         public SlideIdList SlideIdList { get => _SlideIdList; set => _SlideIdList = value; }
         public List<SlideFacade> SlideFacades { get => _SlideFacades; set => _SlideFacades = value; }
         public bool IsNewPresentation { get => isNewPresentation; set => isNewPresentation = value; }
+        public CommentAuthorsPart CommentAuthorPart { get => _CommentAuthorPart; set => _CommentAuthorPart = value; }
 
         public PKG.PresentationPart GetPresentationPart ()
         {
@@ -61,12 +65,14 @@ namespace FileFormat.Slides.Facade
                     _PresentationSlideParts = new List<SlidePart>();
                     _PresentationSlideLayoutParts = new List<SlideLayoutPart>();
                     _PresentationPart.Presentation.Append(slideMasterIdList, _SlideIdList);
+                    CreateCommentAuthorPart();
                 }
                 else
                 {
                     _PresentationDocument = PKG.PresentationDocument.Open(FilePath, true);
                     _PresentationPart = _PresentationDocument.PresentationPart;
                     _PresentationSlideParts = GetSlideParts(_PresentationPart);
+                    _CommentAuthorPart = _PresentationPart.CommentAuthorsPart;
                     _PresentationSlideLayoutParts = GetSlideLayoutParts(_PresentationSlideParts);
                     _SlideIdList = _PresentationPart.Presentation.SlideIdList;
                     _PresentationSlideMasterPart = _PresentationPart.SlideMasterParts.FirstOrDefault();
@@ -97,8 +103,65 @@ namespace FileFormat.Slides.Facade
 
             return slideLayoutParts;
         }
+        private List<SlidePart> GetSlideParts(PresentationPart _presentationPart)
+        {
+            List<SlidePart> SlideParts = new List<SlidePart>();
+            foreach (SlideId slideId in _presentationPart.Presentation.SlideIdList)
+            {
+                // Get the relationship ID of the slide
+                string relId = slideId.RelationshipId;
 
+                // Get the slide part using the relationship ID
+                SlidePart slidePart = (SlidePart)_presentationPart.GetPartById(relId);
 
+                // Now you can work with the slidePart object
+                // For example, you can add it to a List<SlidePart>
+
+                SlideParts.Add(slidePart);
+            }
+            return SlideParts;
+        }
+
+        public IEnumerable<Dictionary<string, string>> GetCommentAuthors()
+        {
+            List<Dictionary<string, string>> commentAuthors = new List<Dictionary<string, string>>();
+
+            
+                // Get the list of comment authors
+                CommentAuthorsPart commentAuthorsPart = _PresentationPart.CommentAuthorsPart;
+
+                if (commentAuthorsPart != null)
+                {
+                    var commentAuthorList = commentAuthorsPart.CommentAuthorList;
+                    // Extract comment authors
+                    foreach (var author in commentAuthorList.Elements<CommentAuthor>())
+                    {
+                        Dictionary<string, string> authorProperties = new Dictionary<string, string>
+                    {
+                        { "Id", author.Id },
+                        { "Name", author.Name },
+                        { "Initials", author.Initials },
+                        { "LastIndex", author.LastIndex },
+                        { "ColorIndex", author.ColorIndex }
+                    };
+
+                        commentAuthors.Add(authorProperties);
+                    }
+                }
+            
+
+            return commentAuthors;
+        }
+        public void RemoveCommentAuthor(int id)
+        {
+            
+            var commentAuthorToRemove = _CommentAuthorPart.CommentAuthorList.Descendants<CommentAuthor>()
+                .FirstOrDefault(author => author.Id == id);
+            if (commentAuthorToRemove != null)
+            {
+                commentAuthorToRemove.Remove();
+            }
+        }
 
         public static PresentationDocumentFacade Create (String FilePath)
         {
@@ -152,7 +215,7 @@ namespace FileFormat.Slides.Facade
 
 
             CreateSlideLayoutPart();
-            CreateSlideMasterPart();
+            CreateSlideMasterPart();            
             CreateThemePart("rId5");
 
             _PresentationSlideMasterPart.AddPart(_PresentationSlideLayoutParts[0], "rId1");
@@ -173,25 +236,41 @@ namespace FileFormat.Slides.Facade
             }
         }
 
-        private List<SlidePart> GetSlideParts (PresentationPart _presentationPart)
+         private void CreateCommentAuthorPart()
         {
-            List<SlidePart> SlideParts = new List<SlidePart>();
-            foreach (SlideId slideId in _presentationPart.Presentation.SlideIdList)
-            {
-                // Get the relationship ID of the slide
-                string relId = slideId.RelationshipId;
+            CommentAuthorsPart commentAuthorsPart1 = _PresentationPart.AddNewPart<CommentAuthorsPart>("rId3");
+            CommentAuthorList commentAuthorList1 = new CommentAuthorList();
+            commentAuthorList1.AddNamespaceDeclaration("a", "http://schemas.openxmlformats.org/drawingml/2006/main");
+            commentAuthorList1.AddNamespaceDeclaration("r", "http://schemas.openxmlformats.org/officeDocument/2006/relationships");
+            commentAuthorList1.AddNamespaceDeclaration("p", "http://schemas.openxmlformats.org/presentationml/2006/main");
+                    
 
-                // Get the slide part using the relationship ID
-                SlidePart slidePart = (SlidePart)_presentationPart.GetPartById(relId);
+            commentAuthorsPart1.CommentAuthorList = commentAuthorList1;
 
-                // Now you can work with the slidePart object
-                // For example, you can add it to a List<SlidePart>
-
-                SlideParts.Add(slidePart);
-            }
-            return SlideParts;
+            _CommentAuthorPart = commentAuthorsPart1;
         }
+        public void CreateAuthor(int id, int colorIndex, String name, string initialLetter)
+        {
 
+            UInt32Value authId = Convert.ToUInt32(id);
+            UInt32Value color_index = new UInt32Value { Value = (uint)colorIndex };
+            CommentAuthor commentAuthor1 = new CommentAuthor() { Id = authId, Name = name, Initials = initialLetter, LastIndex = authId, ColorIndex = color_index };
+
+            CommentAuthorExtensionList commentAuthorExtensionList1 = new CommentAuthorExtensionList();
+
+            CommentAuthorExtension commentAuthorExtension1 = new CommentAuthorExtension() { Uri = "{19B8F6BF-5375-455C-9EA6-DF929625EA0E}" };
+
+            P15.PresenceInfo presenceInfo1 = new P15.PresenceInfo() { UserId = name, ProviderId = "None" };
+            presenceInfo1.AddNamespaceDeclaration("p15", "http://schemas.microsoft.com/office/powerpoint/2012/main");
+
+            commentAuthorExtension1.Append(presenceInfo1);
+
+            commentAuthorExtensionList1.Append(commentAuthorExtension1);
+
+            commentAuthor1.Append(commentAuthorExtensionList1);
+
+            _CommentAuthorPart.CommentAuthorList.Append(commentAuthor1);
+        }
 
         public void CreateSlideLayoutPart ()
         {
@@ -422,6 +501,7 @@ namespace FileFormat.Slides.Facade
 
         public void AppendSlide (SlideFacade slideFacade)
         {
+           
             slideFacade.PresentationSlide.Save(slideFacade.SlidePart);
             _PresentationSlideParts.Add(slideFacade.SlidePart);
 

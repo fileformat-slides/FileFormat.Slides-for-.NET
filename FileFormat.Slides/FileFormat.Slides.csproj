@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
    </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>D:\Local_Repos\FileFormat.Slides\FileFormat.Slides\FileFormat.Slides.xml</DocumentationFile>
-  </PropertyGroup>
+  </PropertyGroup>  
 
   <ItemGroup>
     <ProjectReference Include="..\FileFormat.Slides.Common\FileFormat.Slides.Common.csproj" />
