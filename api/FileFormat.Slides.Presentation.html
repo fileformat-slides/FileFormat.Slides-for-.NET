@@ -89,7 +89,7 @@
 
 
   <h1 id="FileFormat_Slides_Presentation" data-uid="FileFormat.Slides.Presentation" class="text-break">
-Class Presentation  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L10"><i class="bi bi-code-slash"></i></a>
+Class Presentation  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L11"><i class="bi bi-code-slash"></i></a>
   </h1>
 
   <div class="facts text-secondary">
@@ -149,6 +149,41 @@ Class Presentation  <a class="header-action link-secondary" title="View source" 
 
 
 
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
+  <a id="FileFormat_Slides_Presentation_Facade_" data-uid="FileFormat.Slides.Presentation.Facade*"></a>
+
+  <h3 id="FileFormat_Slides_Presentation_Facade" data-uid="FileFormat.Slides.Presentation.Facade">
+  Facade
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L19"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public PresentationDocumentFacade Facade { get; }</code></pre>
+  </div>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><span class="xref">PresentationDocumentFacade</span></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <h2 class="section" id="methods">Methods
 </h2>
 
@@ -157,7 +192,7 @@ Class Presentation  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="FileFormat_Slides_Presentation_AppendSlide_FileFormat_Slides_Slide_" data-uid="FileFormat.Slides.Presentation.AppendSlide(FileFormat.Slides.Slide)">
   AppendSlide(Slide)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L99"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L133"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>This method is responsible to append a slide.</p>
@@ -190,7 +225,7 @@ Class Presentation  <a class="header-action link-secondary" title="View source" 
 
   <h3 id="FileFormat_Slides_Presentation_Create_System_String_" data-uid="FileFormat.Slides.Presentation.Create(System.String)">
   Create(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L71"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Static method to instantiate a new object of Presentation class.</p>
@@ -244,11 +279,44 @@ presentation.Save();</code></pre>
 
 
 
+  <a id="FileFormat_Slides_Presentation_CreateAuthor_" data-uid="FileFormat.Slides.Presentation.CreateAuthor*"></a>
+
+  <h3 id="FileFormat_Slides_Presentation_CreateAuthor_FileFormat_Slides_CommentAuthor_" data-uid="FileFormat.Slides.Presentation.CreateAuthor(FileFormat.Slides.CommentAuthor)">
+  CreateAuthor(CommentAuthor)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L105"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Create comment author using this method</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void CreateAuthor(CommentAuthor author)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>author</code> <a class="xref" href="FileFormat.Slides.CommentAuthor.html">CommentAuthor</a></dt>
+    <dd><p>Pass comment author object</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="FileFormat_Slides_Presentation_ExtractAndSaveImages_" data-uid="FileFormat.Slides.Presentation.ExtractAndSaveImages*"></a>
 
   <h3 id="FileFormat_Slides_Presentation_ExtractAndSaveImages_System_String_" data-uid="FileFormat.Slides.Presentation.ExtractAndSaveImages(System.String)">
   ExtractAndSaveImages(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L182"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Extract and save images of a presentation into a director</p>
@@ -277,11 +345,43 @@ presentation.Save();</code></pre>
 
 
 
+  <a id="FileFormat_Slides_Presentation_GetCommentAuthors_" data-uid="FileFormat.Slides.Presentation.GetCommentAuthors*"></a>
+
+  <h3 id="FileFormat_Slides_Presentation_GetCommentAuthors" data-uid="FileFormat.Slides.Presentation.GetCommentAuthors">
+  GetCommentAuthors()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L114"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Get the list of comment author</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public List&lt;CommentAuthor&gt; GetCommentAuthors()</code></pre>
+  </div>
+
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="FileFormat.Slides.CommentAuthor.html">CommentAuthor</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="FileFormat_Slides_Presentation_GetSlides_" data-uid="FileFormat.Slides.Presentation.GetSlides*"></a>
 
   <h3 id="FileFormat_Slides_Presentation_GetSlides" data-uid="FileFormat.Slides.Presentation.GetSlides">
   GetSlides()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L152"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to get the list of all slides of a presentation</p>
@@ -319,7 +419,7 @@ var slide = slides[0];
 
   <h3 id="FileFormat_Slides_Presentation_InsertSlideAt_System_Int32_FileFormat_Slides_Slide_" data-uid="FileFormat.Slides.Presentation.InsertSlideAt(System.Int32,FileFormat.Slides.Slide)">
   InsertSlideAt(int, Slide)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L171"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L216"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to insert a slide at a specific index</p>
@@ -355,7 +455,7 @@ var slide = slides[0];
 
   <h3 id="FileFormat_Slides_Presentation_Open_System_String_" data-uid="FileFormat.Slides.Presentation.Open(System.String)">
   Open(string)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L90"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L96"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Static method to load an existing presentation.</p>
@@ -403,11 +503,43 @@ presentation.Save();</code></pre>
 
 
 
+  <a id="FileFormat_Slides_Presentation_RemoveCommentAuthor_" data-uid="FileFormat.Slides.Presentation.RemoveCommentAuthor*"></a>
+
+  <h3 id="FileFormat_Slides_Presentation_RemoveCommentAuthor_FileFormat_Slides_CommentAuthor_" data-uid="FileFormat.Slides.Presentation.RemoveCommentAuthor(FileFormat.Slides.CommentAuthor)">
+  RemoveCommentAuthor(CommentAuthor)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L206"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
+  <div class="markdown level1 summary"><p>Method to remove comment author.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void RemoveCommentAuthor(CommentAuthor author)</code></pre>
+  </div>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>author</code> <a class="xref" href="FileFormat.Slides.CommentAuthor.html">CommentAuthor</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="FileFormat_Slides_Presentation_RemoveSlide_" data-uid="FileFormat.Slides.Presentation.RemoveSlide*"></a>
 
   <h3 id="FileFormat_Slides_Presentation_RemoveSlide_System_Int32_" data-uid="FileFormat.Slides.Presentation.RemoveSlide(System.Int32)">
   RemoveSlide(int)
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L162"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L198"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to remove a slide at a specific index</p>
@@ -451,7 +583,7 @@ presentation.Save();</code></pre>
 
   <h3 id="FileFormat_Slides_Presentation_Save" data-uid="FileFormat.Slides.Presentation.Save">
   Save()
-  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L180"><i class="bi bi-code-slash"></i></a>
+  <a class="header-action link-secondary" title="View source" href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L225"><i class="bi bi-code-slash"></i></a>
   </h3>
 
   <div class="markdown level1 summary"><p>Method to save the new or changed presentation.</p>
@@ -478,7 +610,7 @@ presentation.Save();</code></pre>
 </article>
 
         <div class="contribution d-print-none">
-          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L10" class="edit-link">Edit this page</a>
+          <a href="https://github.com/umar320/FileFormat.Slides/blob/main/FileFormat.Slides/Presentation.cs/#L11" class="edit-link">Edit this page</a>
         </div>
 
 
