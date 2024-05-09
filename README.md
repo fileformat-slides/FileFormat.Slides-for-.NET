@@ -1,21 +1,21 @@
 # FileFormat.Slides for .NET | Free C# PowerPoint API
 [FileFormat.Slides for .NET](https://github.com/fileformat-slides/FileFormat.Slides-for-.NET) - An open-source library offered by [openize.com](https://www.openize.com/) that can help beginners create, open, and edit PowerPoint files.
 
-# Contents
+## Contents
 - [Overview](#net-powerpoint-api-for-presentation-manipulation)
 - [System Requirements](#system-requirements)
 - [Get Started](#quick-start)
 - [How To?](#how-to)
 - [Find More](#find-more)
 
-# .NET PowerPoint API for Presentation Manipulation 
+## .NET PowerPoint API for Presentation Manipulation 
 
 [FileFormat.Slides](https://github.com/fileformat-slides/FileFormat.Slides-for-.NET) is a freely available .NET library crafted for MS PowerPoint presentation manipulation and management. Whether you're a novice or an expert, this API is straightforward to set up and utilize. Its strength lies in the powerful OpenXML engine, which serves as the backbone of FileFormat.Slides. By incorporating this C# library, you can easily generate and control PowerPoint files programmatically. Once integrated, you won't require any additional third-party tools to automate the creation or modification of PowerPoint presentations.
 
-# System Requirements
+## System Requirements
 - .NET Core 3.1 and above
   
-# Quick Start
+## Quick Start
   > ```Install-Package FileFormat.Slides```
 ```
 // Open a presentation
@@ -29,7 +29,7 @@ var shapeCount = slide.TextShapes.Count;
 ```
 
 
-# How to?
+## How to?
 > **Create Presentation:**
 ```
 // Create instance of presentation
@@ -51,7 +51,7 @@ presentation.AppendSlide(slide);
 // Save presentation
 presentation.Save();
 ```
-# Find More
+## Find More
 > **More Samples:**
   Check out the [examples](https://github.com/fileformat-slides-gists/FileFormat.Slides-for-.NET/) for sample code snippets to begin with.
 
