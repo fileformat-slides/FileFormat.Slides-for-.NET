@@ -1,7 +1,11 @@
 # FileFormat.Slides for .NET | Free C# PowerPoint API
-[FileFormat.Slides for .NET](https://github.com/fileformat-slides/FileFormat.Slides-for-.NET) - An open-source library that can help beginners create, open, and edit PowerPoint files.
+[FileFormat.Slides for .NET](https://github.com/fileformat-slides/FileFormat.Slides-for-.NET) - An open-source library offered by [openize.com](https://www.openize.com/) that can help beginners create, open, and edit PowerPoint files.
 
-# C# PowerPoint API System Outlines
+
+# .NET PowerPoint API for Presentation Manipulation
+
+[FileFormat.Slides](https://github.com/fileformat-slides/FileFormat.Slides-for-.NET) is a freely available .NET library crafted for MS PowerPoint presentation manipulation and management. Whether you're a novice or an expert, this API is straightforward to set up and utilize. Its strength lies in the powerful OpenXML engine, which serves as the backbone of FileFormat.Slides. By incorporating this C# library, you can easily generate and control PowerPoint files programmatically. Once integrated, you won't require any additional third-party tools to automate the creation or modification of PowerPoint presentations.
+
 This Documentation explains the internal structure of our PowerPoint Presentation Management C# API system. Despite its complexity, we've ensured the public APIs are user-friendly, providing an easy experience for manipulating PowerPoint presentations.
 
 For a more detailed understanding of our system architecture, design patterns, and public interfaces, please visit the [Articles Section](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/docs/index.html).
