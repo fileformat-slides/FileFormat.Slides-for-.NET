@@ -1,6 +1,6 @@
-# Presentation Management C# API System Outlines
+# FileFormat.Slides for .NET | C# PowerPoint API System Outlines
 
-This Documentation explains the internal structure of our Presentation Management C# API system. Despite its complexity, we've ensured the public APIs are user-friendly, providing an easy experience for manipulating PowerPoint presentations.
+This Documentation explains the internal structure of our PowerPoint Presentation Management C# API system. Despite its complexity, we've ensured the public APIs are user-friendly, providing an easy experience for manipulating PowerPoint presentations.
 
 For a more detailed understanding of our system architecture, design patterns, and public interfaces, please visit the [Articles Section](https://fileformat-slides.github.io/FileFormat.Slides-for-.NET/docs/index.html).
 
