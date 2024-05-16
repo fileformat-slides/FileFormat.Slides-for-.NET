@@ -35,6 +35,8 @@ namespace FileFormat.Slides.Facade
 
         private SlideCommentsPart _CommentPart;
 
+        private NotesSlidePart _NotesPart;
+
         public Slide PresentationSlide { get => _PresentationSlide; set => _PresentationSlide = value; }
         public string RelationshipId { get => _RelationshipId; set => _RelationshipId = value; }
         public SlidePart SlidePart { get => _SlidePart; set => _SlidePart = value; }
@@ -45,6 +47,7 @@ namespace FileFormat.Slides.Facade
         public List<TableFacade> TableFacades { get => _TableFacades; set => _TableFacades = value; }
         public CommentAuthorsPart CommentAuthorPart { get => _CommentAuthorPart; set => _CommentAuthorPart = value; }
         public SlideCommentsPart CommentPart { get => _CommentPart; set => _CommentPart = value; }
+        public NotesSlidePart NotesPart { get => _NotesPart; set => _NotesPart = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -210,6 +213,67 @@ namespace FileFormat.Slides.Facade
             return textShapeFacade;
         }
 
+        public void AddNote(String noteText)
+        {
+            var relId = _RelationshipId;
+           
+            NotesSlidePart notesSlidePart1;
+            string existingSlideNote = noteText;
+
+            if (_SlidePart.NotesSlidePart != null)
+            {
+                //Appened new note to existing note.
+                existingSlideNote = _SlidePart.NotesSlidePart.NotesSlide.InnerText + "\n" + noteText;
+                //var val = (NotesSlidePart)_SlidePart.GetPartById(relId);
+                //var val = _SlidePart.NotesSlidePart;
+                notesSlidePart1 = _NotesPart;
+            }
+            else
+            {
+                //Add a new noteto a slide.                      
+                notesSlidePart1 = _SlidePart.AddNewPart<NotesSlidePart>(relId);
+            }
+
+            NotesSlide notesSlide = new NotesSlide(
+                new CommonSlideData(new ShapeTree(
+                  new P.NonVisualGroupShapeProperties(
+                    new P.NonVisualDrawingProperties() { Id = (UInt32Value)1U, Name = "" },
+                    new P.NonVisualGroupShapeDrawingProperties(),
+                    new ApplicationNonVisualDrawingProperties()),
+                    new GroupShapeProperties(new D.TransformGroup()),
+                    new P.Shape(
+                        new P.NonVisualShapeProperties(
+                            new P.NonVisualDrawingProperties() { Id = (UInt32Value)2U, Name = "Slide Image Placeholder 1" },
+                            new P.NonVisualShapeDrawingProperties(new D.ShapeLocks() { NoGrouping = true, NoRotation = true, NoChangeAspect = true }),
+                            new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Type = PlaceholderValues.SlideImage })),
+                        new P.ShapeProperties()),
+                    new P.Shape(
+                        new P.NonVisualShapeProperties(
+                            new P.NonVisualDrawingProperties() { Id = (UInt32Value)3U, Name = "Notes Placeholder 2" },
+                            new P.NonVisualShapeDrawingProperties(new D.ShapeLocks() { NoGrouping = true }),
+                            new ApplicationNonVisualDrawingProperties(new PlaceholderShape() { Type = PlaceholderValues.Body, Index = (UInt32Value)1U })),
+                        new P.ShapeProperties(),
+                        new P.TextBody(
+                            new D.BodyProperties(),
+                            new D.ListStyle(),
+                            new D.Paragraph(
+                                new D.Run(
+                                    new D.RunProperties() { Language = "en-US", Dirty = false },
+                                    new D.Text() { Text = existingSlideNote }),
+                                new D.EndParagraphRunProperties() { Language = "en-US", Dirty = false }))
+                            ))),
+                new ColorMapOverride(new D.MasterColorMapping()));
+
+            notesSlidePart1.NotesSlide = notesSlide;
+        }
+        public void RemoveNote()
+        {
+            if (_SlidePart.NotesSlidePart != null)
+            {
+                // Clear the existing notes.
+                _SlidePart.DeletePart(_SlidePart.NotesSlidePart);
+            }
+        }
         public void  AddImage (ImageFacade picture )
         {
             _PresentationSlide.CommonSlideData.ShapeTree.Append(picture.Image);

@@ -384,6 +384,14 @@ class Program
         slide.AddComment(comment1);
         presentation.Save();
         */
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\test.pptx");
+        Slide slide = presentation.GetSlides()[0];
+      
+        //slide.AddNote("Serious Note");
+        //presentation.GetSlides()[1].AddNote("Light Note");
+        //presentation.SaveAllNotesToTextFile("D:\\AsposeSampleData\\Notes.txt");
+        presentation.Save();*/
     }
 
 }

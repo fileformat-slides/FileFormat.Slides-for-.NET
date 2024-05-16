@@ -156,7 +156,7 @@ namespace FileFormat.Slides
                 foreach (var slidepart in doc.PresentationSlideParts)
                 {
                     var slide = new Slide(false);
-
+                    
                     SlideFacade slideFacade = new SlideFacade(false);
                     slideFacade.TextShapeFacades = TextShapeFacade.PopulateTextShapes(slidepart);
                     slideFacade.ImagesFacade = ImageFacade.PopulateImages(slidepart);
@@ -164,6 +164,8 @@ namespace FileFormat.Slides
                     slideFacade.TableFacades= TableFacade.PopulateTables(slidepart);
                     slideFacade.SlidePart = slidepart;
                     slideFacade.CommentPart = slidepart.SlideCommentsPart;
+                    slideFacade.NotesPart = slidepart.NotesSlidePart;
+                    slideFacade.RelationshipId = doc.GetSlideRelationshipId(slidepart);
                     slide.TextShapes = TextShape.GetTextShapes(slideFacade.TextShapeFacades);
                     slide.Images = Image.GetImages(slideFacade.ImagesFacade);
                     slide.Tables = Table.GetTables(slideFacade.TableFacades);
@@ -218,6 +220,15 @@ namespace FileFormat.Slides
             slide.SlideIndex = index;
             slide.SlideFacade.SlideIndex = index;
             doc.InsertSlide(index, slide.SlideFacade);
+        }
+
+        /// <summary>
+        /// This method exports all existing notes of a PPT/PPTX to TXT file.
+        /// </summary>
+        /// <param name="filePath"> File path where to save TXT file</param>
+        public void SaveAllNotesToTextFile(string filePath)
+        {
+            doc.SaveAllNotesToTextFile(filePath);
         }
         /// <summary>
         /// Method to save the new or changed presentation.

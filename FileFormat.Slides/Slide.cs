@@ -78,7 +78,7 @@ namespace FileFormat.Slides
             }
             catch (Exception ex)
             {
-                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Initialing slide");
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Initializing slide");
                 throw new Common.FileFormatException(errorMessage, ex);
             }
 
@@ -132,7 +132,21 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
         }
-
+        /// <summary>
+        /// Method to add/update note to a slide
+        /// </summary>
+        /// <param name="noteText">Text you want to add as note</param>
+        public void AddNote(String noteText)
+        {
+            _SlideFacade.AddNote(noteText);
+        }
+        /// <summary>
+        /// Method to remove Notes of a slide
+        /// </summary>
+        public void RemoveNote()
+        {
+            _SlideFacade.RemoveNote();
+        }
         public void AddTextShapes (TextShape textShape, List<TextSegment> textSegments)
         {
             try

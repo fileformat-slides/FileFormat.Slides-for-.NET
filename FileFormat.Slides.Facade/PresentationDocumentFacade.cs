@@ -458,6 +458,37 @@ namespace FileFormat.Slides.Facade
 
         }
 
+        public String GetSlideRelationshipId(SlidePart slidePart)
+        {
+            return _PresentationPart.GetIdOfPart(slidePart);
+        }
+        public void SaveAllNotesToTextFile(string filePath)
+        {
+            // Create or overwrite the file
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                int slideIndex = 1;
+                // Iterate through each slide
+                foreach (SlidePart slidePart in _PresentationPart.SlideParts)
+                {
+                    // Check if the slide has notes
+                    if (slidePart.NotesSlidePart != null)
+                    {
+                        // Access the notes slide
+                        NotesSlide notesSlide = slidePart.NotesSlidePart.NotesSlide;
+
+                        // Get text from notes slide
+                        string noteText = notesSlide.Descendants<D.Text>().Select(t => t.Text).FirstOrDefault();
+
+                        // Write notes text to file
+                        writer.WriteLine($"Slide {slideIndex}:");
+                        writer.WriteLine(noteText);
+                        writer.WriteLine();
+                        slideIndex++;
+                    }
+                }
+            }
+        }
         public String RemoveSlide (int index)
         {
 
