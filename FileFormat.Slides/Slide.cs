@@ -1,5 +1,6 @@
 ﻿using DocumentFormat.OpenXml;
 using DocumentFormat.OpenXml.Bibliography;
+using DocumentFormat.OpenXml.Drawing;
 using FileFormat.Slides.Common;
 using FileFormat.Slides.Common.Enumerations;
 using FileFormat.Slides.Facade;
@@ -19,6 +20,8 @@ namespace FileFormat.Slides
         private String _RelationshipId;
         private int _SlideIndex;
         private List<TextShape> _TextShapes;
+        private List<Rectangle> _Rectangles;
+        private List<Circle> _Circles;
         private List<Image> _Images;
         private List<Table> _Tables;
         private static String _BackgroundColor = null;
@@ -51,8 +54,22 @@ namespace FileFormat.Slides
         /// Property to set background color of a slide.
         /// </summary>
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
+        /// <summary>
+        /// Property to get or set the list of tables
+        /// </summary>
         public List<Table> Tables { get => _Tables; set => _Tables = value; }
+        /// <summary>
+        /// Property to get or set the relative presentation instance
+        /// </summary>
         public Presentation SlidePresentation { get => _SlidePresentation; set => _SlidePresentation = value; }
+        /// <summary>
+        /// Property to get or set the list of Rectangles.
+        /// </summary>
+        public List<Rectangle> Rectangles { get => _Rectangles; set => _Rectangles = value; }
+        /// <summary>
+        /// Property to get or set list of circles.
+        /// </summary>
+        public List<Circle> Circles { get => _Circles; set => _Circles = value; }
 
 
         /// <summary>
@@ -71,6 +88,8 @@ namespace FileFormat.Slides
                 _SlideFacade.SlideIndex = _SlideIndex;
                 _RelationshipId = _SlideFacade.RelationshipId;
                 _TextShapes = new List<TextShape>();
+                _Rectangles = new List<Rectangle>();
+                _Circles = new List<Circle>();
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
                 _SlideFacade.BackgroundColor = _BackgroundColor;
@@ -97,6 +116,8 @@ namespace FileFormat.Slides
 
             _RelationshipId = _SlideFacade.RelationshipId;
             _TextShapes = new List<TextShape>();
+            _Rectangles = new List<Rectangle>();
+            _Circles = new List<Circle>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
             _CommentFacade = new CommentFacade();
@@ -125,6 +146,47 @@ namespace FileFormat.Slides
                 }
                 textShape.ShapeIndex = _TextShapes.Count + 1;
                 _TextShapes.Add(textShape);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a rectangular shape
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawRectangle(Rectangle rect)
+        {          
+
+            try
+            {
+                rect.Facade = _SlideFacade.DrawRectangle(Utility.PixelsToEmu(rect.X), Utility.PixelsToEmu(rect.Y), 
+                    Utility.PixelsToEmu(rect.Width), Utility.PixelsToEmu(rect.Height), rect.BackgroundColor);
+                rect.ShapeIndex = _Rectangles.Count + 1;
+                _Rectangles.Add(rect);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a circle in a slide 
+        /// </summary>
+        /// <param name="circle"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawCircle(Circle circle)
+        {
+            try
+            {
+                circle.Facade = _SlideFacade.DrawCircle(Utility.PixelsToEmu(circle.X), Utility.PixelsToEmu(circle.Y),
+                    Utility.PixelsToEmu(circle.Width), Utility.PixelsToEmu(circle.Height), circle.BackgroundColor);
+                circle.ShapeIndex = _Rectangles.Count + 1;
+                _Circles.Add(circle);
             }
             catch (Exception ex)
             {

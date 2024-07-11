@@ -116,7 +116,7 @@ namespace FileFormat.Slides
 
         }
         /// <summary>
-        /// Method to get datatable from fileformat table to send to facade.
+        /// Method to get datatable from openize table to send to facade.
         /// </summary>        
         /// <returns></returns>
         public DataTable GetDataTable()

@@ -159,6 +159,7 @@ namespace FileFormat.Slides
                     
                     SlideFacade slideFacade = new SlideFacade(false);
                     slideFacade.TextShapeFacades = TextShapeFacade.PopulateTextShapes(slidepart);
+                    slideFacade.RectangleShapeFacades = RectangleShapeFacade.PopulateRectangleShapes(slidepart);
                     slideFacade.ImagesFacade = ImageFacade.PopulateImages(slidepart);
                     slideFacade.PresentationSlide = slidepart.Slide;
                     slideFacade.TableFacades= TableFacade.PopulateTables(slidepart);
@@ -167,6 +168,8 @@ namespace FileFormat.Slides
                     slideFacade.NotesPart = slidepart.NotesSlidePart;
                     slideFacade.RelationshipId = doc.GetSlideRelationshipId(slidepart);
                     slide.TextShapes = TextShape.GetTextShapes(slideFacade.TextShapeFacades);
+                    slide.Rectangles = Rectangle.GetRectangles(slideFacade.RectangleShapeFacades);
+                    slide.Circles = Circle.GetCircles(slideFacade.CircleShapeFacades);
                     slide.Images = Image.GetImages(slideFacade.ImagesFacade);
                     slide.Tables = Table.GetTables(slideFacade.TableFacades);
                     slide.SlideFacade = slideFacade;
