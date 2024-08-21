@@ -393,18 +393,31 @@ class Program
         //presentation.SaveAllNotesToTextFile("D:\\AsposeSampleData\\Notes.txt");
         presentation.Save();*/
 
-       /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+         Slide slide = new Slide();
+
+         Triangle triangle = new Triangle();
+         triangle.Width = 500.0;
+         triangle.Height =300.0;
+         triangle.X = triangle.Width / 2;
+         triangle.Y = triangle.Height / 2;
+         triangle.BackgroundColor = "5f7200";
+         slide.DrawTriangle(triangle);
+         presentation.AppendSlide(slide);
+         presentation.Save();*/
+
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = new Slide();
 
-        Circle circle = new Circle();
-        circle.Width = 500.0;
-        circle.Height =300.0;
-        circle.X = circle.Width / 2;
-        circle.Y = circle.Height / 2;
-        circle.BackgroundColor = "5f7200";
-        slide.DrawCircle(circle);
+        Diamond diamond = new Diamond();
+        diamond.Width = 500.0;
+        diamond.Height = 300.0;
+        diamond.X = diamond.Width / 2;
+        diamond.Y = diamond.Height / 2;
+        diamond.BackgroundColor = "5f7200";
+        slide.DrawDiamond(diamond);
         presentation.AppendSlide(slide);
-        presentation.Save();*/
+        presentation.Save();
 
         /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = presentation.GetSlides()[2];

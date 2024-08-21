@@ -29,6 +29,10 @@ namespace FileFormat.Slides.Facade
 
         private List<RectangleShapeFacade> _RectangleShapeFacades = null;
 
+        private List<TriangleShapeFacade> _TriangleShapeFacades = null;
+
+        private List<DiamondShapeFacade> _DiamondShapeFacades = null;
+
         private List<CircleShapeFacade> _CircleShapeFacades = null;
 
         private List<ImageFacade> _ImagesFacade = null;
@@ -54,6 +58,8 @@ namespace FileFormat.Slides.Facade
         public NotesSlidePart NotesPart { get => _NotesPart; set => _NotesPart = value; }
         public List<RectangleShapeFacade> RectangleShapeFacades { get => _RectangleShapeFacades; set => _RectangleShapeFacades = value; }
         public List<CircleShapeFacade> CircleShapeFacades { get => _CircleShapeFacades; set => _CircleShapeFacades = value; }
+        public List<TriangleShapeFacade> TriangleShapeFacades { get => _TriangleShapeFacades; set => _TriangleShapeFacades = value; }
+        public List<DiamondShapeFacade> DiamondShapeFacades { get => _DiamondShapeFacades; set => _DiamondShapeFacades = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -187,6 +193,56 @@ namespace FileFormat.Slides.Facade
             _PresentationSlide.CommonSlideData.ShapeTree.Append(rectangleShape);
             
             return rectangleShapeFacade;
+        }
+        public TriangleShapeFacade DrawTriangle(Int64 _x, Int64 _y,
+           Int64 width, Int64 height, String backgroundColor)
+        {
+            // Create an instance of TextShapeFacade
+            TriangleShapeFacade TriangleShapeFacade = new TriangleShapeFacade();
+
+            // Set properties using the provided parameters
+            TriangleShapeFacade
+                .WithBackgroundColor(backgroundColor)
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape TriangleShape = TriangleShapeFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(TriangleShape);
+
+            return TriangleShapeFacade;
+        }
+        public DiamondShapeFacade DrawDiamond(Int64 _x, Int64 _y,
+           Int64 width, Int64 height, String backgroundColor)
+        {
+            // Create an instance of TextShapeFacade
+            DiamondShapeFacade DiamondShapeFacade = new DiamondShapeFacade();
+
+            // Set properties using the provided parameters
+            DiamondShapeFacade
+                .WithBackgroundColor(backgroundColor)
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape DiamondShape = DiamondShapeFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(DiamondShape);
+
+            return DiamondShapeFacade;
         }
         public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
           Int64 width, Int64 height, String backgroundColor)

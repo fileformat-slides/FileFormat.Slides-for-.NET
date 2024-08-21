@@ -21,6 +21,8 @@ namespace FileFormat.Slides
         private int _SlideIndex;
         private List<TextShape> _TextShapes;
         private List<Rectangle> _Rectangles;
+        private List<Triangle> _Triangles;
+        private List<Diamond> _Diamonds;
         private List<Circle> _Circles;
         private List<Image> _Images;
         private List<Table> _Tables;
@@ -89,6 +91,8 @@ namespace FileFormat.Slides
                 _RelationshipId = _SlideFacade.RelationshipId;
                 _TextShapes = new List<TextShape>();
                 _Rectangles = new List<Rectangle>();
+                _Diamonds = new List<Diamond>();
+                _Triangles = new List<Triangle>();
                 _Circles = new List<Circle>();
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
@@ -117,6 +121,8 @@ namespace FileFormat.Slides
             _RelationshipId = _SlideFacade.RelationshipId;
             _TextShapes = new List<TextShape>();
             _Rectangles = new List<Rectangle>();
+            _Diamonds = new List<Diamond>();
+            _Triangles = new List<Triangle>();
             _Circles = new List<Circle>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
@@ -167,6 +173,43 @@ namespace FileFormat.Slides
                     Utility.PixelsToEmu(rect.Width), Utility.PixelsToEmu(rect.Height), rect.BackgroundColor);
                 rect.ShapeIndex = _Rectangles.Count + 1;
                 _Rectangles.Add(rect);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a rectangular shape
+        /// </summary>
+        /// <param name="rect"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawTriangle(Triangle triangle)
+        {
+
+            try
+            {
+                triangle.Facade = _SlideFacade.DrawTriangle(Utility.PixelsToEmu(triangle.X), Utility.PixelsToEmu(triangle.Y),
+                    Utility.PixelsToEmu(triangle.Width), Utility.PixelsToEmu(triangle.Height), triangle.BackgroundColor);
+                triangle.ShapeIndex = _Rectangles.Count + 1;
+                _Triangles.Add(triangle);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        public void DrawDiamond(Diamond Diamond)
+        {
+
+            try
+            {
+                Diamond.Facade = _SlideFacade.DrawDiamond(Utility.PixelsToEmu(Diamond.X), Utility.PixelsToEmu(Diamond.Y),
+                    Utility.PixelsToEmu(Diamond.Width), Utility.PixelsToEmu(Diamond.Height), Diamond.BackgroundColor);
+                Diamond.ShapeIndex = _Rectangles.Count + 1;
+                _Diamonds.Add(Diamond);
             }
             catch (Exception ex)
             {
