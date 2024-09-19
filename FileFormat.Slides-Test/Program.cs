@@ -406,9 +406,9 @@ class Program
          presentation.AppendSlide(slide);
          presentation.Save();*/
 
-        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = new Slide();
-
+        
         Diamond diamond = new Diamond();
         diamond.Width = 500.0;
         diamond.Height = 300.0;
@@ -417,8 +417,56 @@ class Program
         diamond.BackgroundColor = "5f7200";
         slide.DrawDiamond(diamond);
         presentation.AppendSlide(slide);
-        presentation.Save();
+        presentation.Save();*/
 
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        Line line = new Line();
+        line.Width = 300.0;
+        line.Height = 50.0;
+        line.X = line.Width / 2;
+        line.Y = line.Height + 200 / 2;
+        slide.DrawLine(line);
+        presentation.AppendSlide(slide);
+        presentation.Save();*/
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        Arrow arrow = new Arrow();
+        arrow.Width = 300.0;
+        arrow.Height = 50.0;
+        arrow.X = arrow.Width / 2;
+        arrow.Y = arrow.Height + 200 / 2;
+        slide.DrawArrow(arrow);
+        presentation.AppendSlide(slide);
+        presentation.Save();
+        */
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        DoubleArrow doubleArrow = new DoubleArrow();
+        doubleArrow.Width = 300.0;
+        doubleArrow.Height = 50.0;
+        doubleArrow.X = doubleArrow.Width / 2;
+        doubleArrow.Y = doubleArrow.Height + 200 / 2;
+        slide.DrawDoubleArrow(doubleArrow);
+        presentation.AppendSlide(slide);
+        presentation.Save();
+        */
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        CurvedLine curvedLine = new CurvedLine();
+        curvedLine.Width = 300.0;
+        curvedLine.Height = 50.0;
+        curvedLine.X = curvedLine.Width / 2;
+        curvedLine.Y = curvedLine.Height + 200 / 2;
+        slide.DrawCurvedLine(curvedLine);
+        presentation.AppendSlide(slide);
+        presentation.Save();
         /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = presentation.GetSlides()[2];
         slide.Rectangles[0].Remove();

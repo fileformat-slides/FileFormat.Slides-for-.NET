@@ -33,6 +33,14 @@ namespace FileFormat.Slides.Facade
 
         private List<DiamondShapeFacade> _DiamondShapeFacades = null;
 
+        private List<LineFacade> _LineFacades = null;
+
+        private List<CurvedLineFacade> _CurvedLineFacades = null;
+
+        private List<ArrowFacade> _ArrowFacades = null;
+
+        private List<DoubleArrowFacade> _DoubleArrowFacades = null;
+
         private List<CircleShapeFacade> _CircleShapeFacades = null;
 
         private List<ImageFacade> _ImagesFacade = null;
@@ -60,6 +68,10 @@ namespace FileFormat.Slides.Facade
         public List<CircleShapeFacade> CircleShapeFacades { get => _CircleShapeFacades; set => _CircleShapeFacades = value; }
         public List<TriangleShapeFacade> TriangleShapeFacades { get => _TriangleShapeFacades; set => _TriangleShapeFacades = value; }
         public List<DiamondShapeFacade> DiamondShapeFacades { get => _DiamondShapeFacades; set => _DiamondShapeFacades = value; }
+        public List<LineFacade> LineFacades { get => _LineFacades; set => _LineFacades = value; }
+        public List<ArrowFacade> ArrowFacades { get => _ArrowFacades; set => _ArrowFacades = value; }
+        public List<DoubleArrowFacade> DoubleArrowFacades { get => _DoubleArrowFacades; set => _DoubleArrowFacades = value; }
+        public List<CurvedLineFacade> CurvedLineFacades { get => _CurvedLineFacades; set => _CurvedLineFacades = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -244,6 +256,103 @@ namespace FileFormat.Slides.Facade
 
             return DiamondShapeFacade;
         }
+        public LineFacade DrawLine(Int64 _x, Int64 _y,
+           Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            LineFacade _LineFacade = new LineFacade();
+
+            // Set properties using the provided parameters
+            _LineFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Line = _LineFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Line);
+
+            return _LineFacade;
+        }
+        public CurvedLineFacade DrawCurvedLine(Int64 _x, Int64 _y,
+           Int64 width, Int64 height)
+        {
+            // Create an instance of Curved Line
+            CurvedLineFacade _CurvedLineFacade = new CurvedLineFacade();
+
+            // Set properties using the provided parameters
+            _CurvedLineFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Line = _CurvedLineFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Line);
+
+            return _CurvedLineFacade;
+        }
+        public ArrowFacade DrawArrow(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            ArrowFacade _ArrowFacade = new ArrowFacade();
+
+            // Set properties using the provided parameters
+            _ArrowFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Arrow = _ArrowFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Arrow);
+
+            return _ArrowFacade;
+        }
+        public DoubleArrowFacade DrawDoubleArrow(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            DoubleArrowFacade _DoubleArrowFacade = new DoubleArrowFacade();
+
+            // Set properties using the provided parameters
+            _DoubleArrowFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _DoubleArrow = _DoubleArrowFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleArrow);
+
+            return _DoubleArrowFacade;
+        }
+
         public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
           Int64 width, Int64 height, String backgroundColor)
         {

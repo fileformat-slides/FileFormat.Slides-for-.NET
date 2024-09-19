@@ -23,6 +23,10 @@ namespace FileFormat.Slides
         private List<Rectangle> _Rectangles;
         private List<Triangle> _Triangles;
         private List<Diamond> _Diamonds;
+        private List<Line> _Lines;
+        private List<CurvedLine> _CurvedLines;
+        private List<Arrow> _Arrows;
+        private List<DoubleArrow> _DoubleArrows;
         private List<Circle> _Circles;
         private List<Image> _Images;
         private List<Table> _Tables;
@@ -72,6 +76,30 @@ namespace FileFormat.Slides
         /// Property to get or set list of circles.
         /// </summary>
         public List<Circle> Circles { get => _Circles; set => _Circles = value; }
+        /// <summary>
+        /// Property to get or set list of diamonds.
+        /// </summary>
+        public List<Diamond> Diamonds { get => _Diamonds; set => _Diamonds = value; }
+        /// <summary>
+        /// Property to get or set list of triangles.
+        /// </summary>
+        public List<Triangle> Triangles { get => _Triangles; set => _Triangles = value; }
+        /// <summary>
+        /// Property to get or set list of lines.
+        /// </summary>
+        public List<Line> Lines { get => _Lines; set => _Lines = value; }
+        /// <summary>
+        /// Property to get or set list of arrows.
+        /// </summary>
+        public List<Arrow> Arrows { get => _Arrows; set => _Arrows = value; }
+        /// <summary>
+        /// Property to get or set list of double arrows.
+        /// </summary>
+        public List<DoubleArrow> DoubleArrows { get => _DoubleArrows; set => _DoubleArrows = value; }
+        /// <summary>
+        /// Property to get or set list of curved lines.
+        /// </summary>
+        public List<CurvedLine> CurvedLines { get => _CurvedLines; set => _CurvedLines = value; }
 
 
         /// <summary>
@@ -93,6 +121,10 @@ namespace FileFormat.Slides
                 _Rectangles = new List<Rectangle>();
                 _Diamonds = new List<Diamond>();
                 _Triangles = new List<Triangle>();
+                _Lines = new List<Line>();
+                _CurvedLines = new List<CurvedLine>();
+                _Arrows = new List<Arrow>();
+                _DoubleArrows = new List<DoubleArrow>();
                 _Circles = new List<Circle>();
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
@@ -124,6 +156,10 @@ namespace FileFormat.Slides
             _Diamonds = new List<Diamond>();
             _Triangles = new List<Triangle>();
             _Circles = new List<Circle>();
+            _Lines = new List<Line>();
+            _CurvedLines = new List<CurvedLine>();
+            _Arrows = new List<Arrow>();
+            _DoubleArrows = new List<DoubleArrow>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
             _CommentFacade = new CommentFacade();
@@ -193,7 +229,7 @@ namespace FileFormat.Slides
                 triangle.Facade = _SlideFacade.DrawTriangle(Utility.PixelsToEmu(triangle.X), Utility.PixelsToEmu(triangle.Y),
                     Utility.PixelsToEmu(triangle.Width), Utility.PixelsToEmu(triangle.Height), triangle.BackgroundColor);
                 triangle.ShapeIndex = _Rectangles.Count + 1;
-                _Triangles.Add(triangle);
+                Triangles.Add(triangle);
             }
             catch (Exception ex)
             {
@@ -201,6 +237,11 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
         }
+        /// <summary>
+        /// Method to draw a diamond shape in a slide
+        /// </summary>
+        /// <param name="Diamond"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
         public void DrawDiamond(Diamond Diamond)
         {
 
@@ -209,7 +250,85 @@ namespace FileFormat.Slides
                 Diamond.Facade = _SlideFacade.DrawDiamond(Utility.PixelsToEmu(Diamond.X), Utility.PixelsToEmu(Diamond.Y),
                     Utility.PixelsToEmu(Diamond.Width), Utility.PixelsToEmu(Diamond.Height), Diamond.BackgroundColor);
                 Diamond.ShapeIndex = _Rectangles.Count + 1;
-                _Diamonds.Add(Diamond);
+                Diamonds.Add(Diamond);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        ///  Method to draw a line in a slide
+        /// </summary>
+        /// <param name="line"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawLine(Line line)
+        {
+
+            try
+            {
+                line.Facade = _SlideFacade.DrawLine(Utility.PixelsToEmu(line.X), Utility.PixelsToEmu(line.Y),
+                    Utility.PixelsToEmu(line.Width), Utility.PixelsToEmu(line.Height));
+                line.ShapeIndex = _Rectangles.Count + 1;
+                Lines.Add(line);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        public void DrawCurvedLine(CurvedLine curvedLine)
+        {
+
+            try
+            {
+                curvedLine.Facade = _SlideFacade.DrawCurvedLine(Utility.PixelsToEmu(curvedLine.X), Utility.PixelsToEmu(curvedLine.Y),
+                    Utility.PixelsToEmu(curvedLine.Width), Utility.PixelsToEmu(curvedLine.Height));
+                curvedLine.ShapeIndex = _Rectangles.Count + 1;
+                CurvedLines.Add(curvedLine);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw an arrow in a slide
+        /// </summary>
+        /// <param name="arrow"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawArrow(Arrow arrow)
+        {
+
+            try
+            {
+                arrow.Facade = _SlideFacade.DrawArrow(Utility.PixelsToEmu(arrow.X), Utility.PixelsToEmu(arrow.Y),
+                    Utility.PixelsToEmu(arrow.Width), Utility.PixelsToEmu(arrow.Height));
+                arrow.ShapeIndex = _Rectangles.Count + 1;
+                Arrows.Add(arrow);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a double arrow in a slide
+        /// </summary>
+        /// <param name="doubleArrow"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawDoubleArrow(DoubleArrow doubleArrow)
+        {
+            try
+            {
+                doubleArrow.Facade = _SlideFacade.DrawDoubleArrow(Utility.PixelsToEmu(doubleArrow.X), Utility.PixelsToEmu(doubleArrow.Y),
+                    Utility.PixelsToEmu(doubleArrow.Width), Utility.PixelsToEmu(doubleArrow.Height));
+                doubleArrow.ShapeIndex = _Rectangles.Count + 1;
+                DoubleArrows.Add(doubleArrow);
             }
             catch (Exception ex)
             {
