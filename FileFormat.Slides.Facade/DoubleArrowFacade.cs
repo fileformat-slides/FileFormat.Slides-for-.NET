@@ -314,7 +314,7 @@ namespace FileFormat.Slides.Facade
             if (shapeProperties != null)
             {
                 var presetGeometry = shapeProperties.GetFirstChild<D.PresetGeometry>();
-                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.Line)
+                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.StraightConnector1)
                 {
                     return true;
                 }

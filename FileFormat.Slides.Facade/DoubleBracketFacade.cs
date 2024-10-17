@@ -15,14 +15,14 @@ using FileFormat.Slides.Common;
 
 namespace FileFormat.Slides.Facade
 {
-    public class CurvedLineFacade
+    public class DoubleBracketFacade
     {
         
         private long _x;
         private long _y;
         private long _width;
         private long _height;
-        private P.Shape _CurvedLineShape;
+        private P.Shape _DoubleBracketShape;
         private SlidePart _AssociatedSlidePart;// Store the P.Shape as a private field
         private int _ShapeIndex;
     
@@ -34,34 +34,34 @@ namespace FileFormat.Slides.Facade
         public long Y { get => _y; set => _y = value; }
         public long Width { get => _width; set => _width = value; }
         public long Height { get => _height; set => _height = value; }
-        public P.Shape CurvedLineShape { get => _CurvedLineShape; set => _CurvedLineShape = value; }
+        public P.Shape DoubleBracketShape { get => _DoubleBracketShape; set => _DoubleBracketShape = value; }
         public SlidePart AssociatedSlidePart { get => _AssociatedSlidePart; set => _AssociatedSlidePart = value; }
         public int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public ListFacade TextList { get => _TextList; set => _TextList = value; }
 
-        public CurvedLineFacade()
+        public DoubleBracketFacade()
         {
             
            
 
         }
 
-        public CurvedLineFacade WithBackgroundColor(String backgroundColor)
+        public DoubleBracketFacade WithBackgroundColor(String backgroundColor)
         {
             BackgroundColor = backgroundColor;
             return this;
         }
        
 
-        public CurvedLineFacade WithPosition(long x, long y)
+        public DoubleBracketFacade WithPosition(long x, long y)
         {
             X = x;
             Y = y;
             return this;
         }
 
-        public CurvedLineFacade WithSize(long width, long height)
+        public DoubleBracketFacade WithSize(long width, long height)
         {
             Width = width;
             Height = height;
@@ -132,13 +132,8 @@ namespace FileFormat.Slides.Facade
             transform2D1.Append(offset1);
             transform2D1.Append(extents1);
 
-            D.PresetGeometry presetGeometry1 = new D.PresetGeometry() { Preset = D.ShapeTypeValues.CurvedConnector3 };
-            D.ShapeGuide shapeGuide1 = new D.ShapeGuide() { Name = "adj1", Formula = "val 47368" };
-
-
+            D.PresetGeometry presetGeometry1 = new D.PresetGeometry() { Preset = D.ShapeTypeValues.BracePair };
             D.AdjustValueList adjustValueList1 = new D.AdjustValueList();
-
-            adjustValueList1.Append(shapeGuide1);
 
             presetGeometry1.Append(adjustValueList1);
 
@@ -149,7 +144,13 @@ namespace FileFormat.Slides.Facade
                 D.RgbColorModelHex rgbColorModelHex1 = new D.RgbColorModelHex() { Val = rgbColorHex };
                 solidFill1.Append(rgbColorModelHex1);
             }
-            //D.Outline outline1 = new D.Outline() { Width = 12700 };
+            /*D.Outline outline1 = new D.Outline() ;
+            D.HeadEnd headEnd1 = new D.HeadEnd() { Type = D.LineEndValues.Triangle };
+            D.TailEnd tailEnd1 = new D.TailEnd() { Type = D.LineEndValues.Triangle };
+
+            outline1.Append(headEnd1);
+            outline1.Append(tailEnd1);*/
+
 
             D.SolidFill solidFill2 = new D.SolidFill();
             /* D.SchemeColor schemeColor1 = new D.SchemeColor() { Val = D.SchemeColorValues.Text1 };
@@ -206,7 +207,7 @@ namespace FileFormat.Slides.Facade
 
         public void UpdateShape()
         {
-            if (CurvedLineShape == null)
+            if (DoubleBracketShape == null)
             {
                 throw new InvalidOperationException("Shape has not been created yet. Call CreateShape() first.");
             }
@@ -215,13 +216,13 @@ namespace FileFormat.Slides.Facade
 
 
             // Update the properties of the existing shape
-            CurvedLineShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id = (UInt32Value)5U;
-            CurvedLineShape.NonVisualShapeProperties.NonVisualDrawingProperties.Name = "Text Box 1";
-            CurvedLineShape.NonVisualShapeProperties.NonVisualShapeDrawingProperties = new P.NonVisualShapeDrawingProperties(new ShapeLocks() { NoGrouping = true });
-            CurvedLineShape.NonVisualShapeProperties.ApplicationNonVisualDrawingProperties = new ApplicationNonVisualDrawingProperties(new PlaceholderShape());
+            DoubleBracketShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id = (UInt32Value)5U;
+            DoubleBracketShape.NonVisualShapeProperties.NonVisualDrawingProperties.Name = "Text Box 1";
+            DoubleBracketShape.NonVisualShapeProperties.NonVisualShapeDrawingProperties = new P.NonVisualShapeDrawingProperties(new ShapeLocks() { NoGrouping = true });
+            DoubleBracketShape.NonVisualShapeProperties.ApplicationNonVisualDrawingProperties = new ApplicationNonVisualDrawingProperties(new PlaceholderShape());
             if (Width != 0)
             {
-                CurvedLineShape.ShapeProperties.Transform2D = new D.Transform2D()
+                DoubleBracketShape.ShapeProperties.Transform2D = new D.Transform2D()
                 {
                     Offset = new D.Offset() { X = X, Y = Y },
                     Extents = new D.Extents() { Cx = Width, Cy = Height }
@@ -231,24 +232,24 @@ namespace FileFormat.Slides.Facade
             {
                 if (_BackgroundColor == "Transparent")
                 {
-                    if (CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() == null)
+                    if (DoubleBracketShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() == null)
                     {
-                        if (CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() != null)
-                            CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault().Remove();
+                        if (DoubleBracketShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() != null)
+                            DoubleBracketShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault().Remove();
                     }
                     else
                     {
-                        CurvedLineShape.ShapeProperties.Append(new NoFill());
+                        DoubleBracketShape.ShapeProperties.Append(new NoFill());
                     }
 
                 }
                 else
                 {
-                    if (CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() != null)
+                    if (DoubleBracketShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() != null)
                     {
-                        CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault().Remove();
+                        DoubleBracketShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault().Remove();
                     }
-                    var fill = CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
+                    var fill = DoubleBracketShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
 
                     if (fill != null)
                     {
@@ -257,19 +258,19 @@ namespace FileFormat.Slides.Facade
                     }
                     else
                     {
-                        CurvedLineShape.ShapeProperties.Append(new SolidFill(new RgbColorModelHex() { Val = _BackgroundColor }));
+                        DoubleBracketShape.ShapeProperties.Append(new SolidFill(new RgbColorModelHex() { Val = _BackgroundColor }));
                     }
 
                 }
             }
 
-            var existingParagraphText = CurvedLineShape.TextBody.Descendants<Run>().FirstOrDefault();
-            CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();
+            var existingParagraphText = DoubleBracketShape.TextBody.Descendants<Run>().FirstOrDefault();
+            DoubleBracketShape.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();
             if (alignmentType != TextAlignmentTypeValues.Justified)
-                CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(new ParagraphProperties() { Alignment = alignmentType });
-            CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(existingParagraphText);
+                DoubleBracketShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(new ParagraphProperties() { Alignment = alignmentType });
+            DoubleBracketShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(existingParagraphText);
 
-            var runProperties = CurvedLineShape.TextBody.Descendants<RunProperties>().FirstOrDefault();
+            var runProperties = DoubleBracketShape.TextBody.Descendants<RunProperties>().FirstOrDefault();
 
            
             var latinFont = runProperties.Elements<LatinFont>().FirstOrDefault();
@@ -294,7 +295,7 @@ namespace FileFormat.Slides.Facade
             if (commonSlideData != null && commonSlideData.ShapeTree != null)
             {
                 // Remove the specified shape from the ShapeTree
-                var shapesToRemove = commonSlideData.ShapeTree.Elements<P.Shape>().Where(shape => shape == CurvedLineShape).ToList();
+                var shapesToRemove = commonSlideData.ShapeTree.Elements<P.Shape>().Where(shape => shape == DoubleBracketShape).ToList();
 
                 foreach (var shape in shapesToRemove)
                 {
@@ -307,13 +308,13 @@ namespace FileFormat.Slides.Facade
             shape.Remove();
         }
 
-        private static bool IsCurvedLineShape(P.Shape shape)
+        private static bool IsDoubleBracketShape(P.Shape shape)
         {
             var shapeProperties = shape.ShapeProperties;
             if (shapeProperties != null)
             {
                 var presetGeometry = shapeProperties.GetFirstChild<D.PresetGeometry>();
-                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.CurvedConnector3)
+                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.BracePair)
                 {
                     return true;
                 }
@@ -321,18 +322,18 @@ namespace FileFormat.Slides.Facade
             return false;
         }
         // Method to populate List<rectangleShapeFacade> from a collection of P.Shape
-        public static List<CurvedLineFacade> PopulateCurvedLineShapes(SlidePart slidePart)
+        public static List<DoubleBracketFacade> PopulateDoubleBracketShapes(SlidePart slidePart)
         {
             IEnumerable<P.Shape> shapes = slidePart.Slide.CommonSlideData.ShapeTree.Elements<P.Shape>();
-            var rectangleShapes = new List<CurvedLineFacade>();
+            var rectangleShapes = new List<DoubleBracketFacade>();
             var shapeIndex = 0;
             foreach (var shape in shapes)
             {
-                if (IsCurvedLineShape(shape))
+                if (IsDoubleBracketShape(shape))
                 {
-                    var rectangleShapeFacade = new CurvedLineFacade
+                    var rectangleShapeFacade = new DoubleBracketFacade
                     {
-                        CurvedLineShape = shape, // Store the P.Shape in the private field
+                        DoubleBracketShape = shape, // Store the P.Shape in the private field
 
 
 
@@ -410,7 +411,7 @@ namespace FileFormat.Slides.Facade
             return null; // or an appropriate default value for color code
         }
 
-        private static TextAlignment GetAlignmentFromCurvedLineShape(P.Shape rectangleShape)
+        private static TextAlignment GetAlignmentFromDoubleBracketShape(P.Shape rectangleShape)
         {
             var alignment = rectangleShape.TextBody?.Descendants<Paragraph>().FirstOrDefault();
             if (alignment != null)

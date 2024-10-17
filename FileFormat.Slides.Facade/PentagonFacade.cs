@@ -15,14 +15,14 @@ using FileFormat.Slides.Common;
 
 namespace FileFormat.Slides.Facade
 {
-    public class CurvedLineFacade
+    public class PentagonFacade
     {
         
         private long _x;
         private long _y;
         private long _width;
         private long _height;
-        private P.Shape _CurvedLineShape;
+        private P.Shape _Pentagon;
         private SlidePart _AssociatedSlidePart;// Store the P.Shape as a private field
         private int _ShapeIndex;
     
@@ -34,34 +34,34 @@ namespace FileFormat.Slides.Facade
         public long Y { get => _y; set => _y = value; }
         public long Width { get => _width; set => _width = value; }
         public long Height { get => _height; set => _height = value; }
-        public P.Shape CurvedLineShape { get => _CurvedLineShape; set => _CurvedLineShape = value; }
+        public P.Shape Pentagon { get => _Pentagon; set => _Pentagon = value; }
         public SlidePart AssociatedSlidePart { get => _AssociatedSlidePart; set => _AssociatedSlidePart = value; }
         public int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public ListFacade TextList { get => _TextList; set => _TextList = value; }
 
-        public CurvedLineFacade()
+        public PentagonFacade()
         {
             
            
 
         }
 
-        public CurvedLineFacade WithBackgroundColor(String backgroundColor)
+        public PentagonFacade WithBackgroundColor(String backgroundColor)
         {
             BackgroundColor = backgroundColor;
             return this;
         }
        
 
-        public CurvedLineFacade WithPosition(long x, long y)
+        public PentagonFacade WithPosition(long x, long y)
         {
             X = x;
             Y = y;
             return this;
         }
 
-        public CurvedLineFacade WithSize(long width, long height)
+        public PentagonFacade WithSize(long width, long height)
         {
             Width = width;
             Height = height;
@@ -132,13 +132,8 @@ namespace FileFormat.Slides.Facade
             transform2D1.Append(offset1);
             transform2D1.Append(extents1);
 
-            D.PresetGeometry presetGeometry1 = new D.PresetGeometry() { Preset = D.ShapeTypeValues.CurvedConnector3 };
-            D.ShapeGuide shapeGuide1 = new D.ShapeGuide() { Name = "adj1", Formula = "val 47368" };
-
-
+            D.PresetGeometry presetGeometry1 = new D.PresetGeometry() { Preset = D.ShapeTypeValues.Pentagon };
             D.AdjustValueList adjustValueList1 = new D.AdjustValueList();
-
-            adjustValueList1.Append(shapeGuide1);
 
             presetGeometry1.Append(adjustValueList1);
 
@@ -193,7 +188,7 @@ namespace FileFormat.Slides.Facade
         private P.NonVisualShapeProperties CreateNonVisualShapeProperties()
         {
             P.NonVisualShapeProperties nonVisualShapeProperties1 = new P.NonVisualShapeProperties();
-            P.NonVisualDrawingProperties nonVisualDrawingProperties1 = new P.NonVisualDrawingProperties() { Id = (UInt32Value)9U, Name = "Line 8" };
+            P.NonVisualDrawingProperties nonVisualDrawingProperties1 = new P.NonVisualDrawingProperties() { Id = (UInt32Value)9U, Name = "Pentagon 8" };
             P.NonVisualShapeDrawingProperties nonVisualShapeDrawingProperties1 = new P.NonVisualShapeDrawingProperties();
             ApplicationNonVisualDrawingProperties applicationNonVisualDrawingProperties1 = new ApplicationNonVisualDrawingProperties();
 
@@ -206,7 +201,7 @@ namespace FileFormat.Slides.Facade
 
         public void UpdateShape()
         {
-            if (CurvedLineShape == null)
+            if (Pentagon == null)
             {
                 throw new InvalidOperationException("Shape has not been created yet. Call CreateShape() first.");
             }
@@ -215,13 +210,13 @@ namespace FileFormat.Slides.Facade
 
 
             // Update the properties of the existing shape
-            CurvedLineShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id = (UInt32Value)5U;
-            CurvedLineShape.NonVisualShapeProperties.NonVisualDrawingProperties.Name = "Text Box 1";
-            CurvedLineShape.NonVisualShapeProperties.NonVisualShapeDrawingProperties = new P.NonVisualShapeDrawingProperties(new ShapeLocks() { NoGrouping = true });
-            CurvedLineShape.NonVisualShapeProperties.ApplicationNonVisualDrawingProperties = new ApplicationNonVisualDrawingProperties(new PlaceholderShape());
+            Pentagon.NonVisualShapeProperties.NonVisualDrawingProperties.Id = (UInt32Value)5U;
+            Pentagon.NonVisualShapeProperties.NonVisualDrawingProperties.Name = "Text Box 1";
+            Pentagon.NonVisualShapeProperties.NonVisualShapeDrawingProperties = new P.NonVisualShapeDrawingProperties(new ShapeLocks() { NoGrouping = true });
+            Pentagon.NonVisualShapeProperties.ApplicationNonVisualDrawingProperties = new ApplicationNonVisualDrawingProperties(new PlaceholderShape());
             if (Width != 0)
             {
-                CurvedLineShape.ShapeProperties.Transform2D = new D.Transform2D()
+                Pentagon.ShapeProperties.Transform2D = new D.Transform2D()
                 {
                     Offset = new D.Offset() { X = X, Y = Y },
                     Extents = new D.Extents() { Cx = Width, Cy = Height }
@@ -231,24 +226,24 @@ namespace FileFormat.Slides.Facade
             {
                 if (_BackgroundColor == "Transparent")
                 {
-                    if (CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() == null)
+                    if (Pentagon.ShapeProperties.Descendants<NoFill>().FirstOrDefault() == null)
                     {
-                        if (CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() != null)
-                            CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault().Remove();
+                        if (Pentagon.ShapeProperties.Descendants<SolidFill>().FirstOrDefault() != null)
+                            Pentagon.ShapeProperties.Descendants<SolidFill>().FirstOrDefault().Remove();
                     }
                     else
                     {
-                        CurvedLineShape.ShapeProperties.Append(new NoFill());
+                        Pentagon.ShapeProperties.Append(new NoFill());
                     }
 
                 }
                 else
                 {
-                    if (CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault() != null)
+                    if (Pentagon.ShapeProperties.Descendants<NoFill>().FirstOrDefault() != null)
                     {
-                        CurvedLineShape.ShapeProperties.Descendants<NoFill>().FirstOrDefault().Remove();
+                        Pentagon.ShapeProperties.Descendants<NoFill>().FirstOrDefault().Remove();
                     }
-                    var fill = CurvedLineShape.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
+                    var fill = Pentagon.ShapeProperties.Descendants<SolidFill>().FirstOrDefault();
 
                     if (fill != null)
                     {
@@ -257,19 +252,19 @@ namespace FileFormat.Slides.Facade
                     }
                     else
                     {
-                        CurvedLineShape.ShapeProperties.Append(new SolidFill(new RgbColorModelHex() { Val = _BackgroundColor }));
+                        Pentagon.ShapeProperties.Append(new SolidFill(new RgbColorModelHex() { Val = _BackgroundColor }));
                     }
 
                 }
             }
 
-            var existingParagraphText = CurvedLineShape.TextBody.Descendants<Run>().FirstOrDefault();
-            CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();
+            var existingParagraphText = Pentagon.TextBody.Descendants<Run>().FirstOrDefault();
+            Pentagon.TextBody.Elements<Paragraph>().FirstOrDefault().RemoveAllChildren();
             if (alignmentType != TextAlignmentTypeValues.Justified)
-                CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(new ParagraphProperties() { Alignment = alignmentType });
-            CurvedLineShape.TextBody.Elements<Paragraph>().FirstOrDefault().Append(existingParagraphText);
+                Pentagon.TextBody.Elements<Paragraph>().FirstOrDefault().Append(new ParagraphProperties() { Alignment = alignmentType });
+            Pentagon.TextBody.Elements<Paragraph>().FirstOrDefault().Append(existingParagraphText);
 
-            var runProperties = CurvedLineShape.TextBody.Descendants<RunProperties>().FirstOrDefault();
+            var runProperties = Pentagon.TextBody.Descendants<RunProperties>().FirstOrDefault();
 
            
             var latinFont = runProperties.Elements<LatinFont>().FirstOrDefault();
@@ -294,7 +289,7 @@ namespace FileFormat.Slides.Facade
             if (commonSlideData != null && commonSlideData.ShapeTree != null)
             {
                 // Remove the specified shape from the ShapeTree
-                var shapesToRemove = commonSlideData.ShapeTree.Elements<P.Shape>().Where(shape => shape == CurvedLineShape).ToList();
+                var shapesToRemove = commonSlideData.ShapeTree.Elements<P.Shape>().Where(shape => shape == Pentagon).ToList();
 
                 foreach (var shape in shapesToRemove)
                 {
@@ -307,13 +302,13 @@ namespace FileFormat.Slides.Facade
             shape.Remove();
         }
 
-        private static bool IsCurvedLineShape(P.Shape shape)
+        private static bool IsPentagon(P.Shape shape)
         {
             var shapeProperties = shape.ShapeProperties;
             if (shapeProperties != null)
             {
                 var presetGeometry = shapeProperties.GetFirstChild<D.PresetGeometry>();
-                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.CurvedConnector3)
+                if (presetGeometry != null && presetGeometry.Preset == D.ShapeTypeValues.Pentagon)
                 {
                     return true;
                 }
@@ -321,18 +316,18 @@ namespace FileFormat.Slides.Facade
             return false;
         }
         // Method to populate List<rectangleShapeFacade> from a collection of P.Shape
-        public static List<CurvedLineFacade> PopulateCurvedLineShapes(SlidePart slidePart)
+        public static List<PentagonFacade> PopulatePentagons(SlidePart slidePart)
         {
             IEnumerable<P.Shape> shapes = slidePart.Slide.CommonSlideData.ShapeTree.Elements<P.Shape>();
-            var rectangleShapes = new List<CurvedLineFacade>();
+            var rectangleShapes = new List<PentagonFacade>();
             var shapeIndex = 0;
             foreach (var shape in shapes)
             {
-                if (IsCurvedLineShape(shape))
+                if (IsPentagon(shape))
                 {
-                    var rectangleShapeFacade = new CurvedLineFacade
+                    var rectangleShapeFacade = new PentagonFacade
                     {
-                        CurvedLineShape = shape, // Store the P.Shape in the private field
+                        Pentagon = shape, // Store the P.Shape in the private field
 
 
 
@@ -410,7 +405,7 @@ namespace FileFormat.Slides.Facade
             return null; // or an appropriate default value for color code
         }
 
-        private static TextAlignment GetAlignmentFromCurvedLineShape(P.Shape rectangleShape)
+        private static TextAlignment GetAlignmentFromPentagon(P.Shape rectangleShape)
         {
             var alignment = rectangleShape.TextBody?.Descendants<Paragraph>().FirstOrDefault();
             if (alignment != null)

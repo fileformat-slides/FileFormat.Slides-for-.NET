@@ -41,6 +41,12 @@ namespace FileFormat.Slides.Facade
 
         private List<DoubleArrowFacade> _DoubleArrowFacades = null;
 
+        private List<DoubleBraceFacade> _DoubleBraceFacades = null;
+
+        private List<DoubleBracketFacade> _DoubleBracketFacades = null;
+
+        private List<PentagonFacade> _PentagonFacades = null;
+
         private List<CircleShapeFacade> _CircleShapeFacades = null;
 
         private List<ImageFacade> _ImagesFacade = null;
@@ -72,6 +78,9 @@ namespace FileFormat.Slides.Facade
         public List<ArrowFacade> ArrowFacades { get => _ArrowFacades; set => _ArrowFacades = value; }
         public List<DoubleArrowFacade> DoubleArrowFacades { get => _DoubleArrowFacades; set => _DoubleArrowFacades = value; }
         public List<CurvedLineFacade> CurvedLineFacades { get => _CurvedLineFacades; set => _CurvedLineFacades = value; }
+        public List<DoubleBraceFacade> DoubleBraceFacades { get => _DoubleBraceFacades; set => _DoubleBraceFacades = value; }
+        public List<PentagonFacade> PentagonFacades { get => _PentagonFacades; set => _PentagonFacades = value; }
+        public List<DoubleBracketFacade> DoubleBracketFacades { get => _DoubleBracketFacades; set => _DoubleBracketFacades = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -352,7 +361,78 @@ namespace FileFormat.Slides.Facade
 
             return _DoubleArrowFacade;
         }
+        public DoubleBraceFacade DrawDoubleBrace(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            DoubleBraceFacade _DoubleBraceFacade = new DoubleBraceFacade();
 
+            // Set properties using the provided parameters
+            _DoubleBraceFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _DoubleBrace = _DoubleBraceFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleBrace);
+
+            return _DoubleBraceFacade;
+        }
+        public DoubleBracketFacade DrawDoubleBracket(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            DoubleBracketFacade _DoubleBracketFacade = new DoubleBracketFacade();
+
+            // Set properties using the provided parameters
+            _DoubleBracketFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _DoubleBracket = _DoubleBracketFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleBracket);
+
+            return _DoubleBracketFacade;
+        }
+        public PentagonFacade DrawPentagon(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            PentagonFacade _PentagonFacade = new PentagonFacade();
+
+            // Set properties using the provided parameters
+            _PentagonFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Pentagon = _PentagonFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Pentagon);
+
+            return _PentagonFacade;
+        }
         public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
           Int64 width, Int64 height, String backgroundColor)
         {

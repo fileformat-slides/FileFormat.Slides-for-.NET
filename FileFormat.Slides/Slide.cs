@@ -27,6 +27,9 @@ namespace FileFormat.Slides
         private List<CurvedLine> _CurvedLines;
         private List<Arrow> _Arrows;
         private List<DoubleArrow> _DoubleArrows;
+        private List<DoubleBrace> _DoubleBraces;
+        private List<DoubleBracket> _DoubleBrackets;
+        private List<Pentagon> _Pentagons;
         private List<Circle> _Circles;
         private List<Image> _Images;
         private List<Table> _Tables;
@@ -101,6 +104,20 @@ namespace FileFormat.Slides
         /// </summary>
         public List<CurvedLine> CurvedLines { get => _CurvedLines; set => _CurvedLines = value; }
 
+        /// <summary>
+        /// Property to get or set list of double braces.
+        /// </summary>
+        public List<DoubleBrace> DoubleBraces { get => _DoubleBraces; set => _DoubleBraces = value; }
+
+        /// <summary>
+        /// Property to get or set list of Pentagons.
+        /// </summary>
+        public List<Pentagon> Pentagons { get => _Pentagons; set => _Pentagons = value; }
+
+        /// <summary>
+        /// Property to get or set list of double bracket.
+        /// </summary>
+        public List<DoubleBracket> DoubleBrackets { get => _DoubleBrackets; set => _DoubleBrackets = value; }
 
         /// <summary>
         /// Constructor for the Slide class.
@@ -125,6 +142,9 @@ namespace FileFormat.Slides
                 _CurvedLines = new List<CurvedLine>();
                 _Arrows = new List<Arrow>();
                 _DoubleArrows = new List<DoubleArrow>();
+                _DoubleBraces = new List<DoubleBrace>();
+                _DoubleBrackets = new List<DoubleBracket>();
+                _Pentagons = new List<Pentagon>();
                 _Circles = new List<Circle>();
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
@@ -160,6 +180,9 @@ namespace FileFormat.Slides
             _CurvedLines = new List<CurvedLine>();
             _Arrows = new List<Arrow>();
             _DoubleArrows = new List<DoubleArrow>();
+            _DoubleBraces = new List<DoubleBrace>();
+            _DoubleBrackets = new List<DoubleBracket>();
+            _Pentagons = new List<Pentagon>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
             _CommentFacade = new CommentFacade();
@@ -336,6 +359,67 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
         }
+        /// <summary>
+        /// Method to draw a double brace in a slide
+        /// </summary>
+        /// <param name="doubleBrace"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawDoubleBrace(DoubleBrace doubleBrace)
+        {
+            try
+            {
+                doubleBrace.Facade = _SlideFacade.DrawDoubleBrace(Utility.PixelsToEmu(doubleBrace.X), Utility.PixelsToEmu(doubleBrace.Y),
+                    Utility.PixelsToEmu(doubleBrace.Width), Utility.PixelsToEmu(doubleBrace.Height));
+                doubleBrace.ShapeIndex = _Rectangles.Count + 1;
+                DoubleBraces.Add(doubleBrace);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a double brace in a slide
+        /// </summary>
+        /// <param name="doubleBrace"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawDoubleBracket(DoubleBracket doubleBracket)
+        {
+            try
+            {
+                doubleBracket.Facade = _SlideFacade.DrawDoubleBracket(Utility.PixelsToEmu(doubleBracket.X), Utility.PixelsToEmu(doubleBracket.Y),
+                    Utility.PixelsToEmu(doubleBracket.Width), Utility.PixelsToEmu(doubleBracket.Height));
+                doubleBracket.ShapeIndex = _Rectangles.Count + 1;
+                DoubleBrackets.Add(doubleBracket);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a double brace in a slide
+        /// </summary>
+        /// <param name="pentagon"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawPentagon(Pentagon pentagon)
+        {
+            try
+            {
+                pentagon.Facade = _SlideFacade.DrawPentagon(Utility.PixelsToEmu(pentagon.X), Utility.PixelsToEmu(pentagon.Y),
+                    Utility.PixelsToEmu(pentagon.Width), Utility.PixelsToEmu(pentagon.Height));
+                pentagon.ShapeIndex = _Rectangles.Count + 1;
+                Pentagons.Add(pentagon);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+
         /// <summary>
         /// Method to draw a circle in a slide 
         /// </summary>

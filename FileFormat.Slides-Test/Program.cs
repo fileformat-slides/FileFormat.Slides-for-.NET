@@ -456,21 +456,59 @@ class Program
         presentation.AppendSlide(slide);
         presentation.Save();
         */
-        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
-        Slide slide = new Slide();
+        /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+         Slide slide = new Slide();
 
-        CurvedLine curvedLine = new CurvedLine();
-        curvedLine.Width = 300.0;
-        curvedLine.Height = 50.0;
-        curvedLine.X = curvedLine.Width / 2;
-        curvedLine.Y = curvedLine.Height + 200 / 2;
-        slide.DrawCurvedLine(curvedLine);
-        presentation.AppendSlide(slide);
-        presentation.Save();
+         CurvedLine curvedLine = new CurvedLine();
+         curvedLine.Width = 300.0;
+         curvedLine.Height = 50.0;
+         curvedLine.X = curvedLine.Width / 2;
+         curvedLine.Y = curvedLine.Height + 200 / 2;
+         slide.DrawCurvedLine(curvedLine);
+         presentation.AppendSlide(slide);
+         presentation.Save();
+        */
         /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = presentation.GetSlides()[2];
         slide.Rectangles[0].Remove();
         presentation.Save();*/
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        DoubleBrace doubleBrace = new DoubleBrace();
+        doubleBrace.Width = 300.0;
+        doubleBrace.Height = 50.0;
+        doubleBrace.X = doubleBrace.Width / 2;
+        doubleBrace.Y = doubleBrace.Height + 200 / 2;
+        slide.DrawDoubleBrace(doubleBrace);
+        presentation.AppendSlide(slide);
+        presentation.Save();*/
+
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        Pentagon pentagon = new Pentagon();
+        pentagon.Width = 300.0;
+        pentagon.Height = 50.0;
+        pentagon.X = pentagon.Width / 2;
+        pentagon.Y = pentagon.Height + 200 / 2;
+        slide.DrawPentagon(pentagon);
+        presentation.AppendSlide(slide);
+        presentation.Save();*/
+
+        /*Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        DoubleBracket doubleBracket = new DoubleBracket();
+        doubleBracket.Width = 300.0;
+        doubleBracket.Height = 50.0;
+        doubleBracket.X = doubleBracket.Width / 2;
+        doubleBracket.Y = doubleBracket.Height + 200 / 2;
+        slide.DrawDoubleBracket(doubleBracket);
+        presentation.AppendSlide(slide);
+        presentation.Save();*/
+
 
     }
 
