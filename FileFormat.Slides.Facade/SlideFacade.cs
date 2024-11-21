@@ -47,6 +47,12 @@ namespace FileFormat.Slides.Facade
 
         private List<PentagonFacade> _PentagonFacades = null;
 
+        private List<HexagonFacade> _HexagonFacades = null;
+
+        private List<TrapezoidFacade> _TrapezoidFacades = null;
+
+        private List<PieFacade> _PieFacades = null;
+
         private List<CircleShapeFacade> _CircleShapeFacades = null;
 
         private List<ImageFacade> _ImagesFacade = null;
@@ -81,6 +87,9 @@ namespace FileFormat.Slides.Facade
         public List<DoubleBraceFacade> DoubleBraceFacades { get => _DoubleBraceFacades; set => _DoubleBraceFacades = value; }
         public List<PentagonFacade> PentagonFacades { get => _PentagonFacades; set => _PentagonFacades = value; }
         public List<DoubleBracketFacade> DoubleBracketFacades { get => _DoubleBracketFacades; set => _DoubleBracketFacades = value; }
+        public List<HexagonFacade> HexagonFacades { get => _HexagonFacades; set => _HexagonFacades = value; }
+        public List<TrapezoidFacade> TrapezoidFacades { get => _TrapezoidFacades; set => _TrapezoidFacades = value; }
+        public List<PieFacade> PieFacades { get => _PieFacades; set => _PieFacades = value; }
 
         public SlideFacade (bool isNewSlide)
         {
@@ -432,6 +441,79 @@ namespace FileFormat.Slides.Facade
             _PresentationSlide.CommonSlideData.ShapeTree.Append(_Pentagon);
 
             return _PentagonFacade;
+        }
+
+        public PieFacade DrawPie(Int64 _x, Int64 _y,
+          Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            PieFacade _PieFacade = new PieFacade();
+
+            // Set properties using the provided parameters
+            _PieFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Pie = _PieFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Pie);
+
+            return _PieFacade;
+        }
+        public HexagonFacade DrawHexagon(Int64 _x, Int64 _y,
+                 Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            HexagonFacade _HexagonFacade = new HexagonFacade();
+
+            // Set properties using the provided parameters
+            _HexagonFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Hexagon = _HexagonFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Hexagon);
+
+            return _HexagonFacade;
+        }
+        public TrapezoidFacade DrawTrapezoid(Int64 _x, Int64 _y,
+                 Int64 width, Int64 height)
+        {
+            // Create an instance of TextShapeFacade
+            TrapezoidFacade _TrapezoidFacade = new TrapezoidFacade();
+
+            // Set properties using the provided parameters
+            _TrapezoidFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Trapezoid = _TrapezoidFacade.CreateShape();
+
+            // Append the textBoxShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Trapezoid);
+
+            return _TrapezoidFacade;
         }
         public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
           Int64 width, Int64 height, String backgroundColor)

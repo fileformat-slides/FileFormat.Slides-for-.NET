@@ -6,6 +6,7 @@ using GeneratedCode;
 using FileFormat.Slides;
 using System.Collections.Generic;
 using FileFormat.Slides.Common;
+//using DocumentFormat.OpenXml.Presentation;
 
 
 
@@ -507,8 +508,44 @@ class Program
         doubleBracket.Y = doubleBracket.Height + 200 / 2;
         slide.DrawDoubleBracket(doubleBracket);
         presentation.AppendSlide(slide);
-        presentation.Save();*/
+        presentation.Save();
+        */
 
+        /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+         Slide slide = new Slide();
+
+         Hexagon hexagon = new Hexagon();
+         hexagon.Width = 300.0;
+         hexagon.Height = 300.0;
+         hexagon.X = 300.0;
+         hexagon.Y = 300.0;
+         slide.DrawHexagon(hexagon);
+         presentation.AppendSlide(slide);
+         presentation.Save();*/
+
+        /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+         Slide slide = new Slide();
+
+         Trapezoid trapezoid = new Trapezoid();
+         trapezoid.Width = 300.0;
+         trapezoid.Height = 300.0;
+         trapezoid.X = 300.0;
+         trapezoid.Y = 300.0;
+         slide.DrawTrapezoid(trapezoid);
+         presentation.AppendSlide(slide);
+         presentation.Save();*/
+        /*
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Slide slide = new Slide();
+
+        Pie pie = new Pie();
+        pie.Width = 300.0;
+        pie.Height = 300.0;
+        pie.X = 300.0;
+        pie.Y = 300.0;
+        slide.DrawPie(pie);
+        presentation.AppendSlide(slide);
+        presentation.Save();*/
 
     }
 

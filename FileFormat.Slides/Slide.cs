@@ -30,6 +30,9 @@ namespace FileFormat.Slides
         private List<DoubleBrace> _DoubleBraces;
         private List<DoubleBracket> _DoubleBrackets;
         private List<Pentagon> _Pentagons;
+        private List<Hexagon> _Hexagons;
+        private List<Pie> _Pies;
+        private List<Trapezoid> _Trapezoids;
         private List<Circle> _Circles;
         private List<Image> _Images;
         private List<Table> _Tables;
@@ -120,6 +123,20 @@ namespace FileFormat.Slides
         public List<DoubleBracket> DoubleBrackets { get => _DoubleBrackets; set => _DoubleBrackets = value; }
 
         /// <summary>
+        /// Property to get or set list of Hexagon.
+        /// </summary>
+        public List<Hexagon> Hexagons { get => _Hexagons; set => _Hexagons = value; }
+
+        /// <summary>
+        /// Property to get or set list of Trapezoid.
+        /// </summary>
+        public List<Trapezoid> Trapezoids { get => _Trapezoids; set => _Trapezoids = value; }
+        /// <summary>
+        /// Property to get or set list of Pie.
+        /// </summary>
+        public List<Pie> Pies { get => _Pies; set => _Pies = value; }
+
+        /// <summary>
         /// Constructor for the Slide class.
         /// </summary>
         /// <remarks>
@@ -145,6 +162,9 @@ namespace FileFormat.Slides
                 _DoubleBraces = new List<DoubleBrace>();
                 _DoubleBrackets = new List<DoubleBracket>();
                 _Pentagons = new List<Pentagon>();
+                _Hexagons = new List<Hexagon>();
+                _Trapezoids = new List<Trapezoid>();
+                _Pies = new List<Pie>();
                 _Circles = new List<Circle>();
                 _Images = new List<Image>();
                 _Tables = new List<Table>();
@@ -183,6 +203,9 @@ namespace FileFormat.Slides
             _DoubleBraces = new List<DoubleBrace>();
             _DoubleBrackets = new List<DoubleBracket>();
             _Pentagons = new List<Pentagon>();
+            _Hexagons = new List<Hexagon>();
+            _Trapezoids = new List<Trapezoid>();
+            _Pies = new List<Pie>();
             _Images = new List<Image>();
             _Tables = new List<Table>();
             _CommentFacade = new CommentFacade();
@@ -400,7 +423,7 @@ namespace FileFormat.Slides
             }
         }
         /// <summary>
-        /// Method to draw a double brace in a slide
+        /// Method to draw a pentagon in a slide
         /// </summary>
         /// <param name="pentagon"></param>
         /// <exception cref="Common.FileFormatException"></exception>
@@ -410,7 +433,7 @@ namespace FileFormat.Slides
             {
                 pentagon.Facade = _SlideFacade.DrawPentagon(Utility.PixelsToEmu(pentagon.X), Utility.PixelsToEmu(pentagon.Y),
                     Utility.PixelsToEmu(pentagon.Width), Utility.PixelsToEmu(pentagon.Height));
-                pentagon.ShapeIndex = _Rectangles.Count + 1;
+                pentagon.ShapeIndex = _Pentagons.Count + 1;
                 Pentagons.Add(pentagon);
             }
             catch (Exception ex)
@@ -419,7 +442,61 @@ namespace FileFormat.Slides
                 throw new Common.FileFormatException(errorMessage, ex);
             }
         }
-
+        /// <summary>
+        /// Method to draw a hexagon in a slide
+        /// </summary>
+        /// <param name="hexagon"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawHexagon(Hexagon hexagon)
+        {
+            try
+            {
+                hexagon.Facade = _SlideFacade.DrawHexagon(Utility.PixelsToEmu(hexagon.X), Utility.PixelsToEmu(hexagon.Y),
+                    Utility.PixelsToEmu(hexagon.Width), Utility.PixelsToEmu(hexagon.Height));
+                hexagon.ShapeIndex = _Hexagons.Count + 1;
+                Hexagons.Add(hexagon);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        /// <summary>
+        /// Method to draw a trapezoid in a slide
+        /// </summary>
+        /// <param name="trapezoid"></param>
+        /// <exception cref="Common.FileFormatException"></exception>
+        public void DrawTrapezoid(Trapezoid trapezoid)
+        {
+            try
+            {
+                trapezoid.Facade = _SlideFacade.DrawTrapezoid(Utility.PixelsToEmu(trapezoid.X), Utility.PixelsToEmu(trapezoid.Y),
+                    Utility.PixelsToEmu(trapezoid.Width), Utility.PixelsToEmu(trapezoid.Height));
+                trapezoid.ShapeIndex = _Trapezoids.Count + 1;
+                Trapezoids.Add(trapezoid);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
+        public void DrawPie(Pie pie)
+        {
+            try
+            {
+                pie.Facade = _SlideFacade.DrawPie(Utility.PixelsToEmu(pie.X), Utility.PixelsToEmu(pie.Y),
+                    Utility.PixelsToEmu(pie.Width), Utility.PixelsToEmu(pie.Height));
+                pie.ShapeIndex = _Trapezoids.Count + 1;
+                Pies.Add(pie);
+            }
+            catch (Exception ex)
+            {
+                string errorMessage = Common.FileFormatException.ConstructMessage(ex, "Adding text shape");
+                throw new Common.FileFormatException(errorMessage, ex);
+            }
+        }
         /// <summary>
         /// Method to draw a circle in a slide 
         /// </summary>
