@@ -29,7 +29,7 @@ namespace FileFormat.Slides.Facade
         private Int64Value _width;
         private Int64Value _height;
         private List<ImageFacade> Images;
-
+        private AnimationType _Animation = AnimationType.None;
         public string ImagePath { get => _ImagePath; set => _ImagePath = value; }
         public SlidePart ImageSlidePart { get => _AssociatedSlidePart; set => _AssociatedSlidePart = value; }
         public ImagePart PicturePart { get => _PicturePart; set => _PicturePart = value; }
@@ -41,6 +41,7 @@ namespace FileFormat.Slides.Facade
         public Int64Value Width { get => _width; set => _width = value; }
         public Int64Value Height { get => _height; set => _height = value; }
         public List<ImageFacade> Images1 { get => Images; set => Images = value; }
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         public ImageFacade ()
         {

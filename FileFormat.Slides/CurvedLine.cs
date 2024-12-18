@@ -18,7 +18,7 @@ namespace FileFormat.Slides
         private CurvedLineFacade _Facade;
         private int _shapeIndex;
         private string _BackgroundColor = null;
-
+        private AnimationType _Animation = AnimationType.None;
         /// <summary>
         /// Property to get or set X coordinate of the shape.
         /// </summary>
@@ -55,8 +55,13 @@ namespace FileFormat.Slides
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
 
         /// <summary>
+        /// Property to set animation
+        /// </summary>
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
+        /// <summary>
         /// Constructor of the CurvedLine class initializes the object of CurvedLineFacade and populates its fields.
         /// </summary>
+
         public CurvedLine()
         {
             _Facade = new CurvedLineFacade();

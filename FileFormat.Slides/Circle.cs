@@ -18,7 +18,7 @@ namespace FileFormat.Slides
         private CircleShapeFacade _Facade;
         private int _shapeIndex;
         private string _BackgroundColor = null;
-
+        private AnimationType _Animation = AnimationType.None;
         /// <summary>
         /// Property to get or set X coordinate of the shape.
         /// </summary>
@@ -54,6 +54,10 @@ namespace FileFormat.Slides
         /// </summary>
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
 
+        /// <summary>
+        /// Property to set animation
+        /// </summary>
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
         /// <summary>
         /// Constructor of the Circle class initializes the object of CircleShapeFacade and populates its fields.
         /// </summary>

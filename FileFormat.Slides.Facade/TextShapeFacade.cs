@@ -32,6 +32,7 @@ namespace FileFormat.Slides.Facade
         private List<TextSegmentFacade> _TextSegmentFacades;
         private String _BackgroundColor;
         private ListFacade _TextList = null;
+        private AnimationType _Animation = AnimationType.None;
         public string Text { get => _Text; set => _Text = value; }
         // Public property to set and get font size in points
         public int FontSize
@@ -60,6 +61,7 @@ namespace FileFormat.Slides.Facade
         public List<TextSegmentFacade> TextSegmentFacades { get => _TextSegmentFacades; set => _TextSegmentFacades = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public ListFacade TextList { get => _TextList; set => _TextList = value; }
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         public TextShapeFacade ()
         {

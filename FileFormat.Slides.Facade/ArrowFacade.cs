@@ -25,8 +25,8 @@ namespace FileFormat.Slides.Facade
         private P.Shape _ArrowShape;
         private SlidePart _AssociatedSlidePart;// Store the P.Shape as a private field
         private int _ShapeIndex;
-    
-        
+        private AnimationType _Animation = AnimationType.None;
+
         private String _BackgroundColor;
         private ListFacade _TextList = null;
        
@@ -39,6 +39,7 @@ namespace FileFormat.Slides.Facade
         public int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public ListFacade TextList { get => _TextList; set => _TextList = value; }
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         public ArrowFacade()
         {

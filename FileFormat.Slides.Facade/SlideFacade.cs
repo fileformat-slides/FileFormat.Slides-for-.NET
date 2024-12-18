@@ -65,6 +65,8 @@ namespace FileFormat.Slides.Facade
 
         private NotesSlidePart _NotesPart;
 
+       
+
         public Slide PresentationSlide { get => _PresentationSlide; set => _PresentationSlide = value; }
         public string RelationshipId { get => _RelationshipId; set => _RelationshipId = value; }
         public SlidePart SlidePart { get => _SlidePart; set => _SlidePart = value; }
@@ -90,6 +92,7 @@ namespace FileFormat.Slides.Facade
         public List<HexagonFacade> HexagonFacades { get => _HexagonFacades; set => _HexagonFacades = value; }
         public List<TrapezoidFacade> TrapezoidFacades { get => _TrapezoidFacades; set => _TrapezoidFacades = value; }
         public List<PieFacade> PieFacades { get => _PieFacades; set => _PieFacades = value; }
+        
 
         public SlideFacade (bool isNewSlide)
         {
@@ -196,233 +199,353 @@ namespace FileFormat.Slides.Facade
             }
 
             _PresentationSlide.CommonSlideData.ShapeTree.Append(textBoxShape);
-            //_TextShapeFacades.Add(textShapeFacade);
+            if (textShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(textBoxShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
             return textShapeFacade;
         }
-        public RectangleShapeFacade DrawRectangle( Int64 _x, Int64 _y,
-           Int64 width, Int64 height, String backgroundColor)
+        public RectangleShapeFacade DrawRectangle(Int64 _x, Int64 _y,
+      Int64 width, Int64 height, String backgroundColor, RectangleShapeFacade facade)
         {
-            // Create an instance of TextShapeFacade
-            RectangleShapeFacade rectangleShapeFacade = new RectangleShapeFacade();
+            RectangleShapeFacade _RectangleShapeFacade;
 
-            // Set properties using the provided parameters
-            rectangleShapeFacade                
-                .WithBackgroundColor(backgroundColor)                
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _RectangleShapeFacade = new RectangleShapeFacade();
+            }
+            else
+            {
+                _RectangleShapeFacade = facade;
+            }
+
+            // Set properties
+            _RectangleShapeFacade
+                .WithBackgroundColor(backgroundColor)
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape rectangleShape = rectangleShapeFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape rectangleShape = _RectangleShapeFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
-
             _PresentationSlide.CommonSlideData.ShapeTree.Append(rectangleShape);
-            
-            return rectangleShapeFacade;
+
+            // Handle animation
+            if (_RectangleShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(rectangleShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
+            return _RectangleShapeFacade;
         }
+
         public TriangleShapeFacade DrawTriangle(Int64 _x, Int64 _y,
-           Int64 width, Int64 height, String backgroundColor)
+            Int64 width, Int64 height, String backgroundColor, TriangleShapeFacade facade)
         {
-            // Create an instance of TextShapeFacade
-            TriangleShapeFacade TriangleShapeFacade = new TriangleShapeFacade();
+            TriangleShapeFacade _TriangleShapeFacade;
 
-            // Set properties using the provided parameters
-            TriangleShapeFacade
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _TriangleShapeFacade = new TriangleShapeFacade();
+            }
+            else
+            {
+                _TriangleShapeFacade = facade;
+            }
+
+            // Set properties
+            _TriangleShapeFacade
                 .WithBackgroundColor(backgroundColor)
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape TriangleShape = TriangleShapeFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape triangleShape = _TriangleShapeFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(triangleShape);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(TriangleShape);
+            // Handle animation
+            if (_TriangleShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(triangleShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
-            return TriangleShapeFacade;
+            return _TriangleShapeFacade;
         }
+
         public DiamondShapeFacade DrawDiamond(Int64 _x, Int64 _y,
-           Int64 width, Int64 height, String backgroundColor)
+            Int64 width, Int64 height, String backgroundColor, DiamondShapeFacade facade)
         {
-            // Create an instance of TextShapeFacade
-            DiamondShapeFacade DiamondShapeFacade = new DiamondShapeFacade();
+            DiamondShapeFacade _DiamondShapeFacade;
 
-            // Set properties using the provided parameters
-            DiamondShapeFacade
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _DiamondShapeFacade = new DiamondShapeFacade();
+            }
+            else
+            {
+                _DiamondShapeFacade = facade;
+            }
+
+            // Set properties
+            _DiamondShapeFacade
                 .WithBackgroundColor(backgroundColor)
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape DiamondShape = DiamondShapeFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape diamondShape = _DiamondShapeFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(diamondShape);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(DiamondShape);
+            // Handle animation
+            if (_DiamondShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(diamondShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
-            return DiamondShapeFacade;
+            return _DiamondShapeFacade;
         }
-        public LineFacade DrawLine(Int64 _x, Int64 _y,
-           Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            LineFacade _LineFacade = new LineFacade();
 
-            // Set properties using the provided parameters
+        public LineFacade DrawLine(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, LineFacade facade)
+        {
+            LineFacade _LineFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _LineFacade = new LineFacade();
+            }
+            else
+            {
+                _LineFacade = facade;
+            }
+
+            // Set properties
             _LineFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _Line = _LineFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape line = _LineFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(line);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Line);
+            // Handle animation
+            if (_LineFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(line.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _LineFacade;
         }
-        public CurvedLineFacade DrawCurvedLine(Int64 _x, Int64 _y,
-           Int64 width, Int64 height)
-        {
-            // Create an instance of Curved Line
-            CurvedLineFacade _CurvedLineFacade = new CurvedLineFacade();
 
-            // Set properties using the provided parameters
+        public CurvedLineFacade DrawCurvedLine(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, CurvedLineFacade facade)
+        {
+            CurvedLineFacade _CurvedLineFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _CurvedLineFacade = new CurvedLineFacade();
+            }
+            else
+            {
+                _CurvedLineFacade = facade;
+            }
+
+            // Set properties
             _CurvedLineFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _Line = _CurvedLineFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape curvedLine = _CurvedLineFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(curvedLine);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Line);
+            // Handle animation
+            if (_CurvedLineFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(curvedLine.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _CurvedLineFacade;
         }
-        public ArrowFacade DrawArrow(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            ArrowFacade _ArrowFacade = new ArrowFacade();
 
-            // Set properties using the provided parameters
+        public ArrowFacade DrawArrow(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, ArrowFacade facade)
+        {
+            ArrowFacade _ArrowFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _ArrowFacade = new ArrowFacade();
+            }
+            else
+            {
+                _ArrowFacade = facade;
+            }
+
+            // Set properties
             _ArrowFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _Arrow = _ArrowFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape arrow = _ArrowFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(arrow);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Arrow);
+            // Handle animation
+            if (_ArrowFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(arrow.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _ArrowFacade;
         }
-        public DoubleArrowFacade DrawDoubleArrow(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            DoubleArrowFacade _DoubleArrowFacade = new DoubleArrowFacade();
 
-            // Set properties using the provided parameters
+        public DoubleArrowFacade DrawDoubleArrow(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, DoubleArrowFacade facade)
+        {
+            DoubleArrowFacade _DoubleArrowFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _DoubleArrowFacade = new DoubleArrowFacade();
+            }
+            else
+            {
+                _DoubleArrowFacade = facade;
+            }
+
+            // Set properties
             _DoubleArrowFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _DoubleArrow = _DoubleArrowFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape doubleArrow = _DoubleArrowFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(doubleArrow);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleArrow);
+            // Handle animation
+            if (_DoubleArrowFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(doubleArrow.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _DoubleArrowFacade;
         }
-        public DoubleBraceFacade DrawDoubleBrace(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            DoubleBraceFacade _DoubleBraceFacade = new DoubleBraceFacade();
 
-            // Set properties using the provided parameters
+        public DoubleBraceFacade DrawDoubleBrace(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, DoubleBraceFacade facade)
+        {
+            DoubleBraceFacade _DoubleBraceFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _DoubleBraceFacade = new DoubleBraceFacade();
+            }
+            else
+            {
+                _DoubleBraceFacade = facade;
+            }
+
+            // Set properties
             _DoubleBraceFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _DoubleBrace = _DoubleBraceFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape doubleBrace = _DoubleBraceFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(doubleBrace);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleBrace);
+            // Handle animation
+            if (_DoubleBraceFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(doubleBrace.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _DoubleBraceFacade;
         }
-        public DoubleBracketFacade DrawDoubleBracket(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            DoubleBracketFacade _DoubleBracketFacade = new DoubleBracketFacade();
 
-            // Set properties using the provided parameters
+        public DoubleBracketFacade DrawDoubleBracket(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, DoubleBracketFacade facade)
+        {
+            DoubleBracketFacade _DoubleBracketFacade;
+
+            // Use provided facade or create a new one
+            if (facade == null)
+            {
+                _DoubleBracketFacade = new DoubleBracketFacade();
+            }
+            else
+            {
+                _DoubleBracketFacade = facade;
+            }
+
+            // Set properties
             _DoubleBracketFacade
                 .WithPosition(_x, _y)
                 .WithSize(width, height);
 
-            // Create the P.Shape using the CreateShape method
-            P.Shape _DoubleBracket = _DoubleBracketFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Create the shape and append it to the slide
+            P.Shape doubleBracket = _DoubleBracketFacade.CreateShape();
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(doubleBracket);
 
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_DoubleBracket);
+            // Handle animation
+            if (_DoubleBracketFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(doubleBracket.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
 
             return _DoubleBracketFacade;
         }
+
         public PentagonFacade DrawPentagon(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
+     Int64 width, Int64 height, PentagonFacade facade)
         {
-            // Create an instance of TextShapeFacade
-            PentagonFacade _PentagonFacade = new PentagonFacade();
+            // Use the provided PentagonFacade or create a new instance
+            PentagonFacade _PentagonFacade = facade ?? new PentagonFacade();
 
             // Set properties using the provided parameters
             _PentagonFacade
@@ -432,7 +555,7 @@ namespace FileFormat.Slides.Facade
             // Create the P.Shape using the CreateShape method
             P.Shape _Pentagon = _PentagonFacade.CreateShape();
 
-            // Append the textBoxShape to the ShapeTree of the presentation slide
+            // Append the shape to the ShapeTree of the presentation slide
             if (_PresentationSlide.CommonSlideData.ShapeTree == null)
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
@@ -440,15 +563,132 @@ namespace FileFormat.Slides.Facade
 
             _PresentationSlide.CommonSlideData.ShapeTree.Append(_Pentagon);
 
+            // Handle animation if necessary
+            if (_PentagonFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(_Pentagon.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
             return _PentagonFacade;
         }
 
-        public PieFacade DrawPie(Int64 _x, Int64 _y,
-          Int64 width, Int64 height)
+        public HexagonFacade DrawHexagon(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, HexagonFacade facade)
         {
-            // Create an instance of TextShapeFacade
-            PieFacade _PieFacade = new PieFacade();
+            // Use the provided HexagonFacade or create a new instance
+            HexagonFacade _HexagonFacade = facade ?? new HexagonFacade();
 
+            // Set properties using the provided parameters
+            _HexagonFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Hexagon = _HexagonFacade.CreateShape();
+
+            // Append the shape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Hexagon);
+
+            // Handle animation if necessary
+            if (_HexagonFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(_Hexagon.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
+            return _HexagonFacade;
+        }
+
+        public TrapezoidFacade DrawTrapezoid(Int64 _x, Int64 _y,
+            Int64 width, Int64 height, TrapezoidFacade facade)
+        {
+            // Use the provided TrapezoidFacade or create a new instance
+            TrapezoidFacade _TrapezoidFacade = facade ?? new TrapezoidFacade();
+
+            // Set properties using the provided parameters
+            _TrapezoidFacade
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape _Trapezoid = _TrapezoidFacade.CreateShape();
+
+            // Append the shape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Trapezoid);
+
+            // Handle animation if necessary
+            if (_TrapezoidFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(_Trapezoid.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
+            return _TrapezoidFacade;
+        }
+
+        public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
+    Int64 width, Int64 height, String backgroundColor, CircleShapeFacade facade)
+        {
+            CircleShapeFacade _CircleShapeFacade;
+
+            // Create an instance of CircleShapeFacade if facade is null, otherwise use the provided facade
+            if (facade == null)
+            {
+                _CircleShapeFacade = new CircleShapeFacade();
+            }
+            else
+            {
+                _CircleShapeFacade = facade;
+            }
+
+            // Set properties using the provided parameters
+            _CircleShapeFacade
+                .WithBackgroundColor(backgroundColor)
+                .WithPosition(_x, _y)
+                .WithSize(width, height);
+
+            // Create the P.Shape using the CreateShape method
+            P.Shape CircleShape = _CircleShapeFacade.CreateShape();
+
+            // Append the CircleShape to the ShapeTree of the presentation slide
+            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
+            {
+                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
+            }
+
+            _PresentationSlide.CommonSlideData.ShapeTree.Append(CircleShape);
+
+            // Handle animation if present
+            if (_CircleShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(CircleShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
+            return _CircleShapeFacade;
+        }
+
+        public PieFacade DrawPie(Int64 _x, Int64 _y,
+         Int64 width, Int64 height, PieFacade facade)
+        {
+            PieFacade _PieFacade;
+            // Create an instance of TextShapeFacade
+            if (facade == null)
+            {
+                _PieFacade = new PieFacade();
+            }
+            else
+            {
+                _PieFacade = facade;
+            }
+            _PieFacade.Animation = facade.Animation;
             // Set properties using the provided parameters
             _PieFacade
                 .WithPosition(_x, _y)
@@ -462,83 +702,12 @@ namespace FileFormat.Slides.Facade
             {
                 _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
             }
-
             _PresentationSlide.CommonSlideData.ShapeTree.Append(_Pie);
-
+            if (_PieFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(_Pie.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
             return _PieFacade;
-        }
-        public HexagonFacade DrawHexagon(Int64 _x, Int64 _y,
-                 Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            HexagonFacade _HexagonFacade = new HexagonFacade();
-
-            // Set properties using the provided parameters
-            _HexagonFacade
-                .WithPosition(_x, _y)
-                .WithSize(width, height);
-
-            // Create the P.Shape using the CreateShape method
-            P.Shape _Hexagon = _HexagonFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
-            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
-            {
-                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
-            }
-
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Hexagon);
-
-            return _HexagonFacade;
-        }
-        public TrapezoidFacade DrawTrapezoid(Int64 _x, Int64 _y,
-                 Int64 width, Int64 height)
-        {
-            // Create an instance of TextShapeFacade
-            TrapezoidFacade _TrapezoidFacade = new TrapezoidFacade();
-
-            // Set properties using the provided parameters
-            _TrapezoidFacade
-                .WithPosition(_x, _y)
-                .WithSize(width, height);
-
-            // Create the P.Shape using the CreateShape method
-            P.Shape _Trapezoid = _TrapezoidFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
-            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
-            {
-                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
-            }
-
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(_Trapezoid);
-
-            return _TrapezoidFacade;
-        }
-        public CircleShapeFacade DrawCircle(Int64 _x, Int64 _y,
-          Int64 width, Int64 height, String backgroundColor)
-        {
-            // Create an instance of TextShapeFacade
-            CircleShapeFacade circleShapeFacade = new CircleShapeFacade();
-
-            // Set properties using the provided parameters
-            circleShapeFacade
-                .WithBackgroundColor(backgroundColor)
-                .WithPosition(_x, _y)
-                .WithSize(width, height);
-
-            // Create the P.Shape using the CreateShape method
-            P.Shape CircleShape = circleShapeFacade.CreateShape();
-
-            // Append the textBoxShape to the ShapeTree of the presentation slide
-            if (_PresentationSlide.CommonSlideData.ShapeTree == null)
-            {
-                _PresentationSlide.CommonSlideData.ShapeTree = new P.ShapeTree();
-            }
-
-            _PresentationSlide.CommonSlideData.ShapeTree.Append(CircleShape);
-
-            return circleShapeFacade;
         }
         public TextShapeFacade AddTextListShape (List<String> textList, ListFacade facade, Int32 fontSize, TextAlignment alignment, Int64 _x, Int64 _y,
             Int64 width, Int64 height, String fontFamily, String textColor, String backgroundColor)
@@ -567,6 +736,11 @@ namespace FileFormat.Slides.Facade
 
             _PresentationSlide.CommonSlideData.ShapeTree.Append(textBoxShape);
             //_TextShapeFacades.Add(textShapeFacade);
+            if (textShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(textBoxShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
+
             return textShapeFacade;
         }
         public TextShapeFacade AddTextShape ( List<TextSegmentFacade> textSegmentFacades,TextAlignment alignment, Int64 _x, Int64 _y,
@@ -593,6 +767,10 @@ namespace FileFormat.Slides.Facade
 
             _PresentationSlide.CommonSlideData.ShapeTree.Append(textBoxShape);
             //_TextShapeFacades.Add(textShapeFacade);
+            if (textShapeFacade.Animation != AnimationType.None)
+            {
+                CallAnimation(textBoxShape.NonVisualShapeProperties.NonVisualDrawingProperties.Id);
+            }
             return textShapeFacade;
         }
 
@@ -665,6 +843,16 @@ namespace FileFormat.Slides.Facade
         public void Update ()
         {
             this.SetSlideBackground(_BackgroundColor);
+        }
+        private void CallAnimation(string shapeId)
+        {
+           
+            AnimateFacade animateFacade = new AnimateFacade();
+
+            // Optionally, override default properties
+            animateFacade.ShapeId = shapeId; // You can change the ShapeId if needed
+
+            _PresentationSlide.Append(animateFacade.animate());
         }
 
     }

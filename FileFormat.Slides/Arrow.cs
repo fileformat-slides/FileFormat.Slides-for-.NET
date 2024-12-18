@@ -18,6 +18,7 @@ namespace FileFormat.Slides
         private ArrowFacade _Facade;
         private int _shapeIndex;
         private string _BackgroundColor = null;
+        private AnimationType _Animation = AnimationType.None;
 
         /// <summary>
         /// Property to get or set X coordinate of the shape.
@@ -53,6 +54,11 @@ namespace FileFormat.Slides
         /// Property to set or get background color of a rectangle shape.
         /// </summary>
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
+        
+        /// <summary>
+        /// Property to set animation
+        /// </summary>
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         /// <summary>
         /// Constructor of the Arrow class initializes the object of ArrowFacade and populates its fields.

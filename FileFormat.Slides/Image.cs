@@ -1,4 +1,5 @@
 ﻿using FileFormat.Slides.Common;
+using FileFormat.Slides.Common.Enumerations;
 using FileFormat.Slides.Facade;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,7 @@ namespace FileFormat.Slides
         private double _y;
         private double _Width;
         private double _Height;
-
+        private AnimationType _Animation = AnimationType.None;
         /// <summary>
         /// Property to get or set the image path.
         /// </summary>
@@ -51,6 +52,10 @@ namespace FileFormat.Slides
         /// Property to get or set the height of an image.
         /// </summary>
         public double Height { get => _Height; set => _Height = value; }
+        /// <summary>
+        /// Property to set animation
+        /// </summary>
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
         /// <summary>
         /// Initialize the image object 
         /// </summary>

@@ -523,22 +523,24 @@ class Program
          presentation.AppendSlide(slide);
          presentation.Save();*/
 
-        /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
          Slide slide = new Slide();
 
          Trapezoid trapezoid = new Trapezoid();
+        trapezoid.Animation = FileFormat.Slides.Common.Enumerations.AnimationType.FlyIn;
          trapezoid.Width = 300.0;
          trapezoid.Height = 300.0;
          trapezoid.X = 300.0;
          trapezoid.Y = 300.0;
          slide.DrawTrapezoid(trapezoid);
          presentation.AppendSlide(slide);
-         presentation.Save();*/
-        /*
-        Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
+         presentation.Save();
+        
+       /* Presentation presentation = Presentation.Open("D:\\AsposeSampleData\\draw.pptx");
         Slide slide = new Slide();
-
+        
         Pie pie = new Pie();
+        pie.Animation = FileFormat.Slides.Common.Enumerations.AnimationType.FlyIn;
         pie.Width = 300.0;
         pie.Height = 300.0;
         pie.X = 300.0;

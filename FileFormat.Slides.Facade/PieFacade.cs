@@ -25,8 +25,8 @@ namespace FileFormat.Slides.Facade
         private P.Shape _Pie;
         private SlidePart _AssociatedSlidePart;// Store the P.Shape as a private field
         private int _ShapeIndex;
-    
-        
+        private AnimationType _Animation = AnimationType.None;
+
         private String _BackgroundColor;
         private ListFacade _TextList = null;
        
@@ -39,6 +39,7 @@ namespace FileFormat.Slides.Facade
         public int ShapeIndex { get => _ShapeIndex; set => _ShapeIndex = value; }
         public string BackgroundColor { get => _BackgroundColor; set => _BackgroundColor = value; }
         public ListFacade TextList { get => _TextList; set => _TextList = value; }
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         public PieFacade()
         {
@@ -315,17 +316,17 @@ namespace FileFormat.Slides.Facade
             }
             return false;
         }
-        // Method to populate List<rectangleShapeFacade> from a collection of P.Shape
+        // Method to populate List<pieShapeFacade> from a collection of P.Shape
         public static List<PieFacade> PopulatePies(SlidePart slidePart)
         {
             IEnumerable<P.Shape> shapes = slidePart.Slide.CommonSlideData.ShapeTree.Elements<P.Shape>();
-            var rectangleShapes = new List<PieFacade>();
+            var pieShapes = new List<PieFacade>();
             var shapeIndex = 0;
             foreach (var shape in shapes)
             {
                 if (IsPie(shape))
                 {
-                    var rectangleShapeFacade = new PieFacade
+                    var pieShapeFacade = new PieFacade
                     {
                         Pie = shape, // Store the P.Shape in the private field
 
@@ -339,27 +340,27 @@ namespace FileFormat.Slides.Facade
                         ShapeIndex = shapeIndex
                     };
 
-                    rectangleShapes.Add(rectangleShapeFacade);
+                    pieShapes.Add(pieShapeFacade);
                     shapeIndex += 1;
                 }
             }
 
-            return rectangleShapes;
+            return pieShapes;
         }
 
-        private static string GetTextFromrectangleShape(P.Shape rectangleShape)
+        private static string GetTextFrompieShape(P.Shape pieShape)
         {
-            if (rectangleShape.TextBody != null)
+            if (pieShape.TextBody != null)
             {
-                return rectangleShape.TextBody.Descendants<Text>().FirstOrDefault()?.Text;
+                return pieShape.TextBody.Descendants<Text>().FirstOrDefault()?.Text;
             }
             return null;
         }
 
       
-          private static string GetFontFamilyFromrectangleShape(P.Shape rectangleShape)
+          private static string GetFontFamilyFrompieShape(P.Shape pieShape)
         {
-            var paragraph = rectangleShape.TextBody?.Elements<Paragraph>().FirstOrDefault();
+            var paragraph = pieShape.TextBody?.Elements<Paragraph>().FirstOrDefault();
 
             if (paragraph != null)
             {
@@ -378,9 +379,9 @@ namespace FileFormat.Slides.Facade
 
             return null; // or an appropriate default value for FontFamily
         }
-        private static string GetColorFromrectangleShape(P.Shape rectangleShape)
+        private static string GetColorFrompieShape(P.Shape pieShape)
         {
-            var paragraph = rectangleShape.TextBody?.Elements<Paragraph>().FirstOrDefault();
+            var paragraph = pieShape.TextBody?.Elements<Paragraph>().FirstOrDefault();
 
             if (paragraph != null)
             {
@@ -405,16 +406,16 @@ namespace FileFormat.Slides.Facade
             return null; // or an appropriate default value for color code
         }
 
-        private static TextAlignment GetAlignmentFromPie(P.Shape rectangleShape)
+        private static TextAlignment GetAlignmentFromPie(P.Shape pieShape)
         {
-            var alignment = rectangleShape.TextBody?.Descendants<Paragraph>().FirstOrDefault();
+            var alignment = pieShape.TextBody?.Descendants<Paragraph>().FirstOrDefault();
             if (alignment != null)
             {
                 alignment = null;
             }
-            var paragraphProperties = rectangleShape?.Descendants<P.TextBody>()?.FirstOrDefault()?.Descendants<Paragraph>()?
+            var paragraphProperties = pieShape?.Descendants<P.TextBody>()?.FirstOrDefault()?.Descendants<Paragraph>()?
                    .FirstOrDefault();
-            TextAlignmentTypeValues alignmentType = rectangleShape.TextBody.Descendants<ParagraphProperties>().FirstOrDefault()?.Alignment ?? TextAlignmentTypeValues.Justified;
+            TextAlignmentTypeValues alignmentType = pieShape.TextBody.Descendants<ParagraphProperties>().FirstOrDefault()?.Alignment ?? TextAlignmentTypeValues.Justified;
             return ConvertAlignmentFromTypeValues(alignmentType);
         }
 
@@ -471,5 +472,6 @@ namespace FileFormat.Slides.Facade
                     throw new ArgumentOutOfRangeException(nameof(alignmentType), alignmentType, null);
             }
         }
+       
     }
 }

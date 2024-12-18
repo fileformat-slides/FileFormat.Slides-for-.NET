@@ -26,7 +26,7 @@ namespace FileFormat.Slides.Facade
         private String _FontFamily;
         private int _FontSize;
         private P.Shape _TextShape;
-
+        private AnimationType _Animation = AnimationType.None;
 
         public ListType ListType { get => _ListType; set => _ListType = value; }
         public List<string> ListItems { get => _ListItems; set => _ListItems = value; }
@@ -34,6 +34,7 @@ namespace FileFormat.Slides.Facade
         public string FontFamily { get => _FontFamily; set => _FontFamily = value; }
         public int FontSize { get => _FontSize; set => _FontSize = value; }
         public P.Shape TextShape { get => _TextShape; set => _TextShape = value; }
+        public AnimationType Animation { get => _Animation; set => _Animation = value; }
 
         public ListFacade ()
         {
