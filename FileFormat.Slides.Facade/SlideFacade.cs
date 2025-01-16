@@ -18,8 +18,8 @@ namespace FileFormat.Slides.Facade
     public class SlideFacade
     {
         
-        private Slide _PresentationSlide;
-        private SlidePart _SlidePart; 
+        private Slide _PresentationSlide = null;
+        private SlidePart _SlidePart = null; 
 
         private String _RelationshipId;
         private int _SlideIndex;
@@ -853,6 +853,12 @@ namespace FileFormat.Slides.Facade
             animateFacade.ShapeId = shapeId; // You can change the ShapeId if needed
 
             _PresentationSlide.Append(animateFacade.animate());
+        }
+        public void close()
+        {
+            _PresentationSlide.RemoveAllChildren();
+            _PresentationSlide.Remove();
+            _PresentationSlide = null;
         }
 
     }

@@ -201,7 +201,7 @@ namespace FileFormat.Slides.Common
 
         public static string ConstructMessage (Exception Ex, string Operation)
         {
-            return $"Error in Operation {Operation} at FileFormat.Words: {Ex.Message} \n Inner Exception: {Ex.InnerException?.Message ?? "N/A"}";
+            return $"Error in Operation {Operation} at FileFormat.Slides: {Ex.Message} \n Inner Exception: {Ex.InnerException?.Message ?? "N/A"}";
         }
     }
 

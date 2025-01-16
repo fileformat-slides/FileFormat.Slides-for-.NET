@@ -327,7 +327,8 @@ namespace FileFormat.Slides.Facade
             // Create ExtensionList with OpenXmlUnknownElement for columnId
             D.ExtensionList extensionList = new D.ExtensionList();
             D.Extension extension = new D.Extension() { Uri = "{9D8B030D-6E8A-4147-A177-3AD203B41FA5}" };
-            OpenXmlUnknownElement unknownElement = OpenXmlUnknownElement.CreateOpenXmlUnknownElement($"<a16:colId xmlns:a16=\"http://schemas.microsoft.com/office/drawing/2014/main\" val=\"{colIdValue}\" />");
+            
+            OpenXmlUnknownElement unknownElement = new OpenXmlUnknownElement($"<a16:colId xmlns:a16=\"http://schemas.microsoft.com/office/drawing/2014/main\" val=\"{colIdValue}\" />");
             extension.Append(unknownElement);
             extensionList.Append(extension);
 
@@ -339,7 +340,7 @@ namespace FileFormat.Slides.Facade
             // Create ExtensionList with OpenXmlUnknownElement for rowId
             D.ExtensionList extensionList = new D.ExtensionList();
             D.Extension extension = new D.Extension() { Uri = "{0D108BD9-81ED-4DB2-BD59-A6C34878D82A}" };
-            OpenXmlUnknownElement unknownElement = OpenXmlUnknownElement.CreateOpenXmlUnknownElement($"<a16:rowId xmlns:a16=\"http://schemas.microsoft.com/office/drawing/2014/main\" val=\"{rowIdValue}\" />");
+            OpenXmlUnknownElement unknownElement = new OpenXmlUnknownElement($"<a16:rowId xmlns:a16=\"http://schemas.microsoft.com/office/drawing/2014/main\" val=\"{rowIdValue}\" />");
             extension.Append(unknownElement);
             extensionList.Append(extension);
 
@@ -457,19 +458,16 @@ namespace FileFormat.Slides.Facade
 
         private static TextAlignment ConvertAlignmentFromTypeValues(TextAlignmentTypeValues alignmentType)
         {
-            switch (alignmentType)
-            {
-                case TextAlignmentTypeValues.Left:
-                    return TextAlignment.Left;
-                case TextAlignmentTypeValues.Center:
-                    return TextAlignment.Center;
-                case TextAlignmentTypeValues.Right:
-                    return TextAlignment.Right;
-                case TextAlignmentTypeValues.Justified:
-                    return TextAlignment.None;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(alignmentType), alignmentType, null);
-            }
+            if (alignmentType.Equals(TextAlignmentTypeValues.Left))
+                return TextAlignment.Left;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Center))
+                return TextAlignment.Center;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Right))
+                return TextAlignment.Right;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Justified))
+                return TextAlignment.None;
+
+            throw new ArgumentOutOfRangeException(nameof(alignmentType), alignmentType, null);
         }
 
 

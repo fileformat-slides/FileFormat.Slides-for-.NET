@@ -13,6 +13,7 @@ using System.Linq;
 using FileFormat.Slides.Common;
 using System.Dynamic;
 using P15 = DocumentFormat.OpenXml.Office2013.PowerPoint;
+using DocumentFormat.OpenXml.Drawing.Charts;
 
 namespace FileFormat.Slides.Facade
 {
@@ -31,6 +32,8 @@ namespace FileFormat.Slides.Facade
         private bool isNewPresentation = false;
         private List<SlideFacade> _SlideFacades = null;
         private CommentAuthorsPart _CommentAuthorPart;
+        private Int32Value _slideWidth;
+        private Int32Value _slideHeight;
 
 
 
@@ -43,6 +46,8 @@ namespace FileFormat.Slides.Facade
         public List<SlideFacade> SlideFacades { get => _SlideFacades; set => _SlideFacades = value; }
         public bool IsNewPresentation { get => isNewPresentation; set => isNewPresentation = value; }
         public CommentAuthorsPart CommentAuthorPart { get => _CommentAuthorPart; set => _CommentAuthorPart = value; }
+        public Int32Value SlideWidth { get => _slideWidth; set => _slideWidth = value; }
+        public Int32Value SlideHeight { get => _slideHeight; set => _slideHeight = value; }
 
         public PKG.PresentationPart GetPresentationPart ()
         {
@@ -61,6 +66,7 @@ namespace FileFormat.Slides.Facade
                     _PresentationDocument = PKG.PresentationDocument.Create(FilePath, PresentationDocumentType.Presentation);
                     _PresentationPart = _PresentationDocument.AddPresentationPart();
                     _PresentationPart.Presentation = new Presentation();
+                   
                     _SlideIdList = new SlideIdList();
                     _PresentationSlideParts = new List<SlidePart>();
                     _PresentationSlideLayoutParts = new List<SlideLayoutPart>();
@@ -173,6 +179,16 @@ namespace FileFormat.Slides.Facade
             }
             return _instance;
         }
+        public static PresentationDocumentFacade Create(String FilePath,int SlideWidth, int SlideHeight)
+        {            
+
+            if (_instance == null)
+            {
+                _instance = new PresentationDocumentFacade(FilePath, true);
+                return _instance;
+            }
+            return _instance;
+        }
         public static PresentationDocumentFacade Open (string FilePath)
         {
             if (_instance == null)
@@ -204,9 +220,16 @@ namespace FileFormat.Slides.Facade
 
         private void CreatePresentationParts ()
         {
+            // Default values in EMUs
+            const int defaultWidth = 9144000; // 10 inches
+            const int defaultHeight = 6858000; // 7.5 inches
+
+            // Use the class-level values if set, otherwise use defaults
+            Int32Value slideWidth = _slideWidth ?? defaultWidth;
+            Int32Value slideHeight = _slideHeight ?? defaultHeight;
 
             //SlideIdList slideIdList1 = new SlideIdList(new SlideId() { Id = (UInt32Value)256U, RelationshipId = "rId2" });
-            SlideSize slideSize1 = new SlideSize() { Cx = 9144000, Cy = 6858000, Type = SlideSizeValues.Screen4x3 };
+            SlideSize slideSize1 = new SlideSize() { Cx = slideWidth, Cy = slideHeight, Type = SlideSizeValues.Custom };
             NotesSize notesSize1 = new NotesSize() { Cx = 6858000, Cy = 9144000 };
             DefaultTextStyle defaultTextStyle1 = new DefaultTextStyle();
 
@@ -454,7 +477,7 @@ namespace FileFormat.Slides.Facade
                     }
                 }
             }
-            _PresentationDocument.Close();
+            _PresentationDocument.Dispose();
 
         }
 
@@ -573,8 +596,13 @@ namespace FileFormat.Slides.Facade
                 if (disposing)
                 {
                     // TODO: dispose managed state (managed objects)
+                    
                     _PresentationDocument.Dispose();
+                    if (_MemoryStream != null)
                     _MemoryStream.Dispose();
+
+                    
+                    
                 }
 
 
@@ -591,23 +619,45 @@ namespace FileFormat.Slides.Facade
             {
                 _PresentationDocument.Save();
             }
-            _PresentationDocument.Close();
+            _PresentationDocument.Dispose();
 
         }
         public void Save (String FilePath)
         {
             _PresentationDocument.Save();
-
+           
         }
 
+        private void RemoveParts()
+        {
+            _PresentationDocument = null;
+            _PresentationPart = null;
+            _PresentationSlideParts = null;
+            _CommentAuthorPart = null;
+            _PresentationSlideLayoutParts = null;
+            _SlideIdList = null;
+            _PresentationSlideMasterPart = null;
+            _instance = null;
+        }
+        public void Close()
+        {
+            _PresentationDocument.Dispose ();   
+
+        }
         /// <summary>
         /// This method releases unmanaged resources. 
         /// </summary>
         public void Dispose ()
         {
             // Do not change this code. Put cleanup code in 'Dispose(bool disposing)' method
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
+
+            //Dispose(disposing: true);
+            //GC.SuppressFinalize(this);
+            RemoveParts();
+            
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
         }
 
     }

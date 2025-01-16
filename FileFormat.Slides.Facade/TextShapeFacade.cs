@@ -663,21 +663,18 @@ namespace FileFormat.Slides.Facade
             }
         }
 
-        private static TextAlignment ConvertAlignmentFromTypeValues (TextAlignmentTypeValues alignmentType)
+        private static TextAlignment ConvertAlignmentFromTypeValues(TextAlignmentTypeValues alignmentType)
         {
-            switch (alignmentType)
-            {
-                case TextAlignmentTypeValues.Left:
-                    return TextAlignment.Left;
-                case TextAlignmentTypeValues.Center:
-                    return TextAlignment.Center;
-                case TextAlignmentTypeValues.Right:
-                    return TextAlignment.Right;
-                case TextAlignmentTypeValues.Justified:
-                    return TextAlignment.None;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(alignmentType), alignmentType, null);
-            }
+            if (alignmentType.Equals(TextAlignmentTypeValues.Left))
+                return TextAlignment.Left;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Center))
+                return TextAlignment.Center;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Right))
+                return TextAlignment.Right;
+            if (alignmentType.Equals(TextAlignmentTypeValues.Justified))
+                return TextAlignment.None;
+
+            throw new ArgumentOutOfRangeException(nameof(alignmentType), alignmentType, null);
         }
     }
 }

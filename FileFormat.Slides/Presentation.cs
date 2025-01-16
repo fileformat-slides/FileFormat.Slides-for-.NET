@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Presentation;
+﻿using DocumentFormat.OpenXml;
+using DocumentFormat.OpenXml.Presentation;
 using FileFormat.Slides.Facade;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,21 @@ namespace FileFormat.Slides
         private static String _FileName = "MyPresentation.pptx";
         private static String _DirectoryPath = "D:\\AsposeSampleResults\\";
         private static PresentationDocumentFacade doc = null;
-        private List<Slide> _Slides;
-        private List<CommentAuthor> _CommentAuthors;
+        private List<Slide> _Slides = null;
+        private List<CommentAuthor> _CommentAuthors=null;
+        private int _SlideWidth = 960;
+        private int _SlideHeight = 720;
 
         public PresentationDocumentFacade Facade { get => doc; }
+        /// <summary>
+        /// Property to set slide width.
+        /// </summary>
+        public int SlideWidth { get => _SlideWidth; set => _SlideWidth = value; }
+
+        /// <summary>
+        /// Property to set slide height
+        /// </summary>
+        public int SlideHeight { get => _SlideHeight; set => _SlideHeight = value; }
 
 
 
@@ -26,9 +38,11 @@ namespace FileFormat.Slides
         /// <param name="FilePath">Presentation path as string</param>
         private Presentation (String FilePath)
         {
+            
             _Slides = new List<Slide>();
             _CommentAuthors = new List<CommentAuthor>();
             doc = PresentationDocumentFacade.Create(FilePath);
+            
 
         }
         /// <summary>
@@ -133,6 +147,8 @@ namespace FileFormat.Slides
         public void AppendSlide (Slide slide)
         {
             slide.SlideFacade.SetSlideBackground(slide.BackgroundColor);
+            doc.SlideWidth = new Int32Value((int)Common.Utility.PixelsToEmu(SlideWidth));
+            doc.SlideHeight = new Int32Value((int)Common.Utility.PixelsToEmu(SlideHeight));
             doc.AppendSlide(slide.SlideFacade);
             _Slides.Add(slide);
 
@@ -238,8 +254,15 @@ namespace FileFormat.Slides
         /// </summary>
         public void Save ()
         {
-            doc.Save();
+            doc.Save();           
 
+        }
+        /// <summary>
+        /// Method to close a presentation.
+        /// </summary>
+        public void close()
+        {
+            doc.Dispose();
         }
     }
 }
